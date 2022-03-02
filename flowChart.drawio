@@ -1,0 +1,75 @@
+<mxfile host="65bd71144e">
+    <diagram id="m9IBH8btpBihCmFAhEDS" name="Page-1">
+        <mxGraphModel dx="786" dy="472" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="11" value="enum: rarity" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="40" width="140" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="common," style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="11">
+                    <mxGeometry y="30" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="uncommon," style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="11">
+                    <mxGeometry y="60" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="rare," style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="11">
+                    <mxGeometry y="90" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="mythic rare" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="11">
+                    <mxGeometry y="120" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Namespace: SetUpBooster" style="swimlane;startSize=20;horizontal=1;childLayout=treeLayout;horizontalTree=0;resizable=0;containerType=tree;" vertex="1" parent="1">
+                    <mxGeometry x="210" y="40" width="560" height="378" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Abstract Class: Booster_Pack" style="whiteSpace=wrap;html=1;" vertex="1" parent="15">
+                    <mxGeometry x="235" y="40" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="NormalBooster" style="whiteSpace=wrap;html=1;" vertex="1" parent="15">
+                    <mxGeometry x="30" y="130" width="130" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;rounded=0;" edge="1" parent="15" source="16" target="17">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="196.5" y="110"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="19" value="WarOfTheSparkBooster" style="whiteSpace=wrap;html=1;" vertex="1" parent="15">
+                    <mxGeometry x="200" y="130" width="167" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;rounded=0;" edge="1" parent="15" source="16" target="19">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="285.5" y="105"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;rounded=0;" edge="1" source="16" target="34" parent="15">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="285.5" y="110"/>
+                            <mxPoint x="376.5" y="110"/>
+                            <mxPoint x="473.5" y="110"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="34" value="DominariaBooster" style="whiteSpace=wrap;html=1;" vertex="1" parent="15">
+                    <mxGeometry x="407" y="130" width="133" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Class: SetUpBooster" style="swimlane;" vertex="1" parent="15">
+                    <mxGeometry x="20" y="200" width="200" height="158" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="&lt;ul&gt;&lt;li&gt;Method: PickXCards(int X)&lt;/li&gt;&lt;li&gt;Mehtod: CheckCards()&lt;/li&gt;&lt;li&gt;Method: DownloadCards()&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="35">
+                    <mxGeometry y="20" width="200" height="138" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="enum: set" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="210" width="140" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Kami Neo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="23">
+                    <mxGeometry y="26" width="140" height="26" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
