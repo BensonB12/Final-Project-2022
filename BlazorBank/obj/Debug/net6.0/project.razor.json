@@ -12,39 +12,6 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": -1411301738,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.Pages.Counter",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Counter"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Pages.Counter"
-        }
-      },
-      {
-        "HashCode": -320552550,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.Pages.Counter",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "BlazorBank.Pages.Counter"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Pages.Counter",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": -1072649896,
         "Kind": "Components.Component",
         "Name": "BlazorBank.Pages.FetchData",
@@ -74,6 +41,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "BlazorBank.Pages.FetchData",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1476040958,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.PickYourPacks",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "PickYourPacks"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.PickYourPacks"
+        }
+      },
+      {
+        "HashCode": 480100204,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.PickYourPacks",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BlazorBank.Pages.PickYourPacks"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.PickYourPacks",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -16612,6 +16612,11 @@
   "RootNamespace": "BlazorBank",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Pages\\PickYourPacks.razor",
+      "TargetPath": "Pages\\PickYourPacks.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Shared\\NavMenu.razor",
       "TargetPath": "Shared\\NavMenu.razor",
       "FileKind": "component"
@@ -16619,11 +16624,6 @@
     {
       "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Shared\\MainLayout.razor",
       "TargetPath": "Shared\\MainLayout.razor",
-      "FileKind": "component"
-    },
-    {
-      "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Pages\\Counter.razor",
-      "TargetPath": "Pages\\Counter.razor",
       "FileKind": "component"
     },
     {

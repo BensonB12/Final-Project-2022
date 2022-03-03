@@ -1,9 +1,117 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Start</PageTitle>
 
-<h1>Hello, world!</h1>
+<style>
+    button {
+        background-color: salmon;
+        margin-left: 20%;
+        width: 40%;
+    }
 
-Welcome to your new app.
+    button:hover {
+        border-color: black;
+        border-width: 3px;
+        border-right: 1px;
+        border-bottom: 1px;
+    }
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    .info {
+        background-color: lightgray;
+        border-color: grey;
+        padding: 5px;
+        border-radius: 3px;
+    }
+
+    .warning {
+        background-color: red;
+        width: 570px;
+        border-radius: 3px;
+        padding: 5px;
+    }
+</style>
+@if (page1 == true)
+{
+    <h1>Welcome to MTG Winston</h1>
+
+    <br>
+    <br>
+    <button type="button" @onclick="NextPage" value="something">Start</button>
+    <br>
+    <br>
+    <button @onclick="ShowInfo">Show More Information</button>
+
+    @if (wantInfo == true)
+    {
+        <br>
+        <br>
+        <p class="info">
+            Winston draft is a way to draft six Magic the Gathering booster packs between two people. This website is looking
+            to let two players in the same room do this winston draft, download, and then import to MTG Arena.
+        </p>
+    }
+
+}
+else if (page2 == true)
+{
+    <h1>Pick your packs</h1>
+    <h3>You have to have exactly six total packs</h3>
+
+    <p>Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO"></p>
+    <br>
+    <br>
+    <p>War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
+    <br>
+    <br>
+    <p>Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
+    <br>
+    <br>
+    <button value="start" @onclick="Start">Start</button>
+    <br>
+    <br>
+    @if (check == false)
+    {
+        <h3 class="warning">You have to have six packs EXACTLY to start</h3>
+    }
+}
+else if (page3 == true)
+{
+    <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
+    alt="Back of a Magic card">
+}
+
+@code {
+    bool wantInfo = false;
+    bool page1 = true;
+    bool page2 = false;
+    bool page3 = false;
+    public void NextPage()
+    {
+        wantInfo = false;
+        page1 = false;
+        page2 = true;
+    }
+    int NEO = 6;
+    int WAR;
+    int DOM;
+    bool check = true;
+
+    public void Start()
+    {
+        check = true;
+        if (NEO + WAR + DOM != 6)
+        {
+            check = false;
+        }
+        else
+        {
+            page2 = false;
+            page3 = true;
+        }
+    }
+
+    public void ShowInfo()
+    {
+        wantInfo = true;
+    }
+}
