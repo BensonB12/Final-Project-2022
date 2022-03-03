@@ -3,20 +3,48 @@
 <PageTitle>Start</PageTitle>
 
 <style>
+    h2 {
+        position: absolute;
+        background-color: lightgray;
+        width: 90%;
+    }
+
+    #cardPile2 {
+        position: absolute;
+        background-color: lightgoldenrodyellow;
+        width: 200px;
+        top: 90.3%;
+        left: 50%;
+    }
+
+    #cardPile1 {
+        position: absolute;
+        background-color: lightgoldenrodyellow;
+        width: 200px;
+        bottom: 90%;
+        left: 50%;
+    }
+
+    .player2 {
+        top: 90%;
+    }
+
     .cardCount {
         position: absolute;
-        left: 282px;
-        background-color: grey;
+        left: 30px;
+        background-color: black;
+        color: white;
+        padding: 3px;
         z-index: 1;
-        top: 50%;
+        top: 40%;
     }
 
     #two {
-        left: 40%;
+        left: 30%;
     }
 
     #three {
-        left: 55%;
+        left: 45%;
     }
 
     #four {
@@ -27,37 +55,43 @@
         left: 85%;
     }
 
-
-
-    img:first-child {
-        transform: rotate(0deg);
-    }
-
     img {
         transform: rotate(90deg);
         position: relative;
-        top: 460px;
+        top: 360px;
+        left: 2%;
     }
 
     .img2 {
-        left: 10%;
+        left: 12%;
     }
 
     .img3 {
-        left: 20%;
+        left: 22%;
     }
 
     .img4 {
-        left: 30%;
+        left: 32%;
     }
 
     .img5 {
-        left: 40%;
+        left: 42%;
+        transform: rotate(0deg);
+    }
+
+    .start {
+        height: 100px;
+        font-size: xx-large;
+    }
+
+    .direction {
+        text-decoration: underline;
     }
 
     button {
         background-color: salmon;
-        margin-left: 20%;
+        position: relative;
+        left: 32%;
         width: 40%;
     }
 
@@ -68,18 +102,31 @@
         border-bottom: 1px;
     }
 
+    .set {
+        font-size: large;
+    }
+
     .info {
         background-color: lightgray;
         border-color: grey;
         padding: 5px;
         border-radius: 3px;
+        font-size: large;
     }
 
     .warning {
         background-color: red;
-        width: 570px;
+        text-align: center;
+        position: relative;
+        left: 38%;
+        width: 580px;
         border-radius: 3px;
         padding: 5px;
+        text-shadow: 5px;
+    }
+
+    h1{
+        text-align: center;
     }
 </style>
 @if (page1 == true)
@@ -88,7 +135,7 @@
 
     <br>
     <br>
-    <button type="button" @onclick="NextPage" value="something">Start</button>
+    <button type="button" @onclick="NextPage" class="start">Start</button>
     <br>
     <br>
     <button @onclick="ShowInfo">Show More Information</button>
@@ -107,33 +154,34 @@
 else if (page2 == true)
 {
     <h1>Pick your packs</h1>
-    <h3>You have to have exactly six total packs</h3>
+    <h3 class="direction">Choose your six packs</h3>
 
-    <p>Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO"></p>
+    <p class="set">Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO"></p>
     <br>
     <br>
-    <p>War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
+    <p class="set">War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
     <br>
     <br>
-    <p>Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
+    <p class="set">Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
     <br>
     <br>
-    <button value="start" @onclick="Start">Start</button>
+    <button class="start" @onclick="Start">Start</button>
     <br>
     <br>
     @if (check == false)
     {
-        <h3 class="warning">You have to have six packs EXACTLY to start</h3>
+        <h3 class="warning">You have to have <strong>six</strong> packs to start</h3>
     }
 }
 else if (page3 == true)
 {
+    <h2 class="player1">Player 1</h2>
     <div>
-        <p class="cardCount">00</p>
-        <p class="cardCount" id="two">00</p>
-        <p class="cardCount" id="three">00</p>
-        <p class="cardCount" id="four">00</p>
-        <p class="cardCount" id="five">00</p>
+        <p class="cardCount">@pile1</p>
+        <p class="cardCount" id="two">@pile2</p>
+        <p class="cardCount" id="three">@pile3</p>
+        <p class="cardCount" id="four">@pile4</p>
+        <p class="cardCount" id="five">@deckAmount</p>
         <p>
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
             alt="Back of a Magic card" width="10%" height="10%" class="img1">
@@ -147,9 +195,18 @@ else if (page3 == true)
             alt="Back of a Magic card" width="10%" height="10%" class="img5">
         </p>
     </div>
+    <h2 class="player2">Player 2</h2>
+    <button id="cardPile1">Show drafted cards (@player1CardCount)</button>
+    <button id="cardPile2">Show drafted cards (@player2CardCount)</button>
 }
-
 @code {
+    int player1CardCount;
+    int player2CardCount;
+    int deckAmount = 64;
+    int pile1 = 1;
+    int pile2 = 1;
+    int pile3 = 1;
+    int pile4 = 1;
     bool wantInfo = false;
     bool page1 = true;
     bool page2 = false;
@@ -160,7 +217,7 @@ else if (page3 == true)
         page1 = false;
         page2 = true;
     }
-    int NEO = 6;
+    int NEO;
     int WAR;
     int DOM;
     bool check = true;
