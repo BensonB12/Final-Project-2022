@@ -45,35 +45,35 @@
         }
       },
       {
-        "HashCode": -1476040958,
+        "HashCode": -630083384,
         "Kind": "Components.Component",
-        "Name": "BlazorBank.Pages.PickYourPacks",
+        "Name": "BlazorBank.Pages.MoreInfo",
         "AssemblyName": "BlazorBank",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "PickYourPacks"
+            "TagName": "MoreInfo"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Pages.PickYourPacks"
+          "Common.TypeName": "BlazorBank.Pages.MoreInfo"
         }
       },
       {
-        "HashCode": 480100204,
+        "HashCode": -1320838866,
         "Kind": "Components.Component",
-        "Name": "BlazorBank.Pages.PickYourPacks",
+        "Name": "BlazorBank.Pages.MoreInfo",
         "AssemblyName": "BlazorBank",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "BlazorBank.Pages.PickYourPacks"
+            "TagName": "BlazorBank.Pages.MoreInfo"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Pages.PickYourPacks",
+          "Common.TypeName": "BlazorBank.Pages.MoreInfo",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -16612,11 +16612,6 @@
   "RootNamespace": "BlazorBank",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Pages\\PickYourPacks.razor",
-      "TargetPath": "Pages\\PickYourPacks.razor",
-      "FileKind": "component"
-    },
-    {
       "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Shared\\NavMenu.razor",
       "TargetPath": "Shared\\NavMenu.razor",
       "FileKind": "component"
@@ -16645,6 +16640,11 @@
       "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\_Imports.razor",
       "TargetPath": "_Imports.razor",
       "FileKind": "componentImport"
+    },
+    {
+      "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Pages\\MoreInfo.razor",
+      "TargetPath": "Pages\\MoreInfo.razor",
+      "FileKind": "component"
     },
     {
       "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Pages\\Error.cshtml",
