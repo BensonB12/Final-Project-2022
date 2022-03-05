@@ -12,6 +12,39 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
+        "HashCode": -318760282,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.Index",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Index"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.Index"
+        }
+      },
+      {
+        "HashCode": -558094509,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.Index",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BlazorBank.Pages.Index"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.Index",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -630083384,
         "Kind": "Components.Component",
         "Name": "BlazorBank.Pages.MoreInfo",
@@ -78,35 +111,35 @@
         }
       },
       {
-        "HashCode": -318760282,
+        "HashCode": 204472632,
         "Kind": "Components.Component",
-        "Name": "BlazorBank.Pages.Index",
+        "Name": "BlazorBank.App",
         "AssemblyName": "BlazorBank",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "Index"
+            "TagName": "App"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Pages.Index"
+          "Common.TypeName": "BlazorBank.App"
         }
       },
       {
-        "HashCode": -558094509,
+        "HashCode": -1391746403,
         "Kind": "Components.Component",
-        "Name": "BlazorBank.Pages.Index",
+        "Name": "BlazorBank.App",
         "AssemblyName": "BlazorBank",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "BlazorBank.Pages.Index"
+            "TagName": "BlazorBank.App"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Pages.Index",
+          "Common.TypeName": "BlazorBank.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -140,59 +173,6 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "BlazorBank.Shared.NavMenu",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1178248109,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.Shared.SurveyPrompt",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "SurveyPrompt"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Title",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Title"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Shared.SurveyPrompt"
-        }
-      },
-      {
-        "HashCode": -625544876,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.Shared.SurveyPrompt",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "BlazorBank.Shared.SurveyPrompt"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Title",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Title"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Shared.SurveyPrompt",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -293,35 +273,55 @@
         }
       },
       {
-        "HashCode": 204472632,
+        "HashCode": -1178248109,
         "Kind": "Components.Component",
-        "Name": "BlazorBank.App",
+        "Name": "BlazorBank.Shared.SurveyPrompt",
         "AssemblyName": "BlazorBank",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "App"
+            "TagName": "SurveyPrompt"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Title",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Title"
+            }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.App"
+          "Common.TypeName": "BlazorBank.Shared.SurveyPrompt"
         }
       },
       {
-        "HashCode": -1391746403,
+        "HashCode": -625544876,
         "Kind": "Components.Component",
-        "Name": "BlazorBank.App",
+        "Name": "BlazorBank.Shared.SurveyPrompt",
         "AssemblyName": "BlazorBank",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "BlazorBank.App"
+            "TagName": "BlazorBank.Shared.SurveyPrompt"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Title",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Title"
+            }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.App",
+          "Common.TypeName": "BlazorBank.Shared.SurveyPrompt",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

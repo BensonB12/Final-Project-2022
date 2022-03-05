@@ -1,8 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "o8QCeYXZGJ+iIX6yk5YlaBxeYBTPZQyaYR8p/9QZPZm5Mhv0ZAZHj68sZbQJEp2jX/z25OpAn5uEeTYnFZq4fQ==",
+  "dgSpecHash": "OqXj7RFV3tttsogHLGJoA+DxPn4mCkD1Y4DtcDd2rKxR0y4SrqowQExdXPtU+Smh+bt9EzYDW58+38JWUosIyQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\benso\\.nuget\\packages\\flurl\\3.0.1\\flurl.3.0.1.nupkg.sha512",
+    "C:\\Users\\benso\\.nuget\\packages\\flurl.http\\3.0.1\\flurl.http.3.0.1.nupkg.sha512",
+    "C:\\Users\\benso\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
+    "C:\\Users\\benso\\.nuget\\packages\\mtgapimanager.lib\\2.3.2\\mtgapimanager.lib.2.3.2.nupkg.sha512",
+    "C:\\Users\\benso\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\benso\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\benso\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
+    "C:\\Users\\benso\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
