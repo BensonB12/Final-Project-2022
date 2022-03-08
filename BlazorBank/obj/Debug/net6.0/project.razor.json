@@ -111,39 +111,6 @@
         }
       },
       {
-        "HashCode": 204472632,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.App",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.App"
-        }
-      },
-      {
-        "HashCode": -1391746403,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.App",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "BlazorBank.App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.App",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": -283109779,
         "Kind": "Components.Component",
         "Name": "BlazorBank.Shared.NavMenu",
@@ -322,6 +289,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "BlazorBank.Shared.SurveyPrompt",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 204472632,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.App",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.App"
+        }
+      },
+      {
+        "HashCode": -1391746403,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.App",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BlazorBank.App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
