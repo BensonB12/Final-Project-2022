@@ -9,7 +9,6 @@ using MtgApiManager.Lib.Core;
 using MtgApiManager.Lib.Model;
 using MtgApiManager.Lib.Service;
 
-
 namespace Winston
 {
     public static class BaseUrl
@@ -42,38 +41,43 @@ namespace Winston
         legendary,
         land
     }
-    public abstract class MakeBooster
+    public class MakeBooster
     {
         private Set set;
         private int NumberOfCards = 15;
-        private List<Task<CardModel>> booster{get;}
+        private IAsyncEnumerable<List<CardModel>> booster { get; }
+
+        public IAsyncEnumerable<List<CardModel>> GetBooster()
+        {
+            return booster;
+        }
 
         public MakeBooster(Set set)
         {
             this.set = set;
-            booster = PickXCardsFromSet(set);
+            booster = (IAsyncEnumerable<List<CardModel>>)PickXCardsFromSet(set);
         }
         public MakeBooster(Set set, int numberOfCards) : this(set)
         {
             this.NumberOfCards = numberOfCards;
         }
 
-        private List<Task<CardModel>> PickXCardsFromSet(Set enumSet, int numberOfCommons = 10, int numberOfUncommons = 3, int numberOfRares = 1, int numberOfLands = 1)
+        private async static IAsyncEnumerator<List<CardModel>> PickXCardsFromSet(Set enumSet, int numberOfCommons = 10, int numberOfUncommons = 3, int numberOfRares = 1, int numberOfLands = 1)
         {
             Random random = new Random();
-            List<Task<CardModel>> boosterPack = null;
+            List<CardModel> boosterPack = null;
             for (int i = 0; i < numberOfLands; i++)
             {
-                Task<CardModel> card = CardProcessor.LoadLand(enumSet);
+                CardModel card = await CardProcessor.LoadLand(enumSet);
                 boosterPack.Add(card);
             }
             for (int i = 0; i < numberOfCommons; i++)
             {
-                boosterPack.Add(CardProcessor.LoadNonLand(enumSet, Rarity.commmon));
+                boosterPack.Add(await CardProcessor.LoadNonLand(enumSet, Rarity.commmon));
             }
             for (int i = 0; i < numberOfUncommons; i++)
             {
-                boosterPack.Add(CardProcessor.LoadNonLand(enumSet, Rarity.uncommon));
+                boosterPack.Add(await CardProcessor.LoadNonLand(enumSet, Rarity.uncommon));
             }
 
             int decider = random.Next(101);
@@ -82,18 +86,18 @@ namespace Winston
             {
                 for (int i = 0; i < numberOfRares; i++)
                 {
-                    boosterPack.Add(CardProcessor.LoadNonLand(enumSet, Rarity.rare));
+                    boosterPack.Add(await CardProcessor.LoadNonLand(enumSet, Rarity.rare));
                 }
             }
             else
             {
                 for (int i = 0; i < numberOfRares; i++)
                 {
-                    boosterPack.Add(CardProcessor.LoadNonLand(enumSet, Rarity.mythicRare));
+                    boosterPack.Add(await CardProcessor.LoadNonLand(enumSet, Rarity.mythicRare));
                 }
             }
 
-            return boosterPack;
+            yield return boosterPack;
         }
 
         public static class ApiHelper
@@ -111,26 +115,26 @@ namespace Winston
         }
     }
 
-    public class NormalBooster : MakeBooster
-    {
-        public NormalBooster(Set set) : base(set)
-        {
-        }
-    }
+    // public class NormalBooster : MakeBooster
+    // {
+    //     public NormalBooster(Set set) : base(set)
+    //     {
+    //     }
+    // }
 
-    public class WARBooster : MakeBooster
-    {
-        public WARBooster() : base(Set.WAR)
-        {
-        }
-    }
+    // public class WARBooster : MakeBooster
+    // {
+    //     public WARBooster() : base(Set.WAR)
+    //     {
+    //     }
+    // }
 
-    public class DOMBooster : MakeBooster
-    {
-        public DOMBooster() : base(Set.DOM)
-        {
-        }
-    }
+    // public class DOMBooster : MakeBooster
+    // {
+    //     public DOMBooster() : base(Set.DOM)
+    //     {
+    //     }
+    // }
 
     public static class CardProcessor
     {
@@ -217,16 +221,18 @@ namespace Winston
 
                 if (response.IsSuccessStatusCode)
                 {
-                    CardModel[] cards = await response.Content.ReadAsAsync<CardModel[]>();
+                    CardResultModel cards = await response.Content.ReadAsAsync<CardResultModel>();
                     Random random = new Random();
-                    cards = cards.OrderBy(x => random.Next()).ToArray();
-                    return CheckForOutliers(cards, enumSet);
+                    CardModel[] specificData = cards.cards;
+                    specificData = specificData.OrderBy(x => random.Next()).ToArray();
+                    return CheckForOutliers(specificData, enumSet);
                 }
                 else
                 {
                     throw new Exception(response.ReasonPhrase);
                 }
             }
+
 
             static CardModel CheckForOutliers(CardModel[] cards, Set enumSet)
             {
@@ -257,10 +263,27 @@ namespace Winston
         }
     }
 
+    public class CardResultModel
+    {
+        public CardModel[] cards {get; set;}
+    }
+
     public class CardModel
     {
         public string ImageUrl { get; set; }
         public int Id { get; set; }
         public int Number { get; set; }
     }
+
+    public class MainWindow
+    {
+        public async Task LoadImage()
+        {
+            var card = await CardProcessor.LoadNonLand(Set.WAR, Rarity.uncommon);
+
+            var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
+            //cardImage.Source = new BitmapImage(uriSource);
+        }
+    }
+
 }

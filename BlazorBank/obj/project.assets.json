@@ -25,7 +25,7 @@
           "lib/netstandard2.0/Flurl.Http.dll": {}
         }
       },
-      "Microsoft.AspNet.WebApi.Client/5.2.7": {
+      "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "10.0.1",
@@ -1337,10 +1337,10 @@
         "lib/netstandard2.0/Flurl.xml"
       ]
     },
-    "Microsoft.AspNet.WebApi.Client/5.2.7": {
-      "sha512": "/76fAHknzvFqbznS6Uj2sOyE9rJB3PltY+f53TH8dX9RiGhk02EhuFCWljSj5nnqKaTsmma8DFR50OGyQ4yJ1g==",
+    "Microsoft.AspNet.WebApi.Client/5.2.6": {
+      "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
       "type": "package",
-      "path": "microsoft.aspnet.webapi.client/5.2.7",
+      "path": "microsoft.aspnet.webapi.client/5.2.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1350,7 +1350,7 @@
         "lib/netstandard2.0/System.Net.Http.Formatting.xml",
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.dll",
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
-        "microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
+        "microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
         "microsoft.aspnet.webapi.client.nuspec"
       ]
     },
@@ -4773,7 +4773,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Microsoft.AspNet.WebApi.Client >= 5.2.7",
+      "Microsoft.AspNet.WebApi.Client >= 5.2.6",
       "MtgApiManager.Lib >= 2.3.2"
     ]
   },
@@ -4783,11 +4783,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
+      "projectUniqueName": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
       "projectName": "BlazorBank",
-      "projectPath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
+      "projectPath": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
       "packagesPath": "C:\\Users\\benso\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\obj\\",
+      "outputPath": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\benso\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -4816,7 +4816,7 @@
         "dependencies": {
           "Microsoft.AspNet.WebApi.Client": {
             "target": "Package",
-            "version": "[5.2.7, )"
+            "version": "[5.2.6, )"
           },
           "MtgApiManager.Lib": {
             "target": "Package",

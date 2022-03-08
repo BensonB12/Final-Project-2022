@@ -147,6 +147,10 @@
     <br>
     <br>
     <button @onclick="ShowInfo">Show More Information</button>
+    <br>
+    <br>
+    @* <input @onload="Window_Loaded"></input> *@
+
 
     @if (wantInfo == true)
     {
@@ -247,5 +251,21 @@ else if (page3 == true)
     public void ShowInfo()
     {
         wantInfo = true;
+        @* Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
+        var NewBooster = booster.GetBooster();
+        var someThingNew = NewBooster.ConfigureAwait<Winston.CardModel>; *@
+    }
+
+    public async Task LoadImage()
+        {
+            var card = await Winston.CardProcessor.LoadNonLand(Winston.Set.WAR, Winston.Rarity.uncommon);
+
+            var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
+            //cardImage.Source = new System.Windows.Media.BitmapImage(uriSource);
+        }
+
+    private async void Window_Loaded()
+    {
+        await LoadImage();
     }
 }
