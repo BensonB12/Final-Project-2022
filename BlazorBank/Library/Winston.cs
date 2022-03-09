@@ -2,6 +2,7 @@
 //Booster packs have 10 common, 3 uncommon, 1 rare/mythicRare, and 1 non-basic land if there is any in the set. (DOM had basics and WAR had one common land)
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -51,8 +52,8 @@ namespace Winston
         public MakeBooster(Set set)
         {
             this.set = set;
-            this.singleCard = CardProcessor.LoadNonLand(set, Rarity.commmon);
-            //booster = PickXCardsFromSet(set);
+            //this.singleCard = CardProcessor.LoadNonLand(set, Rarity.commmon);
+            booster = PickXCardsFromSet(set);
         }
 
         private async static Task<List<CardModel>> PickXCardsFromSet(Set enumSet, int numberOfCommons = 10, int numberOfUncommons = 3, int numberOfRares = 1, int numberOfLands = 1)
@@ -64,29 +65,31 @@ namespace Winston
                 CardModel card = await CardProcessor.LoadLand(enumSet);
                 boosterPack.Add(card);
             }
-            for (int i = 0; i < numberOfCommons; i++)
+
+            foreach (var item in await CardProcessor.LoadNonLand(enumSet, Rarity.commmon, numberOfCommons))
             {
-                boosterPack.Add(await CardProcessor.LoadNonLand(enumSet, Rarity.commmon));
+                boosterPack.Add(item);
             }
-            for (int i = 0; i < numberOfUncommons; i++)
+
+            foreach (var item in await CardProcessor.LoadNonLand(enumSet, Rarity.uncommon, numberOfUncommons))
             {
-                boosterPack.Add(await CardProcessor.LoadNonLand(enumSet, Rarity.uncommon));
+                boosterPack.Add(item);
             }
 
             int decider = random.Next(101);
 
             if (decider < 72)
             {
-                for (int i = 0; i < numberOfRares; i++)
+                foreach (var item in await CardProcessor.LoadNonLand(enumSet, Rarity.rare, numberOfRares))
                 {
-                    boosterPack.Add(await CardProcessor.LoadNonLand(enumSet, Rarity.rare));
+                    boosterPack.Add(item);
                 }
             }
             else
             {
-                for (int i = 0; i < numberOfRares; i++)
+                foreach (var item in await CardProcessor.LoadNonLand(enumSet, Rarity.mythicRare, numberOfRares))
                 {
-                    boosterPack.Add(await CardProcessor.LoadNonLand(enumSet, Rarity.mythicRare));
+                    boosterPack.Add(item);
                 }
             }
 
@@ -157,10 +160,6 @@ namespace Winston
                 {
                     CardResultModel result = await response.Content.ReadAsAsync<CardResultModel>();
                     Random random = new Random();
-                    var writer = new StreamWriter("results.txt");
-                    writer.WriteLine("we have made it to here");
-                    writer.WriteLine(result);
-                    writer.Close();
                     CardModel[] specificData = result.cards;
                     specificData = specificData.OrderBy(x => random.Next()).ToArray();
                     return specificData[0];
@@ -173,7 +172,7 @@ namespace Winston
         }
 
         //Neo does not have common lands, WAR has one, DOM none
-        public async static Task<CardModel> LoadNonLand(Set enumSet, Rarity enumRarity)
+        public async static Task<List<CardModel>> LoadNonLand(Set enumSet, Rarity enumRarity, int cardsWanted)
         {
             string stringSet;
 
@@ -211,6 +210,8 @@ namespace Winston
                     throw new Exception("The set in 'LoadCard' is not 'common', 'uncommon', 'rare', nor 'mythicRare'.");
             }
 
+            var list = new List<CardModel>();
+
             string url = $"{BaseUrl.BU()}cards?rarity={stringRarity}&set={stringSet}";
 
             using (HttpResponseMessage response = await MakeBooster.ApiHelper.ApiClient.GetAsync(url))
@@ -226,7 +227,22 @@ namespace Winston
                     writer.Close();
                     CardModel[] specificData = result.cards;
                     specificData = specificData.OrderBy(x => random.Next()).ToArray();
-                    return CheckForOutliers(specificData, enumSet);
+                    int i = 0;
+                    while(true)
+                    {
+                        var worthyCard = CheckForOutliers(specificData, enumSet, i);
+                        if (worthyCard != null)
+                        {
+                            list.Add(worthyCard);
+                            i++;
+                        }
+                        if(i >= cardsWanted)
+                        {
+                            break;
+                        }
+                    }
+
+                    return list;
                 }
                 else
                 {
@@ -235,7 +251,7 @@ namespace Winston
             }
 
 
-            static CardModel CheckForOutliers(CardModel[] cards, Set enumSet)
+            static CardModel CheckForOutliers(CardModel[] cards, Set enumSet, int i)
             {
                 int maxNumber;
                 switch (enumSet)
@@ -251,13 +267,15 @@ namespace Winston
                         throw new Exception("We got a diffrent set somehow in 'CheckForLands'");
                 }
 
-                foreach (CardModel card in cards)
+                int number = int.Parse(cards[i].Number.Trim(), CultureInfo.InvariantCulture);
+
+                if (number < maxNumber)
                 {
-                    int number = int.Parse(card.Number);
-                    if (number < maxNumber)
-                    {
-                        return card;
-                    }
+                    return cards[i];
+                }
+                else
+                {
+                    return null;
                 }
 
                 throw new Exception("In 'CheckForOutliers' there was no card that was less than the maxNumber.");
@@ -267,7 +285,7 @@ namespace Winston
 
     public class CardResultModel
     {
-        public CardModel[] cards {get; set;}
+        public CardModel[] cards { get; set; }
     }
 
     public class CardModel
@@ -277,15 +295,15 @@ namespace Winston
         public string Number { get; set; }
     }
 
-    public class MainWindow
-    {
-        public async Task LoadImage()
-        {
-            var card = await CardProcessor.LoadNonLand(Set.WAR, Rarity.uncommon);
+    // public class MainWindow
+    // {
+    //     public async Task LoadImage()
+    //     {
+    //         var card = await CardProcessor.LoadNonLand(Set.WAR, Rarity.uncommon);
 
-            var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
-            //cardImage.Source = new BitmapImage(uriSource);
-        }
-    }
+    //         var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
+    //         //cardImage.Source = new BitmapImage(uriSource);
+    //     }
+    // }
 
 }

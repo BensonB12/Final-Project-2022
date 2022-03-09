@@ -205,6 +205,12 @@
         left: 80%;
     }
 
+    #d14 {
+        top: 360px;
+        left: 50%;
+        z-index: 5;
+    }
+
     .square {
         position: absolute;
         top: 0%;
@@ -317,21 +323,21 @@ else if (page3 == true)
         <p class="cardCount" id="five">@deckAmount</p>
         <p>
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img1">
+            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img1">
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img2">
+            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img2">
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img3">
+            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img3">
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img4">
+            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img4">
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img5">
+            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img5">
         </p>
     </div>
 
     @if (popUpCards == true)
     {
-        <div class="square"></div>
+        @* <div class="square"></div> *@
 
         int i = 0;
         foreach (var item in ListOfImgUrls)
@@ -339,6 +345,10 @@ else if (page3 == true)
             string id = "d" + i.ToString();
             <img class="popUpCards" src="@item" id="@id" />
             i++;
+            if (i == 15)
+            {
+                i = 0;
+            }
         }
 
         <button class="choose">Choose Pack</button>
@@ -395,7 +405,6 @@ else if (page3 == true)
         wantInfo = true;
     }
 
-    //foreach (var item in await booster.booster) PrintingImage(item);
     public async void ShowCard()
     {
         popUpCards = true;
@@ -404,12 +413,23 @@ else if (page3 == true)
         PrintingImage(await booster.singleCard);
     }
 
+    public async void ShowCards()
+    {
+        popUpCards = true;
+        Winston.MakeBooster.ApiHelper.InitializeClient();
+        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.WAR);
+        foreach (var item in await booster.booster)
+        {
+            PrintingImage(item);
+        }
+    }
+
     public async void PrintingImage(Winston.CardModel card)
     {
         ListOfImgUrls.Add(card.ImageUrl);
     }
 
-    private string? imageSource;
+    @* private string? imageSource;
     public async Task ShowImage()
     {
         var card = await Winston.CardProcessor.LoadNonLand(Winston.Set.WAR, Winston.Rarity.uncommon);
@@ -422,5 +442,5 @@ else if (page3 == true)
     private async void Window_Loaded()
     {
         await ShowImage();
-    }
+    } *@
 }
