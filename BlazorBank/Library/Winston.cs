@@ -4,6 +4,7 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using MtgApiManager.Lib.Core;
 using MtgApiManager.Lib.Model;
@@ -44,28 +45,20 @@ namespace Winston
     public class MakeBooster
     {
         private Set set;
-        private int NumberOfCards = 15;
-        private IAsyncEnumerable<List<CardModel>> booster { get; }
-
-        public IAsyncEnumerable<List<CardModel>> GetBooster()
-        {
-            return booster;
-        }
+        public Task<List<CardModel>> booster { get; }
+        public Task<CardModel> singleCard { get; }
 
         public MakeBooster(Set set)
         {
             this.set = set;
-            booster = (IAsyncEnumerable<List<CardModel>>)PickXCardsFromSet(set);
-        }
-        public MakeBooster(Set set, int numberOfCards) : this(set)
-        {
-            this.NumberOfCards = numberOfCards;
+            this.singleCard = CardProcessor.LoadNonLand(set, Rarity.commmon);
+            //booster = PickXCardsFromSet(set);
         }
 
-        private async static IAsyncEnumerator<List<CardModel>> PickXCardsFromSet(Set enumSet, int numberOfCommons = 10, int numberOfUncommons = 3, int numberOfRares = 1, int numberOfLands = 1)
+        private async static Task<List<CardModel>> PickXCardsFromSet(Set enumSet, int numberOfCommons = 10, int numberOfUncommons = 3, int numberOfRares = 1, int numberOfLands = 1)
         {
             Random random = new Random();
-            List<CardModel> boosterPack = null;
+            List<CardModel> boosterPack = new List<CardModel>();
             for (int i = 0; i < numberOfLands; i++)
             {
                 CardModel card = await CardProcessor.LoadLand(enumSet);
@@ -97,20 +90,19 @@ namespace Winston
                 }
             }
 
-            yield return boosterPack;
+            return boosterPack;
         }
 
         public static class ApiHelper
         {
-            //Maybe not static, (only one browser)
             public static HttpClient ApiClient { get; set; }
             public static void InitializeClient()
             {
                 ApiClient = new HttpClient();
-                ApiClient.BaseAddress = new Uri("https://api.magicthegathering.io/v1/");
+                //ApiClient.BaseAddress = new Uri("https://api.magicthegathering.io/v1/");
                 ApiClient.DefaultRequestHeaders.Accept.Clear();
                 //Give us Json
-                ApiClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
     }
@@ -163,10 +155,15 @@ namespace Winston
 
                 if (response.IsSuccessStatusCode)
                 {
-                    CardModel[] cards = await response.Content.ReadAsAsync<CardModel[]>();
+                    CardResultModel result = await response.Content.ReadAsAsync<CardResultModel>();
                     Random random = new Random();
-                    cards = cards.OrderBy(x => random.Next()).ToArray();
-                    return cards[0];
+                    var writer = new StreamWriter("results.txt");
+                    writer.WriteLine("we have made it to here");
+                    writer.WriteLine(result);
+                    writer.Close();
+                    CardModel[] specificData = result.cards;
+                    specificData = specificData.OrderBy(x => random.Next()).ToArray();
+                    return specificData[0];
                 }
                 else
                 {
@@ -221,9 +218,13 @@ namespace Winston
 
                 if (response.IsSuccessStatusCode)
                 {
-                    CardResultModel cards = await response.Content.ReadAsAsync<CardResultModel>();
+                    CardResultModel result = await response.Content.ReadAsAsync<CardResultModel>();
                     Random random = new Random();
-                    CardModel[] specificData = cards.cards;
+                    var writer = new StreamWriter("results.txt");
+                    writer.WriteLine("we have made it to here");
+                    writer.WriteLine(result);
+                    writer.Close();
+                    CardModel[] specificData = result.cards;
                     specificData = specificData.OrderBy(x => random.Next()).ToArray();
                     return CheckForOutliers(specificData, enumSet);
                 }
@@ -252,7 +253,8 @@ namespace Winston
 
                 foreach (CardModel card in cards)
                 {
-                    if (card.Number < maxNumber)
+                    int number = int.Parse(card.Number);
+                    if (number < maxNumber)
                     {
                         return card;
                     }
@@ -271,8 +273,8 @@ namespace Winston
     public class CardModel
     {
         public string ImageUrl { get; set; }
-        public int Id { get; set; }
-        public int Number { get; set; }
+        public string Id { get; set; }
+        public string Number { get; set; }
     }
 
     public class MainWindow

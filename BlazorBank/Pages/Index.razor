@@ -13,6 +13,7 @@
         width: 90%;
     }
 
+
     #cardPile2 {
         position: absolute;
         background-color: lightgoldenrodyellow;
@@ -135,6 +136,72 @@
     h1 {
         text-align: center;
     }
+
+    .popUpCards {
+        transform: rotate(0);
+        position: absolute;
+        top: 120px;
+        left: 2%;
+    }
+
+    #d1 {
+        left: 15%;
+    }
+
+    #d2 {
+        left: 28%;
+    }
+
+    #d3 {
+        left: 41%;
+    }
+
+    #d4 {
+        left: 54%;
+    }
+
+    #d5 {
+        left: 67%;
+    }
+
+    #d6 {
+        left: 80%;
+    }
+
+    #d7 {
+        top: 580px;
+        left: 2%;
+    }
+
+    #d8 {
+        top: 580px;
+        left: 15%;
+    }
+
+    #d9 {
+        top: 580px;
+        left: 28%;
+    }
+
+    #d10 {
+        top: 580px;
+        left: 41%;
+    }
+
+    #d11 {
+        top: 580px;
+        left: 54%;
+    }
+
+    #d12 {
+        top: 580px;
+        left: 67%;
+    }
+
+    #d13 {
+        top: 580px;
+        left: 80%;
+    }
 </style>
 
 @if (page1 == true)
@@ -149,6 +216,33 @@
     <button @onclick="ShowInfo">Show More Information</button>
     <br>
     <br>
+
+    @* @if (ListOfImgUrls != null)
+        {
+        foreach (var item in ListOfImgUrls)
+        {
+        <img src="@item" />
+        }
+        } *@
+
+    @* <img @onload="ShowImage" src="imageSource" alt="ATimageSource" />
+        <img @onload="Window_Loaded" src="imageSource" alt="ATimageSource.5" />
+        <img @onload="ShowImage" src="@imageSource" alt="ATimageSource1" />
+        <img src="@imageSource" alt="ATimageSource2" /> *@
+
+    @* @if (imageSource is not null)
+        {
+        <div>
+        <img src="@imageSource" />
+        </div>
+        }
+        @for (var i = 1; i <= 3; i++)
+        {
+        var imageId = i;
+        <button @onclick="() => ShowImage()">
+        Image @imageSource
+        </button>
+        } *@
     @* <input @onload="Window_Loaded"></input> *@
 
 
@@ -196,17 +290,29 @@ else if (page3 == true)
         <p class="cardCount" id="five">@deckAmount</p>
         <p>
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" width="10%" height="10%" class="img1">
+            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img1">
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" width="10%" height="10%" class="img2">
+            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img2">
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" width="10%" height="10%" class="img3">
+            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img3">
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" width="10%" height="10%" class="img4">
+            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img4">
             <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" width="10%" height="10%" class="img5">
+            alt="Back of a Magic card" @onclick="ShowCard" width="10%" height="10%" class="img5">
         </p>
     </div>
+
+    @if (popUpCards == true)
+    {
+        int i = 0;
+        foreach (var item in ListOfImgUrls)
+        {
+            string id = "d" + i.ToString();
+            <img class="popUpCards" src="@item" id="@id" />
+            i++;
+        }
+    }
+
     <h2 class="player2">Player 2</h2>
     <button id="cardPile1">Show drafted cards (@player1CardCount)</button>
     <button id="cardPile2">Show drafted cards (@player2CardCount)</button>
@@ -223,6 +329,8 @@ else if (page3 == true)
     bool page1 = true;
     bool page2 = false;
     bool page3 = false;
+    bool popUpCards = false;
+
     public void NextPage()
     {
         wantInfo = false;
@@ -248,24 +356,39 @@ else if (page3 == true)
         }
     }
 
-    public void ShowInfo()
+    public List<string> ListOfImgUrls = new List<string>();
+
+    public async void ShowInfo()
     {
         wantInfo = true;
-        @* Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
-        var NewBooster = booster.GetBooster();
-        var someThingNew = NewBooster.ConfigureAwait<Winston.CardModel>; *@
     }
 
-    public async Task LoadImage()
-        {
-            var card = await Winston.CardProcessor.LoadNonLand(Winston.Set.WAR, Winston.Rarity.uncommon);
+    //foreach (var item in await booster.booster) PrintingImage(item);
+    public async void ShowCard()
+    {
+        popUpCards = true;
+        Winston.MakeBooster.ApiHelper.InitializeClient();
+        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
+        PrintingImage(await booster.singleCard);
+    }
 
-            var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
-            //cardImage.Source = new System.Windows.Media.BitmapImage(uriSource);
-        }
+public async void PrintingImage(Winston.CardModel card)
+    {
+        ListOfImgUrls.Add(card.ImageUrl);
+    }
+
+    private string? imageSource;
+    public async Task ShowImage()
+    {
+        var card = await Winston.CardProcessor.LoadNonLand(Winston.Set.WAR, Winston.Rarity.uncommon);
+
+        var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
+
+        imageSource = uriSource.ToString();
+    }
 
     private async void Window_Loaded()
     {
-        await LoadImage();
+        await ShowImage();
     }
 }
