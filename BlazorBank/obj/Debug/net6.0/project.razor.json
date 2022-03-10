@@ -45,39 +45,6 @@
         }
       },
       {
-        "HashCode": -630083384,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.Pages.MoreInfo",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "MoreInfo"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Pages.MoreInfo"
-        }
-      },
-      {
-        "HashCode": -1320838866,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.Pages.MoreInfo",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "BlazorBank.Pages.MoreInfo"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Pages.MoreInfo",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": -318760282,
         "Kind": "Components.Component",
         "Name": "BlazorBank.Pages.Index",
@@ -107,6 +74,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "BlazorBank.Pages.Index",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -630083384,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.MoreInfo",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "MoreInfo"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.MoreInfo"
+        }
+      },
+      {
+        "HashCode": -1320838866,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.MoreInfo",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BlazorBank.Pages.MoreInfo"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.MoreInfo",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

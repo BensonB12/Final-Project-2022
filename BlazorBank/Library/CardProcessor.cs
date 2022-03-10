@@ -1,124 +1,7 @@
-//Github Link: https://github.com/MagicTheGathering/mtg-sdk-dotnet
-//Booster packs have 10 common, 3 uncommon, 1 rare/mythicRare, and 1 non-basic land if there is any in the set. (DOM had basics and WAR had one common land)
-
-using System;
 using System.Globalization;
-using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using MtgApiManager.Lib.Core;
-using MtgApiManager.Lib.Model;
-using MtgApiManager.Lib.Service;
 
 namespace Winston
 {
-    public static class BaseUrl
-    {
-        public static string BU()
-        {
-            return "https://api.magicthegathering.io/v1/";
-        }
-    }
-
-    public enum Set
-    {
-        //War = 250 is the first basic land. NEO 282, DOM 250
-        WAR,
-        NEO,
-        DOM
-    }
-
-    public enum Rarity
-    {
-        commmon,
-        uncommon,
-        rare,
-        mythicRare
-    }
-
-    public enum cardType
-    {
-        planeswalker,
-        legendary,
-        land
-    }
-    public class MakeBooster
-    {
-        private Set set;
-        public Task<List<CardModel>> booster { get; }
-        public Task<CardModel> singleCard { get; }
-
-        public MakeBooster(Set set)
-        {
-            this.set = set;
-            //this.singleCard = CardProcessor.LoadNonLand(set, Rarity.commmon);
-            booster = PickXCardsFromSet(set);
-        }
-
-        private async static Task<List<CardModel>> PickXCardsFromSet(Set enumSet, int numberOfCommons = 10, int numberOfUncommons = 3, int numberOfRares = 1, int numberOfLands = 1)
-        {
-            Random random = new Random();
-            List<CardModel> boosterPack = new List<CardModel>();
-            for (int i = 0; i < numberOfLands; i++)
-            {
-                CardModel card = await CardProcessor.LoadLand(enumSet);
-                boosterPack.Add(card);
-            }
-
-            foreach (var item in await CardProcessor.LoadNonLand(enumSet, Rarity.commmon, numberOfCommons))
-            {
-                boosterPack.Add(item);
-            }
-
-            foreach (var item in await CardProcessor.LoadNonLand(enumSet, Rarity.uncommon, numberOfUncommons))
-            {
-                boosterPack.Add(item);
-            }
-
-            int decider = random.Next(101);
-
-            if (decider < 72)
-            {
-                foreach (var item in await CardProcessor.LoadNonLand(enumSet, Rarity.rare, numberOfRares))
-                {
-                    boosterPack.Add(item);
-                }
-            }
-            else
-            {
-                foreach (var item in await CardProcessor.LoadNonLand(enumSet, Rarity.mythicRare, numberOfRares))
-                {
-                    boosterPack.Add(item);
-                }
-            }
-
-            return boosterPack;
-        }
-
-    }
-
-    // public class NormalBooster : MakeBooster
-    // {
-    //     public NormalBooster(Set set) : base(set)
-    //     {
-    //     }
-    // }
-
-    // public class WARBooster : MakeBooster
-    // {
-    //     public WARBooster() : base(Set.WAR)
-    //     {
-    //     }
-    // }
-
-    // public class DOMBooster : MakeBooster
-    // {
-    //     public DOMBooster() : base(Set.DOM)
-    //     {
-    //     }
-    // }
-
     public static class CardProcessor
     {
         public async static Task<CardModel> LoadLand(Set enumSet)
@@ -139,7 +22,7 @@ namespace Winston
                     throw new Exception("The set in 'LoadNonLand' is not 'war', 'dom', nor 'neo'.");
             }
 
-            string url = $"{BaseUrl.BU()}cards?rarity=common&set={stringSet}&type=land";
+            string url = $"{General.BaseUrl()}cards?rarity=common&set={stringSet}&type=land";
 
             using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
             {
@@ -158,8 +41,6 @@ namespace Winston
                 }
             }
         }
-
-        //Neo does not have common lands, WAR has one, DOM none
         public async static Task<List<CardModel>> LoadNonLand(Set enumSet, Rarity enumRarity, int cardsWanted)
         {
             string stringSet;
@@ -200,7 +81,7 @@ namespace Winston
 
             var list = new List<CardModel>();
 
-            string url = $"{BaseUrl.BU()}cards?rarity={stringRarity}&set={stringSet}";
+            string url = $"{General.BaseUrl()}cards?rarity={stringRarity}&set={stringSet}";
 
             using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
             {
@@ -263,7 +144,7 @@ namespace Winston
 
                 string toParse = General.DeleteNonNumbersInString(cards[i].Number);
 
-                if(toParse == null)
+                if (toParse == null)
                 {
                     return null;
                 }
@@ -283,54 +164,4 @@ namespace Winston
             }
         }
     }
-
-    public class CardResultModel
-    {
-        public CardModel[] cards { get; set; }
-    }
-
-    public class CardModel
-    {
-        public string ImageUrl { get; set; }
-        public string Id { get; set; }
-        public string Number { get; set; }
-    }
-
-    public static class General
-    {
-        public static string DeleteNonNumbersInString(string numbers)
-        {
-            var input = numbers.ToCharArray();
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] < '0' || input[i] > '9')
-                {
-                    return null;
-                }
-            }
-
-            return numbers;
-        }
-        public static class ApiHelper
-        {
-            public static HttpClient ApiClient { get; set; }
-            public static void InitializeClient()
-            {
-                ApiClient = new HttpClient();
-                //ApiClient.BaseAddress = new Uri("https://api.magicthegathering.io/v1/");
-                ApiClient.DefaultRequestHeaders.Accept.Clear();
-                //Give us Json
-                ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            }
-        }
-    }
-
 }
-//     public async Task LoadImage()
-//     {
-//         var card = await CardProcessor.LoadNonLand(Set.WAR, Rarity.uncommon);
-
-//         var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
-//         //cardImage.Source = new BitmapImage(uriSource);
-//     }
