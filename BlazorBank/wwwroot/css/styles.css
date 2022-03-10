@@ -131,9 +131,11 @@ h1 {
 .popUpCards {
     transform: rotate(0);
     position: absolute;
-    top: 200px;
+    top: 150px;
     left: 2%;
     z-index: 2;
+    width: 265px;
+    height: 370px;
 }
 
 #d1 {
@@ -161,42 +163,42 @@ h1 {
 }
 
 #d7 {
-    top: 580px;
+    top: 530px;
     left: 2%;
 }
 
 #d8 {
-    top: 580px;
+    top: 530px;
     left: 15%;
 }
 
 #d9 {
-    top: 580px;
+    top: 530px;
     left: 28%;
 }
 
 #d10 {
-    top: 580px;
+    top: 530px;
     left: 41%;
 }
 
 #d11 {
-    top: 580px;
+    top: 530px;
     left: 54%;
 }
 
 #d12 {
-    top: 580px;
+    top: 530px;
     left: 67%;
 }
 
 #d13 {
-    top: 580px;
+    top: 530px;
     left: 80%;
 }
 
 #d14 {
-    top: 360px;
+    top: 330px;
     left: 50%;
     z-index: 5;
 }

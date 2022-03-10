@@ -91,16 +91,16 @@ else if (page3 == true)
         <p class="cardCount" id="four">@pile4</p>
         <p class="cardCount" id="five">@deckAmount</p>
         <p>
-            <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img1">
-            <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img2">
-            <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img3">
-            <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img4">
-            <img src="https://media.magic.wizards.com/image_legacy_migration/magic/images/mtgcom/fcpics/making/mr224_back.jpg"
-            alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%" class="img5">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img1">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img2">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img3">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img4">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img5">
         </p>
     </div>
 
@@ -121,7 +121,7 @@ else if (page3 == true)
         }
 
         <button class="choose">Choose Pack</button>
-        <button class="pass">Pass Pack</button>        
+        <button class="pass">Pass Pack</button>
     }
 
     <h2 class="player2">Player 2</h2>
@@ -141,6 +141,11 @@ else if (page3 == true)
     bool page2 = false;
     bool page3 = false;
     bool popUpCards = false;
+    bool check = true;
+    int NEO;
+    int WAR;
+    int DOM;
+    public List<string> ListOfImgUrls = new List<string>();
 
     public void NextPage()
     {
@@ -148,10 +153,6 @@ else if (page3 == true)
         page1 = false;
         page2 = true;
     }
-    int NEO;
-    int WAR;
-    int DOM;
-    bool check = true;
 
     public void Start()
     {
@@ -167,20 +168,12 @@ else if (page3 == true)
         }
     }
 
-    public List<string> ListOfImgUrls = new List<string>();
 
     public async void ShowInfo()
     {
         wantInfo = true;
     }
 
-    public async void ShowCard()
-    {
-        popUpCards = true;
-        Winston.General.ApiHelper.InitializeClient();
-        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
-        PrintingImage(await booster.singleCard);
-    }
 
     public async void ShowCards()
     {
@@ -199,17 +192,24 @@ else if (page3 == true)
     }
 
     @* private string? imageSource;
-    public async Task ShowImage()
-    {
+        public async Task ShowImage()
+        {
         var card = await Winston.CardProcessor.LoadNonLand(Winston.Set.WAR, Winston.Rarity.uncommon);
 
         var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
 
         imageSource = uriSource.ToString();
-    }
+        }
 
-    private async void Window_Loaded()
-    {
+        private async void Window_Loaded()
+        {
         await ShowImage();
-    } *@
+        }
+        public async void ShowCard()
+        {
+        popUpCards = true;
+        Winston.General.ApiHelper.InitializeClient();
+        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
+        PrintingImage(await booster.singleCard);
+        } *@
 }
