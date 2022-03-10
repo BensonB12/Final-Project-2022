@@ -45,6 +45,39 @@
         }
       },
       {
+        "HashCode": 319375982,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.NewPage",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "NewPage"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.NewPage"
+        }
+      },
+      {
+        "HashCode": 1892263875,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.NewPage",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BlazorBank.Pages.NewPage"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.NewPage",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -1072649896,
         "Kind": "Components.Component",
         "Name": "BlazorBank.Pages.FetchData",
@@ -74,6 +107,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "BlazorBank.Pages.FetchData",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 749036551,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.Page2",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Page2"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.Page2"
+        }
+      },
+      {
+        "HashCode": 337487753,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Pages.Page2",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BlazorBank.Pages.Page2"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Pages.Page2",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -197,6 +263,39 @@
         }
       },
       {
+        "HashCode": -283109779,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Shared.NavMenu",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "NavMenu"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Shared.NavMenu"
+        }
+      },
+      {
+        "HashCode": 1371941366,
+        "Kind": "Components.Component",
+        "Name": "BlazorBank.Shared.NavMenu",
+        "AssemblyName": "BlazorBank",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BlazorBank.Shared.NavMenu"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BlazorBank.Shared.NavMenu",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": 822561943,
         "Kind": "Components.Component",
         "Name": "BlazorBank.Shared.MainLayout",
@@ -289,39 +388,6 @@
           "Runtime.Name": "Components.None",
           "Common.TypeName": "BlazorBank.Shared.MainLayout.Body",
           "Components.IsSpecialKind": "Components.ChildContent",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -283109779,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.Shared.NavMenu",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "NavMenu"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Shared.NavMenu"
-        }
-      },
-      {
-        "HashCode": 1371941366,
-        "Kind": "Components.Component",
-        "Name": "BlazorBank.Shared.NavMenu",
-        "AssemblyName": "BlazorBank",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "BlazorBank.Shared.NavMenu"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BlazorBank.Shared.NavMenu",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -16612,8 +16678,8 @@
   "RootNamespace": "BlazorBank",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Pages\\newPage.razor",
-      "TargetPath": "Pages\\newPage.razor",
+      "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Pages\\NewPage.razor",
+      "TargetPath": "Pages\\NewPage.razor",
       "FileKind": "component"
     },
     {
@@ -16669,6 +16735,11 @@
     {
       "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\App.razor",
       "TargetPath": "App.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\Pages\\Page2.razor",
+      "TargetPath": "Pages\\Page2.razor",
       "FileKind": "component"
     }
   ],

@@ -90,10 +90,6 @@ namespace Winston
                 {
                     CardResultModel result = await response.Content.ReadAsAsync<CardResultModel>();
                     Random random = new Random();
-                    var writer = new StreamWriter("results.txt");
-                    writer.WriteLine("we have made it to here");
-                    writer.WriteLine(result);
-                    writer.Close();
                     CardModel[] specificData = result.cards;
                     specificData = specificData.OrderBy(x => random.Next()).ToArray();
                     int i = 0;
