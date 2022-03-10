@@ -96,18 +96,6 @@ namespace Winston
             return boosterPack;
         }
 
-        public static class ApiHelper
-        {
-            public static HttpClient ApiClient { get; set; }
-            public static void InitializeClient()
-            {
-                ApiClient = new HttpClient();
-                //ApiClient.BaseAddress = new Uri("https://api.magicthegathering.io/v1/");
-                ApiClient.DefaultRequestHeaders.Accept.Clear();
-                //Give us Json
-                ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            }
-        }
     }
 
     // public class NormalBooster : MakeBooster
@@ -153,7 +141,7 @@ namespace Winston
 
             string url = $"{BaseUrl.BU()}cards?rarity=common&set={stringSet}&type=land";
 
-            using (HttpResponseMessage response = await MakeBooster.ApiHelper.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
             {
 
                 if (response.IsSuccessStatusCode)
@@ -214,7 +202,7 @@ namespace Winston
 
             string url = $"{BaseUrl.BU()}cards?rarity={stringRarity}&set={stringSet}";
 
-            using (HttpResponseMessage response = await MakeBooster.ApiHelper.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
             {
 
                 if (response.IsSuccessStatusCode)
@@ -228,15 +216,19 @@ namespace Winston
                     CardModel[] specificData = result.cards;
                     specificData = specificData.OrderBy(x => random.Next()).ToArray();
                     int i = 0;
-                    while(true)
+                    int j = 0;
+                    while (true)
                     {
                         var worthyCard = CheckForOutliers(specificData, enumSet, i);
                         if (worthyCard != null)
                         {
                             list.Add(worthyCard);
-                            i++;
+                            j++;
                         }
-                        if(i >= cardsWanted)
+
+                        i++;
+
+                        if (j >= cardsWanted)
                         {
                             break;
                         }
@@ -254,6 +246,7 @@ namespace Winston
             static CardModel CheckForOutliers(CardModel[] cards, Set enumSet, int i)
             {
                 int maxNumber;
+
                 switch (enumSet)
                 {
                     case Set.NEO:
@@ -266,8 +259,16 @@ namespace Winston
                     default:
                         throw new Exception("We got a diffrent set somehow in 'CheckForLands'");
                 }
+                int number = 1000;
 
-                int number = int.Parse(cards[i].Number.Trim(), CultureInfo.InvariantCulture);
+                string toParse = General.DeleteNonNumbersInString(cards[i].Number);
+
+                if(toParse == null)
+                {
+                    return null;
+                }
+
+                number = int.Parse(toParse, CultureInfo.InvariantCulture);
 
                 if (number < maxNumber)
                 {
@@ -295,15 +296,41 @@ namespace Winston
         public string Number { get; set; }
     }
 
-    // public class MainWindow
-    // {
-    //     public async Task LoadImage()
-    //     {
-    //         var card = await CardProcessor.LoadNonLand(Set.WAR, Rarity.uncommon);
+    public static class General
+    {
+        public static string DeleteNonNumbersInString(string numbers)
+        {
+            var input = numbers.ToCharArray();
 
-    //         var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
-    //         //cardImage.Source = new BitmapImage(uriSource);
-    //     }
-    // }
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] < '0' || input[i] > '9')
+                {
+                    return null;
+                }
+            }
+
+            return numbers;
+        }
+        public static class ApiHelper
+        {
+            public static HttpClient ApiClient { get; set; }
+            public static void InitializeClient()
+            {
+                ApiClient = new HttpClient();
+                //ApiClient.BaseAddress = new Uri("https://api.magicthegathering.io/v1/");
+                ApiClient.DefaultRequestHeaders.Accept.Clear();
+                //Give us Json
+                ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            }
+        }
+    }
 
 }
+//     public async Task LoadImage()
+//     {
+//         var card = await CardProcessor.LoadNonLand(Set.WAR, Rarity.uncommon);
+
+//         var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
+//         //cardImage.Source = new BitmapImage(uriSource);
+//     }

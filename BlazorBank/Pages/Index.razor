@@ -408,7 +408,7 @@ else if (page3 == true)
     public async void ShowCard()
     {
         popUpCards = true;
-        Winston.MakeBooster.ApiHelper.InitializeClient();
+        Winston.General.ApiHelper.InitializeClient();
         Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
         PrintingImage(await booster.singleCard);
     }
@@ -416,8 +416,8 @@ else if (page3 == true)
     public async void ShowCards()
     {
         popUpCards = true;
-        Winston.MakeBooster.ApiHelper.InitializeClient();
-        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.WAR);
+        Winston.General.ApiHelper.InitializeClient();
+        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
         foreach (var item in await booster.booster)
         {
             PrintingImage(item);
