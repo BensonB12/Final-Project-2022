@@ -9,11 +9,24 @@
 @if (stackOCards == null)
 {
     <h1 class="loading">LOADING</h1>
-    @* <h1>LOADING</h1> *@
 }
 else
 {
-    <h2 class="player1">Player 1</h2>
+    @if (chosenPlayer == 0)
+    {
+        <h2 class="player1">Player 1's turn</h2>
+        <button id="cardPile" @onclick="ShowPlayerPile">Show drafted cards (@player1CardCount)</button>
+    }
+    else
+    {
+        <h2 class="player2">Player 2's turn</h2>
+        <button id="cardPile" @onclick="ShowPlayerPile">Show drafted cards (@player2CardCount)</button>
+    }
+
+    @if (playerPileSwitch == true)
+    {
+        <button class="cardPile" @onclick="HidePlayerPile">Back to piles</button>
+    }
 
     <div>
         <p class="cardCount" id="one">@pile1Count</p>
@@ -39,7 +52,7 @@ else
         <div class="square"></div>
 
         int i = 0;
-        foreach (var item in ListOfImgUrls)
+        foreach (var item in listOfImgUrls)
         {
             string id = "d" + i.ToString();
             <img class="popUpCards" src="@item" id="@id" />
@@ -50,13 +63,13 @@ else
             }
         }
 
-        <button class="choose" @onclick="ChoosePack">Choose Pack</button>
-        <button class="pass" @onclick="PassPack">Pass Pack</button>
-    }
+        if (playerPileSwitch == false)
+        {
+            <button class="choose" @onclick="ChoosePack">Choose Pack</button>
+            <button class="pass" @onclick="PassPack">Pass Pack</button>
+        }
 
-    <h2 class="player2">Player 2</h2>
-    <button id="cardPile1">Show drafted cards (@player1CardCount)</button>
-    <button id="cardPile2">Show drafted cards (@player2CardCount)</button>
+    }
 }
 
 @code {
@@ -85,11 +98,14 @@ else
     int chosenPile = 0;
     int chosenPlayer = 0;
     bool popUpCards = false;
-    public List<string> ListOfImgUrls = new List<string>();
+    bool oldPop = false;
+    bool playerPileSwitch = false;
+    public List<string> listOfImgUrls = new List<string>();
+    public List<string> oldImgUrls = new List<string>();
 
     public async void ShowPile()
     {
-        ListOfImgUrls = new List<string>();
+        listOfImgUrls = new List<string>();
         var pile = allPiles[chosenPile];
 
         foreach (var card in pile)
@@ -113,7 +129,7 @@ else
     }
     public void PrintImage(Winston.CardModel card)
     {
-        ListOfImgUrls.Add(card.ImageUrl);
+        listOfImgUrls.Add(card.ImageUrl);
     }
 
     protected override async Task OnInitializedAsync()
@@ -183,6 +199,26 @@ else
         }
         switchARoo();
         popUpCards = false;
+    }
+
+    public void ShowPlayerPile()
+    {
+        oldPop = popUpCards;
+        popUpCards = true;
+        oldImgUrls = listOfImgUrls;
+        listOfImgUrls = new List<string>();
+        foreach (var card in bothPlayers[chosenPlayer])
+        {
+            PrintImage(card);
+        }
+        playerPileSwitch = true;
+    }
+
+    public void HidePlayerPile()
+    {
+        popUpCards = oldPop;
+        playerPileSwitch = false;
+        listOfImgUrls = oldImgUrls;
     }
 }
 

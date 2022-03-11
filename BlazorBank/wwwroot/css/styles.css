@@ -4,24 +4,13 @@ h2 {
     width: 90%;
 }
 
-#cardPile2 {
+#cardPile {
     position: absolute;
     background-color: lightgoldenrodyellow;
     width: 200px;
-    top: 90.3%;
+    bottom: 89.7%;
     left: 50%;
-}
-
-#cardPile1 {
-    position: absolute;
-    background-color: lightgoldenrodyellow;
-    width: 200px;
-    bottom: 90%;
-    left: 50%;
-}
-
-.player2 {
-    top: 90%;
+    z-index: 2;
 }
 
 .cardCount {
@@ -238,6 +227,12 @@ h1 {
     animation-name: floatingBox;
     animation-duration: 5s;
     animation-iteration-count: 4;
+}
+
+.return {
+    position: absolute;
+    top: 90%;
+    z-index: 5;
 }
 
 @keyframes floatingBox {
