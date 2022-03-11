@@ -7,5 +7,6 @@
   <ItemGroup>
     <PackageReference Include="MtgApiManager.Lib" Version="2.3.2"/>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.6"/>
+    <PackageReference Include="Library.Lib">
   </ItemGroup>
 </Project>
