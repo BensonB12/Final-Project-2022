@@ -1,0 +1,121 @@
+@page "/WinstonDraft/{DOM}/{WAR}/{NEO}"
+
+<PageTitle>Winston Draft</PageTitle>
+
+<head>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<h2 class="player1">Player 1</h2>
+
+<div>
+    <p class="cardCount" >@pile1</p>
+    <p class="cardCount" id="two">@pile2</p>
+    <p class="cardCount" id="three">@pile3</p>
+    <p class="cardCount" id="four">@pile4</p>
+    <p class="cardCount" id="five">@deckAmount</p>
+    <p>
+        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img1">
+        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img2">
+        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img3">
+        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img4">
+        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img5">
+    </p>
+</div>
+
+@if (popUpCards == true)
+{
+    <div class="square"></div>
+
+    int i = 0;
+    foreach (var item in ListOfImgUrls)
+    {
+        string id = "d" + i.ToString();
+        <img class="popUpCards" src="@item" id="@id" />
+        i++;
+        if (i == 15)
+        {
+            i = 0;
+        }
+    }
+
+    <button class="choose">Choose Pack</button>
+    <button class="pass">Pass Pack</button>
+}
+
+<h2 class="player2">Player 2</h2>
+<button id="cardPile1">Show drafted cards (@player1CardCount)</button>
+<button id="cardPile2">Show drafted cards (@player2CardCount)</button>
+
+@code {
+    [Parameter]
+    public string DOM{ get; set; }
+    [Parameter]
+    public string WAR{ get; set; }
+    [Parameter]
+    public string NEO{ get; set; }
+
+    int deckAmount = 64;
+    int pile1 = 1;
+    int pile2 = 1;
+    int pile3 = 1;
+    int pile4 = 1;
+    int player1CardCount;
+    int player2CardCount;
+    bool popUpCards = false;
+    public List<string> ListOfImgUrls = new List<string>();
+
+    public async void ShowCards()
+    {
+        popUpCards = true;
+    }
+
+    public void PrintingImage(Winston.CardModel card)
+    {
+        ListOfImgUrls.Add(card.ImageUrl);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Winston.General.ApiHelper.InitializeClient();
+        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
+        foreach (var item in await booster.booster)
+        {
+            PrintingImage(item);
+        }
+    }
+
+    protected override void OnParametersSet()
+{
+    var numOfDom = DOM;
+    var numOfWar = WAR;
+    var numOfNeo = NEO;
+}
+}
+
+@* private string? imageSource;
+    public async Task ShowImage()
+    {
+    var card = await Winston.CardProcessor.LoadNonLand(Winston.Set.WAR, Winston.Rarity.uncommon);
+
+    var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
+
+    imageSource = uriSource.ToString();
+    }
+
+    private async void Window_Loaded()
+    {
+    await ShowImage();
+    }
+    public async void ShowCard()
+    {
+    popUpCards = true;
+    Winston.General.ApiHelper.InitializeClient();
+    Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
+    PrintingImage(await booster.singleCard);
+    } *@

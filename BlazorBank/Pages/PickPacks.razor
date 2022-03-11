@@ -1,0 +1,52 @@
+@page "/PickPacks"
+@inject NavigationManager UriHelper
+
+<PageTitle>Packs</PageTitle>
+
+<head>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<h1>Pick your packs</h1>
+<h3 class="direction">Choose your six packs</h3>
+
+<p @onclick="AddPacks" class="set">Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO">
+</p>
+<br>
+<br>
+<p @onclick="AddPacks" class="set">War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
+<br>
+<br>
+<p @onclick="AddPacks" class="set">Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
+
+
+@if (check == true)
+{
+    <br>
+    <br>
+    <button @onclick="PassValue">Start</button>
+}
+else
+{
+    <p class="grey">Please pick a total of six packs please (click on the arrows)</p>
+}
+
+@code {
+    bool check = false;
+    int NEO;
+    int WAR;
+    int DOM;
+    public void AddPacks()
+    {
+        check = false;
+        if (NEO + WAR + DOM == 6)
+        {
+            check = true;
+        }
+    }
+
+    private void PassValue()
+    {
+        UriHelper.NavigateTo($"WinstonDraft/{DOM}/{WAR}/{NEO}");
+    }
+}

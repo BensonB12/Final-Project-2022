@@ -6,173 +6,37 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-@if (page1 == true)
+<h1>Welcome to MTG Winston</h1>
+
+<br>
+<br>
+<NavLink href="PickPacks">
+    <button class="start">Start</button>
+</NavLink>
+<br>
+<br>
+<button @onclick="ShowInfo">Show More Information</button>
+<br>
+<br>
+
+@if (wantInfo == true)
 {
-    <h1>Welcome to MTG Winston</h1>
-
     <br>
     <br>
-    @* <NavLink href="Page2">
-        <button class="start">Start</button>
-    </NavLink> *@
-    <button type="button" @onclick="NextPage" class="start">Start</button>
-    <br>
-    <br>
-    <button @onclick="ShowInfo">Show More Information</button>
-    <br>
-    <br>
-    <NavLink href="NewPage">
-        <button>Go to the new page</button>
-    </NavLink>
-    
-
-    @* @if (ListOfImgUrls != null)
-        {
-        foreach (var item in ListOfImgUrls)
-        {
-        <img src="@item" />
-        }
-        } *@
-
-    @* <img @onload="ShowImage" src="imageSource" alt="ATimageSource" />
-        <img @onload="Window_Loaded" src="imageSource" alt="ATimageSource.5" />
-        <img @onload="ShowImage" src="@imageSource" alt="ATimageSource1" />
-        <img src="@imageSource" alt="ATimageSource2" /> *@
-
-    @* @if (imageSource is not null)
-        {
-        <div>
-        <img src="@imageSource" />
-        </div>
-        }
-        @for (var i = 1; i <= 3; i++)
-        {
-        var imageId = i;
-        <button @onclick="() => ShowImage()">
-        Image @imageSource
-        </button>
-        } *@
-    @* <input @onload="Window_Loaded"></input> *@
-
-
-    @if (wantInfo == true)
-    {
-        <br>
-        <br>
-        <p class="info">
-            Winston draft is a way to draft six Magic the Gathering booster packs between two people. This website is looking
-            to let two players in the same room do this winston draft, download, and then import to MTG Arena.
-        </p>
-    }
-
+    <p class="info">
+        Winston draft is a way to draft six Magic the Gathering booster packs between two people. This website is looking
+        to let two players in the same room do this winston draft, download, and then import to MTG Arena.
+    </p>
 }
-else if (page2 == true)
-{
-    <h1>Pick your packs</h1>
-    <h3 class="direction">Choose your six packs</h3>
 
-    <p class="set">Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO"></p>
-    <br>
-    <br>
-    <p class="set">War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
-    <br>
-    <br>
-    <p class="set">Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
-    <br>
-    <br>
-    <button class="start" @onclick="Start">Start</button>
-    <br>
-    <br>
-    @if (check == false)
-    {
-        <h3 class="warning">You have to have <strong>six</strong> packs to start</h3>
-    }
-}
-else if (page3 == true)
-{
-    <h2 class="player1">Player 1</h2>
-    <div>
-        <p class="cardCount">@pile1</p>
-        <p class="cardCount" id="two">@pile2</p>
-        <p class="cardCount" id="three">@pile3</p>
-        <p class="cardCount" id="four">@pile4</p>
-        <p class="cardCount" id="five">@deckAmount</p>
-        <p>
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img1">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img2">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img3">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img4">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img5">
-        </p>
-    </div>
 
-    @if (popUpCards == true)
-    {
-        @* <div class="square"></div> *@
 
-        int i = 0;
-        foreach (var item in ListOfImgUrls)
-        {
-            string id = "d" + i.ToString();
-            <img class="popUpCards" src="@item" id="@id" />
-            i++;
-            if (i == 15)
-            {
-                i = 0;
-            }
-        }
-
-        <button class="choose">Choose Pack</button>
-        <button class="pass">Pass Pack</button>
-    }
-
-    <h2 class="player2">Player 2</h2>
-    <button id="cardPile1">Show drafted cards (@player1CardCount)</button>
-    <button id="cardPile2">Show drafted cards (@player2CardCount)</button>
-}
 @code {
-    int player1CardCount;
-    int player2CardCount;
-    int deckAmount = 64;
-    int pile1 = 1;
-    int pile2 = 1;
-    int pile3 = 1;
-    int pile4 = 1;
     bool wantInfo = false;
-    bool page1 = true;
-    bool page2 = false;
-    bool page3 = false;
-    bool popUpCards = false;
-    bool check = true;
-    int NEO;
-    int WAR;
-    int DOM;
-    public List<string> ListOfImgUrls = new List<string>();
 
     public void NextPage()
     {
         wantInfo = false;
-        page1 = false;
-        page2 = true;
-    }
-
-    public void Start()
-    {
-        check = true;
-        if (NEO + WAR + DOM != 6)
-        {
-            check = false;
-        }
-        else
-        {
-            page2 = false;
-            page3 = true;
-        }
     }
 
 
@@ -180,43 +44,4 @@ else if (page3 == true)
     {
         wantInfo = true;
     }
-
-
-    public async void ShowCards()
-    {
-        popUpCards = true;
-        Winston.General.ApiHelper.InitializeClient();
-        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
-        foreach (var item in await booster.booster)
-        {
-            PrintingImage(item);
-        }
-    }
-
-    public async void PrintingImage(Winston.CardModel card)
-    {
-        ListOfImgUrls.Add(card.ImageUrl);
-    }
-
-    @* private string? imageSource;
-        public async Task ShowImage()
-        {
-        var card = await Winston.CardProcessor.LoadNonLand(Winston.Set.WAR, Winston.Rarity.uncommon);
-
-        var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
-
-        imageSource = uriSource.ToString();
-        }
-
-        private async void Window_Loaded()
-        {
-        await ShowImage();
-        }
-        public async void ShowCard()
-        {
-        popUpCards = true;
-        Winston.General.ApiHelper.InitializeClient();
-        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
-        PrintingImage(await booster.singleCard);
-        } *@
 }
