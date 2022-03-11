@@ -8,15 +8,15 @@
 
 @if (stackOCards == null)
 {
-    @* <h1 class="loading">LOADING</h1> *@
-    <h1>LOADING</h1>
+    <h1 class="loading">LOADING</h1>
+    @* <h1>LOADING</h1> *@
 }
 else
 {
     <h2 class="player1">Player 1</h2>
 
     <div>
-        <p class="cardCount">@pile1Count</p>
+        <p class="cardCount" id="one">@pile1Count</p>
         <p class="cardCount" id="two">@pile2Count</p>
         <p class="cardCount" id="three">@pile3Count</p>
         <p class="cardCount" id="four">@pile4Count</p>
@@ -89,6 +89,7 @@ else
 
     public async void ShowPile()
     {
+        ListOfImgUrls = new List<string>();
         var pile = allPiles[chosenPile];
 
         foreach (var card in pile)
@@ -147,11 +148,13 @@ else
     public void ChoosePack()
     {
         bothPlayers[chosenPlayer].AddRange(allPiles[chosenPile]);
+        allPiles[chosenPile] = new List<Winston.CardModel>();
         switchARoo();
+        chosenPile = 0;
         chosenPlayer++;
         if (chosenPlayer == 2)
         {
-            chosenPile = 0;
+            chosenPlayer = 0;
         }
         popUpCards = false;
     }
@@ -161,6 +164,8 @@ else
         if (chosenPile == 3)
         {
             bothPlayers[chosenPlayer].Add(stackOCards[0]);
+            allPiles[chosenPile].Add(stackOCards[1]);
+            stackOCards.RemoveAt(0);
             stackOCards.RemoveAt(0);
             chosenPile++;
 
@@ -171,7 +176,7 @@ else
             chosenPlayer++;
             if (chosenPlayer == 2)
             {
-                chosenPile = 0;
+                chosenPlayer = 0;
             }
             popUpCards = false;
             return;
