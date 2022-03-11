@@ -8,29 +8,29 @@
 
 @if (stackOCards == null)
 {
-    <h1 class="loading">LOADING</h1>
+    @* <h1 class="loading">LOADING</h1> *@
+    <h1>LOADING</h1>
 }
 else
 {
     <h2 class="player1">Player 1</h2>
 
     <div>
-        <p class="cardCount">@pile1</p>
-        <p class="cardCount" id="two">@pile2</p>
-        <p class="cardCount" id="three">@pile3</p>
-        <p class="cardCount" id="four">@pile4</p>
+        <p class="cardCount">@pile1Count</p>
+        <p class="cardCount" id="two">@pile2Count</p>
+        <p class="cardCount" id="three">@pile3Count</p>
+        <p class="cardCount" id="four">@pile4Count</p>
         <p class="cardCount" id="five">@deckAmount</p>
         <p>
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img1">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img2">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img3">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img4">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img5">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5">
         </p>
     </div>
 
@@ -50,8 +50,8 @@ else
             }
         }
 
-        <button class="choose">Choose Pack</button>
-        <button class="pass">Pass Pack</button>
+        <button class="choose" @onclick="ChoosePack">Choose Pack</button>
+        <button class="pass" @onclick="PassPack">Pass Pack</button>
     }
 
     <h2 class="player2">Player 2</h2>
@@ -66,23 +66,51 @@ else
     public string WAR { get; set; }
     [Parameter]
     public string NEO { get; set; }
-    List<Winston.CardModel> stackOCards = null;
-    int deckAmount = 64;
-    int pile1 = 1;
-    int pile2 = 1;
-    int pile3 = 1;
-    int pile4 = 1;
+    public List<Winston.CardModel> stackOCards = null;
+    public List<Winston.CardModel> pile1 = new List<Winston.CardModel>();
+    public List<Winston.CardModel> pile2 = new List<Winston.CardModel>();
+    public List<Winston.CardModel> pile3 = new List<Winston.CardModel>();
+    public List<Winston.CardModel> pile4 = new List<Winston.CardModel>();
+    public List<Winston.CardModel>[] allPiles = new List<Winston.CardModel>[4];
+    public List<Winston.CardModel>[] bothPlayers = new List<Winston.CardModel>[2];
+    public List<Winston.CardModel> player1Stack = new List<Winston.CardModel>();
+    public List<Winston.CardModel> player2Stack = new List<Winston.CardModel>();
+    int deckAmount;
+    int pile1Count;
+    int pile2Count;
+    int pile3Count;
+    int pile4Count;
     int player1CardCount;
     int player2CardCount;
+    int chosenPile = 0;
+    int chosenPlayer = 0;
     bool popUpCards = false;
     public List<string> ListOfImgUrls = new List<string>();
 
-    public async void ShowCards()
+    public async void ShowPile()
     {
+        var pile = allPiles[chosenPile];
+
+        foreach (var card in pile)
+        {
+            PrintImage(card);
+        }
         popUpCards = true;
     }
 
-    public void PrintingImage(Winston.CardModel card)
+
+    public void switchARoo()
+    {
+        allPiles[chosenPile].Add(stackOCards[0]);
+        stackOCards.RemoveAt(0);
+        chosenPile++;
+
+        if (chosenPile == 4)
+        {
+            chosenPile = 0;
+        }
+    }
+    public void PrintImage(Winston.CardModel card)
     {
         ListOfImgUrls.Add(card.ImageUrl);
     }
@@ -92,6 +120,21 @@ else
         Winston.General.ApiHelper.InitializeClient();
         Winston.StackOCards aHeapOCards = new Winston.StackOCards();
         stackOCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
+        pile1.Add(stackOCards[0]);
+        pile2.Add(stackOCards[1]);
+        pile3.Add(stackOCards[2]);
+        pile4.Add(stackOCards[3]);
+        for (int i = 0; i < 4; i++)
+        {
+            stackOCards.RemoveAt(0);
+        }
+        pile1Count = pile1.Count;
+        pile2Count = pile2.Count;
+        pile3Count = pile3.Count;
+        pile4Count = pile4.Count;
+        deckAmount = stackOCards.Count;
+        allPiles = new List<Winston.CardModel>[4] { pile1, pile2, pile3, pile4 };
+        bothPlayers = new List<Winston.CardModel>[2] { player1Stack, player2Stack };
     }
 
     protected override void OnParametersSet()
@@ -99,6 +142,42 @@ else
         var numOfDom = DOM;
         var numOfWar = WAR;
         var numOfNeo = NEO;
+    }
+
+    public void ChoosePack()
+    {
+        bothPlayers[chosenPlayer].AddRange(allPiles[chosenPile]);
+        switchARoo();
+        chosenPlayer++;
+        if (chosenPlayer == 2)
+        {
+            chosenPile = 0;
+        }
+        popUpCards = false;
+    }
+
+    public void PassPack()
+    {
+        if (chosenPile == 3)
+        {
+            bothPlayers[chosenPlayer].Add(stackOCards[0]);
+            stackOCards.RemoveAt(0);
+            chosenPile++;
+
+            if (chosenPile == 4)
+            {
+                chosenPile = 0;
+            }
+            chosenPlayer++;
+            if (chosenPlayer == 2)
+            {
+                chosenPile = 0;
+            }
+            popUpCards = false;
+            return;
+        }
+        switchARoo();
+        popUpCards = false;
     }
 }
 

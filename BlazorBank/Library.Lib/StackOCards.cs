@@ -1,4 +1,4 @@
-namespace Winston 
+namespace Winston
 {
     public class StackOCards
     {
@@ -24,7 +24,10 @@ namespace Winston
                 finalStack.AddRange(await booster.booster);
             }
 
-            return finalStack;
+            var random = new Random();
+            var shuffledStack = finalStack.OrderBy(a => random.Next()).ToList();
+
+            return shuffledStack;
         }
     }
 }
