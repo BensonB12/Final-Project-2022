@@ -6,60 +6,67 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<h2 class="player1">Player 1</h2>
-
-<div>
-    <p class="cardCount" >@pile1</p>
-    <p class="cardCount" id="two">@pile2</p>
-    <p class="cardCount" id="three">@pile3</p>
-    <p class="cardCount" id="four">@pile4</p>
-    <p class="cardCount" id="five">@deckAmount</p>
-    <p>
-        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img1">
-        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img2">
-        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img3">
-        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img4">
-        <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
-            class="img5">
-    </p>
-</div>
-
-@if (popUpCards == true)
+@if (stackOCards == null)
 {
-    <div class="square"></div>
+    <h1 class="loading">LOADING</h1>
+}
+else
+{
+    <h2 class="player1">Player 1</h2>
 
-    int i = 0;
-    foreach (var item in ListOfImgUrls)
+    <div>
+        <p class="cardCount">@pile1</p>
+        <p class="cardCount" id="two">@pile2</p>
+        <p class="cardCount" id="three">@pile3</p>
+        <p class="cardCount" id="four">@pile4</p>
+        <p class="cardCount" id="five">@deckAmount</p>
+        <p>
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img1">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img2">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img3">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img4">
+            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowCards" width="10%" height="10%"
+            class="img5">
+        </p>
+    </div>
+
+    @if (popUpCards == true)
     {
-        string id = "d" + i.ToString();
-        <img class="popUpCards" src="@item" id="@id" />
-        i++;
-        if (i == 15)
+        <div class="square"></div>
+
+        int i = 0;
+        foreach (var item in ListOfImgUrls)
         {
-            i = 0;
+            string id = "d" + i.ToString();
+            <img class="popUpCards" src="@item" id="@id" />
+            i++;
+            if (i == 15)
+            {
+                i = 0;
+            }
         }
+
+        <button class="choose">Choose Pack</button>
+        <button class="pass">Pass Pack</button>
     }
 
-    <button class="choose">Choose Pack</button>
-    <button class="pass">Pass Pack</button>
+    <h2 class="player2">Player 2</h2>
+    <button id="cardPile1">Show drafted cards (@player1CardCount)</button>
+    <button id="cardPile2">Show drafted cards (@player2CardCount)</button>
 }
-
-<h2 class="player2">Player 2</h2>
-<button id="cardPile1">Show drafted cards (@player1CardCount)</button>
-<button id="cardPile2">Show drafted cards (@player2CardCount)</button>
 
 @code {
     [Parameter]
-    public string DOM{ get; set; }
+    public string DOM { get; set; }
     [Parameter]
-    public string WAR{ get; set; }
+    public string WAR { get; set; }
     [Parameter]
-    public string NEO{ get; set; }
-
+    public string NEO { get; set; }
+    List<Winston.CardModel> stackOCards = null;
     int deckAmount = 64;
     int pile1 = 1;
     int pile2 = 1;
@@ -83,19 +90,16 @@
     protected override async Task OnInitializedAsync()
     {
         Winston.General.ApiHelper.InitializeClient();
-        Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
-        foreach (var item in await booster.booster)
-        {
-            PrintingImage(item);
-        }
+        Winston.StackOCards aHeapOCards = new Winston.StackOCards();
+        stackOCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
     }
 
     protected override void OnParametersSet()
-{
-    var numOfDom = DOM;
-    var numOfWar = WAR;
-    var numOfNeo = NEO;
-}
+    {
+        var numOfDom = DOM;
+        var numOfWar = WAR;
+        var numOfNeo = NEO;
+    }
 }
 
 @* private string? imageSource;

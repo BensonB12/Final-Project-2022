@@ -94,8 +94,8 @@ button {
     width: 40%;
 }
 
-button:hover {
-    border-width: 3px;
+button:active {
+    border-width: 4px;
     border-right: 1px;
     border-bottom: 1px;
 }
@@ -230,4 +230,20 @@ h1 {
 
 .grey {
     color: #777;
+}
+
+.loading {
+    position: absolute;
+    background-color: blue;
+    animation-name: floatingBox;
+    animation-duration: 5s;
+    animation-iteration-count: 4;
+}
+
+@keyframes floatingBox {
+    0% {top: 5%; left: 5%}
+    25% {top: 95%; left: 35%}
+    50% {background-color: rgb(245, 86, 86); left: 75%}
+    75% {top: 5%; left: 35%}
+    100% {background-color: rgb(29, 151, 29); left: 5%}
 }
