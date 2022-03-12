@@ -8,61 +8,65 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BlazorBank
 build_property.RootNamespace = BlazorBank
-build_property.ProjectDir = C:\Users\benso\Object-Oriented-Programming\finalProject\BlazorBank\
+build_property.ProjectDir = c:\Users\benso\Object-Oriented-Programming\finalProject\BlazorBank\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\benso\Object-Oriented-Programming\finalProject\BlazorBank
+build_property.MSBuildProjectDirectory = c:\Users\benso\Object-Oriented-Programming\finalProject\BlazorBank
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/App.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/FetchData.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/Index.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/ImportDecks.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW1wb3J0RGVja3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/MoreInfo.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/MoreInfo.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTW9yZUluZm8ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/PickPacks.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/PickPacks.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlja1BhY2tzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/WinstonDraft.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/WinstonDraft.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2luc3RvbkRyYWZ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Shared/SurveyPrompt.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/_Imports.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Shared/MainLayout.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-p12nj3xsd4
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Shared/NavMenu.razor]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-bp55vgvscr
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/Error.cshtml]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/_Host.cshtml]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/_Layout.cshtml]
+[c:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

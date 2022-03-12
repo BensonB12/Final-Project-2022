@@ -115,6 +115,13 @@ else
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5" id="fade">
             }
+
+            @if(gameOver == true)
+            {
+                <NavLink href="ImportDecks">
+                    <button>Click here to see decks</button>
+                </NavLink>
+            }
         </p>
     </div>
 
@@ -194,7 +201,7 @@ else
 
     public void switchARoo()
     {
-        if (CheckForCards() == true)
+        if (CheckForCards() == true && gameOver == false)
         {
             allPiles[chosenPile].Add(stackOCards[0]);
             stackOCards.RemoveAt(0);
@@ -293,15 +300,13 @@ else
     public void Continue()
     {
         bothPlayers[chosenPlayer].Add(stackOCards[0]);
-        allPiles[chosenPile].Add(stackOCards[1]);
         stackOCards.RemoveAt(0);
-        stackOCards.RemoveAt(0);
-        chosenPile++;
-
-        if (chosenPile == 4)
+        if (CheckForCards() == true && gameOver == false)
         {
-            chosenPile = 0;
+            allPiles[chosenPile].Add(stackOCards[0]);
+            stackOCards.RemoveAt(0);
         }
+
         chosenPlayer++;
         if (chosenPlayer == 2)
         {
@@ -334,7 +339,8 @@ else
                 canMoveOn = true;
             }
 
-            if(allPiles[0].Count == 0 && allPiles[1].Count == 0 && allPiles[2].Count == 0 && allPiles[3].Count == 0 && stackOCards.Count == 0)
+            if (allPiles[0].Count == 0 && allPiles[1].Count == 0 && allPiles[2].Count == 0 && allPiles[3].Count == 0 &&
+            stackOCards.Count == 0)
             {
                 gameOver = true;
             }
@@ -345,7 +351,7 @@ else
         {
             return false;
         }
-        
+
         return true;
     }
 }
