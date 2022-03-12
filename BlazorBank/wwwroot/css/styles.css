@@ -9,7 +9,7 @@ h2 {
     background-color: lightgoldenrodyellow;
     width: 200px;
     bottom: 89.7%;
-    left: 50%;
+    left: 80%;
     z-index: 2;
 }
 
@@ -229,10 +229,29 @@ h1 {
     animation-iteration-count: 4;
 }
 
+.player1 {
+    background-color: #FFF;
+    color: black;
+    padding: 2px;
+}
+
+.player2 {
+    background-color: black;
+    color: #FFF;
+    padding: 2px;
+}
+
+#focus:hover{
+    border: 8px solid rgb(98, 98, 98);
+    border-radius: 8%;
+    border-left: 1px;
+    border-top: 1px;
+}
+
 .return {
     position: absolute;
     top: 90%;
-    z-index: 5;
+    z-index: 7;
 }
 
 @keyframes floatingBox {

@@ -25,7 +25,7 @@ else
 
     @if (playerPileSwitch == true)
     {
-        <button class="cardPile" @onclick="HidePlayerPile">Back to piles</button>
+        <button id="cardPile" @onclick="HidePlayerPile">Back to piles</button>
     }
 
     <div>
@@ -34,15 +34,48 @@ else
         <p class="cardCount" id="three">@pile3Count</p>
         <p class="cardCount" id="four">@pile4Count</p>
         <p class="cardCount" id="five">@deckAmount</p>
+
         <p>
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
-            class="img1">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
-            class="img2">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
-            class="img3">
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
-            class="img4">
+            @if (chosenPile == 0)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
+            class="img1" id="focus">
+            }
+            else
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img1">
+            }
+
+            @if (chosenPile == 1)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
+            class="img2" id="focus">
+            }
+            else
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img2">
+            }
+
+            @if (chosenPile == 2)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
+            class="img3" id="focus">
+            }
+            else
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img3">
+            }
+
+            @if (chosenPile == 3)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
+            class="img4" id="focus">
+            }
+            else
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img4">
+            }
+
             <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5">
         </p>
     </div>
@@ -65,8 +98,8 @@ else
 
         if (playerPileSwitch == false)
         {
-            <button class="choose" @onclick="ChoosePack">Choose Pack</button>
-            <button class="pass" @onclick="PassPack">Pass Pack</button>
+            <button class="choose" @onclick="ChoosePack">Choose Pile</button>
+            <button class="pass" @onclick="PassPack">Pass Pile</button>
         }
 
     }
