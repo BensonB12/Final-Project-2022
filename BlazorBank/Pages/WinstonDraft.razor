@@ -29,54 +29,92 @@ else
     }
 
     <div>
-        <p class="cardCount" id="one">@pile1Count</p>
-        <p class="cardCount" id="two">@pile2Count</p>
-        <p class="cardCount" id="three">@pile3Count</p>
-        <p class="cardCount" id="four">@pile4Count</p>
-        <p class="cardCount" id="five">@deckAmount</p>
+        @if (allPiles[0].Count > 0)
+        {
+            <p class="cardCount" id="one">@pile1Count</p>
+        }
+        @if (allPiles[1].Count > 0)
+        {
+            <p class="cardCount" id="two">@pile2Count</p>
+        }
+        @if (allPiles[2].Count > 0)
+        {
+            <p class="cardCount" id="three">@pile3Count</p>
+        }
+        @if (allPiles[3].Count > 0)
+        {
+            <p class="cardCount" id="four">@pile4Count</p>
+        }
+        @if (stackOCards.Count > 0)
+        {
+            <p class="cardCount" id="five">@deckAmount</p>
+        }
 
         <p>
-            @if (chosenPile == 0)
+            @if (chosenPile == 0 && (allPiles[0].Count > 0) && popUpCards == false)
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img1" id="focus">
             }
-            else
+            else if (allPiles[0].Count > 0 && chosenPile != 0|| playerPileSwitch == true)
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img1">
             }
+            else if (allPiles[0].Count > 0)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img1" id="fade">
+            }
 
-            @if (chosenPile == 1)
+            @if (chosenPile == 1 && allPiles[1].Count > 0 && popUpCards == false)
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img2" id="focus">
             }
-            else
+            else if (allPiles[1].Count > 0 && chosenPile != 1 || playerPileSwitch == true)
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img2">
             }
+            else if (allPiles[1].Count > 0)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img2" id="fade">
+            }
 
-            @if (chosenPile == 2)
+            @if (chosenPile == 2 && allPiles[2].Count > 0 && popUpCards == false)
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img3" id="focus">
             }
-            else
+            else if (allPiles[2].Count > 0 && chosenPile != 2|| playerPileSwitch == true)
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img3">
             }
+            else if (allPiles[2].Count > 0)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img3" id="fade">
+            }
 
-            @if (chosenPile == 3)
+            @if (chosenPile == 3 && allPiles[3].Count > 0 && popUpCards == false)
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img4" id="focus">
             }
-            else
+            else if (allPiles[3].Count > 0 && chosenPile != 3 || forceCard == true|| playerPileSwitch == true)
             {
                 <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img4">
             }
+            else if (allPiles[3].Count > 0)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img4" id="fade">
+            }
 
-            <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5">
+            @if (stackOCards.Count != 0 && forceCard == false)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5">
+            }
+            else if (stackOCards.Count != 0 && forceCard == true)
+            {
+                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5" id="fade">
+            }
         </p>
     </div>
 
@@ -214,8 +252,6 @@ else
         {
             listOfImgUrls.Clear();
             PrintImage(stackOCards[0]);
-            bothPlayers[chosenPlayer].Add(stackOCards[0]);
-            allPiles[chosenPile].Add(stackOCards[1]);
             forceCard = true;
             return;
         }
@@ -257,6 +293,8 @@ else
 
     public void Continue()
     {
+        bothPlayers[chosenPlayer].Add(stackOCards[0]);
+        allPiles[chosenPile].Add(stackOCards[1]);
         stackOCards.RemoveAt(0);
         stackOCards.RemoveAt(0);
         chosenPile++;
