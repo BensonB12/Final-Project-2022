@@ -201,9 +201,10 @@ else
 
     public void switchARoo()
     {
+        var tempCP = chosenPile;
         if (CheckForCards() == true && gameOver == false)
         {
-            allPiles[chosenPile].Add(stackOCards[0]);
+            allPiles[tempCP].Add(stackOCards[0]);
             stackOCards.RemoveAt(0);
         }
     }
@@ -301,9 +302,10 @@ else
     {
         bothPlayers[chosenPlayer].Add(stackOCards[0]);
         stackOCards.RemoveAt(0);
+        
         if (CheckForCards() == true && gameOver == false)
         {
-            allPiles[chosenPile].Add(stackOCards[0]);
+            allPiles[3].Add(stackOCards[0]);
             stackOCards.RemoveAt(0);
         }
 
