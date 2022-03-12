@@ -90,18 +90,20 @@ else
             string id = "d" + i.ToString();
             <img class="popUpCards" src="@item" id="@id" />
             i++;
-            if (i == 15)
-            {
-                i = 0;
-            }
         }
 
-        if (playerPileSwitch == false)
+        if (playerPileSwitch == false && forceCard == false)
         {
             <button class="choose" @onclick="ChoosePack">Choose Pile</button>
             <button class="pass" @onclick="PassPack">Pass Pile</button>
         }
 
+    }
+
+    @if (forceCard == true && playerPileSwitch == false)
+    {
+        <h1 class="forceCard">This is your card from the top of the deck</h1>
+        <button class="forceButton" @onclick="Continue">continue</button>
     }
 }
 
@@ -132,6 +134,7 @@ else
     int chosenPlayer = 0;
     bool popUpCards = false;
     bool oldPop = false;
+    bool forceCard = false;
     bool playerPileSwitch = false;
     public List<string> listOfImgUrls = new List<string>();
     public List<string> oldImgUrls = new List<string>();
@@ -178,13 +181,9 @@ else
         {
             stackOCards.RemoveAt(0);
         }
-        pile1Count = pile1.Count;
-        pile2Count = pile2.Count;
-        pile3Count = pile3.Count;
-        pile4Count = pile4.Count;
-        deckAmount = stackOCards.Count;
         allPiles = new List<Winston.CardModel>[4] { pile1, pile2, pile3, pile4 };
         bothPlayers = new List<Winston.CardModel>[2] { player1Stack, player2Stack };
+        UpDateNumbers();
     }
 
     protected override void OnParametersSet()
@@ -206,32 +205,23 @@ else
             chosenPlayer = 0;
         }
         popUpCards = false;
+        UpDateNumbers();
     }
 
     public void PassPack()
     {
         if (chosenPile == 3)
         {
+            listOfImgUrls.Clear();
+            PrintImage(stackOCards[0]);
             bothPlayers[chosenPlayer].Add(stackOCards[0]);
             allPiles[chosenPile].Add(stackOCards[1]);
-            stackOCards.RemoveAt(0);
-            stackOCards.RemoveAt(0);
-            chosenPile++;
-
-            if (chosenPile == 4)
-            {
-                chosenPile = 0;
-            }
-            chosenPlayer++;
-            if (chosenPlayer == 2)
-            {
-                chosenPlayer = 0;
-            }
-            popUpCards = false;
+            forceCard = true;
             return;
         }
         switchARoo();
         popUpCards = false;
+        UpDateNumbers();
     }
 
     public void ShowPlayerPile()
@@ -252,6 +242,37 @@ else
         popUpCards = oldPop;
         playerPileSwitch = false;
         listOfImgUrls = oldImgUrls;
+    }
+
+    public void UpDateNumbers()
+    {
+        pile1Count = allPiles[0].Count;
+        pile2Count = allPiles[1].Count;
+        pile3Count = allPiles[2].Count;
+        pile4Count = allPiles[3].Count;
+        deckAmount = stackOCards.Count;
+        player1CardCount = bothPlayers[0].Count;
+        player2CardCount = bothPlayers[1].Count;
+    }
+
+    public void Continue()
+    {
+        stackOCards.RemoveAt(0);
+        stackOCards.RemoveAt(0);
+        chosenPile++;
+
+        if (chosenPile == 4)
+        {
+            chosenPile = 0;
+        }
+        chosenPlayer++;
+        if (chosenPlayer == 2)
+        {
+            chosenPlayer = 0;
+        }
+        UpDateNumbers();
+        forceCard = false;
+        popUpCards = false;
     }
 }
 

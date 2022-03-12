@@ -127,71 +127,6 @@ h1 {
     height: 370px;
 }
 
-#d1 {
-    left: 15%;
-}
-
-#d2 {
-    left: 28%;
-}
-
-#d3 {
-    left: 41%;
-}
-
-#d4 {
-    left: 54%;
-}
-
-#d5 {
-    left: 67%;
-}
-
-#d6 {
-    left: 80%;
-}
-
-#d7 {
-    top: 530px;
-    left: 2%;
-}
-
-#d8 {
-    top: 530px;
-    left: 15%;
-}
-
-#d9 {
-    top: 530px;
-    left: 28%;
-}
-
-#d10 {
-    top: 530px;
-    left: 41%;
-}
-
-#d11 {
-    top: 530px;
-    left: 54%;
-}
-
-#d12 {
-    top: 530px;
-    left: 67%;
-}
-
-#d13 {
-    top: 530px;
-    left: 80%;
-}
-
-#d14 {
-    top: 330px;
-    left: 50%;
-    z-index: 5;
-}
-
 .square {
     position: absolute;
     top: 0%;
@@ -219,6 +154,19 @@ h1 {
 
 .grey {
     color: #777;
+}
+
+.forceCard {
+    position: absolute;
+    left: 15%;
+    top: 15%;
+}
+
+.forceButton {
+    position: absolute;
+    left: 50%;
+    top: 16%;
+    background-color: lightgreen;
 }
 
 .loading {
@@ -260,5 +208,323 @@ h1 {
     25% {top: 95%; left: 35%}
     50% {background-color: rgb(245, 86, 86); left: 75%}
     75% {top: 5%; left: 35%}
-    100% {background-color: rgb(29, 151, 29); left: 5%}
+    100% {background-color: rgb(29, 151, 29); top: 5%; left: 5%}
+}
+
+#d1 {
+    left: 15%;
+}
+
+#d2 {
+    left: 28%;
+}
+
+#d3 {
+    left: 41%;
+}
+
+#d4 {
+    left: 54%;
+}
+
+#d5 {
+    left: 67%;
+}
+
+#d6 {
+    left: 80%;
+}
+
+#d7 {
+    top: 530px;
+    left: 2%;
+    z-index: 10;
+}
+
+#d8 {
+    top: 530px;
+    left: 15%;
+    z-index: 10;
+}
+
+#d9 {
+    top: 530px;
+    left: 28%;
+    z-index: 10;
+}
+
+#d10 {
+    top: 530px;
+    left: 41%;
+    z-index: 10;
+}
+
+#d11 {
+    top: 530px;
+    left: 54%;
+    z-index: 10;
+}
+
+#d12 {
+    top: 530px;
+    left: 67%;
+    z-index: 10;
+}
+
+#d13 {
+    top: 530px;
+    left: 80%;
+    z-index: 10;
+}
+
+#d14 {
+    top: 190px;
+    left: 2%;
+    z-index: 3;
+}
+
+#d15 {
+    top: 190px;
+    left: 15%;
+    z-index: 3;
+}
+
+#d16 {
+    top: 190px;
+    left: 28%;
+    z-index: 3;
+}
+
+#d17 {
+    top: 190px;
+    left: 41%;
+    z-index: 3;
+}
+
+#d18 {
+    top: 190px;
+    left: 54%;
+    z-index: 3;
+}
+
+#d19 {
+    top: 190px;
+    left: 67%;
+    z-index: 3;
+}
+
+#d20 {
+    top: 190px;
+    left: 80%;
+    z-index: 3;
+}
+
+#d21 {
+    top: 230px;
+    left: 2%;
+    z-index: 4;
+}
+
+#d22 {
+    top: 230px;
+    left: 15%;
+    z-index: 4;
+}
+
+#d23 {
+    top: 230px;
+    left: 28%;
+    z-index: 4;
+}
+
+#d24 {
+    top: 230px;
+    left: 41%;
+    z-index: 4;
+}
+
+#d25 {
+    top: 230px;
+    left: 54%;
+    z-index: 4;
+}
+
+#d26 {
+    top: 230px;
+    left: 67%;
+    z-index: 4;
+}
+
+#d27 {
+    top: 230px;
+    left: 80%;
+    z-index: 4;
+}
+
+#d28 {
+    top: 270px;
+    left: 2%;
+    z-index: 5;
+}
+
+#d29 {
+    top: 270px;
+    left: 15%;
+    z-index: 5;
+}
+
+#d30 {
+    top: 270px;
+    left: 28%;
+    z-index: 5;
+}
+
+#d31 {
+    top: 270px;
+    left: 41%;
+    z-index: 4;
+}
+
+#d32 {
+    top: 270px;
+    left: 54%;
+    z-index: 4;
+}
+
+#d33 {
+    top: 270px;
+    left: 67%;
+    z-index: 5;
+}
+
+#d34 {
+    top: 270px;
+    left: 80%;
+    z-index: 5;
+}
+
+#d35 {
+    top: 310px;
+    left: 2%;
+    z-index: 5;
+}
+
+#d36 {
+    top: 310px;
+    left: 15%;
+    z-index: 6;
+}
+
+#d37 {
+    top: 310px;
+    left: 28%;
+    z-index: 6;
+}
+
+#d38 {
+    top: 310px;
+    left: 41%;
+    z-index: 6;
+}
+
+#d39 {
+    top: 310px;
+    left: 54%;
+    z-index: 6;
+}
+
+#d40 {
+    top: 310px;
+    left: 67%;
+    z-index: 6;
+}
+
+#d41 {
+    top: 310px;
+    left: 80%;
+    z-index: 6;
+}
+
+#d42 {
+    top: 350px;
+    left: 2%;
+    z-index: 7;
+}
+
+#d43 {
+    top: 350px;
+    left: 15%;
+    z-index: 7;
+}
+
+#d44 {
+    top: 350px;
+    left: 28%;
+    z-index: 7;
+}
+
+#d45 {
+    top: 350px;
+    left: 41%;
+    z-index: 7;
+}
+
+#d46 {
+    top: 350px;
+    left: 54%;
+    z-index: 7;
+}
+
+#d47 {
+    top: 350px;
+    left: 67%;
+    z-index: 7;
+}
+
+#d48 {
+    top: 350px;
+    left: 80%;
+    z-index: 7;
+}
+
+#d50 {
+    top: 390px;
+    left: 2%;
+    z-index: 8;
+}
+
+#d51 {
+    top: 390px;
+    left: 15%;
+    z-index: 8;
+}
+
+#d52 {
+    top: 390px;
+    left: 28%;
+    z-index: 8;
+}
+
+#d53 {
+    top: 390px;
+    left: 41%;
+    z-index: 8;
+}
+
+#d54 {
+    top: 390px;
+    left: 54%;
+    z-index: 8;
+}
+
+#d55 {
+    top: 390px;
+    left: 67%;
+    z-index: 8;
+}
+
+#d56 {
+    top: 390px;
+    left: 80%;
+    z-index: 8;
 }
