@@ -186,7 +186,7 @@ h1 {
     background-color: blue;
     animation-name: floatingBox;
     animation-duration: 5s;
-    animation-iteration-count: 4;
+    animation-iteration-count: 6;
 }
 
 .player1 {
