@@ -181,14 +181,6 @@ h1 {
     opacity: 20%;
 }
 
-.loading {
-    position: absolute;
-    background-color: blue;
-    animation-name: floatingBox;
-    animation-duration: 5s;
-    animation-iteration-count: 6;
-}
-
 .player1 {
     background-color: #FFF;
     color: black;
@@ -215,31 +207,34 @@ h1 {
     z-index: 7;
 }
 
-@keyframes floatingBox {
+.loading {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    animation-name: fadingInOut;
+    animation-duration: 4s;
+    animation-iteration-count: 6;
+}
+
+@keyframes fadingInOut {
     0% {
-        top: 5%;
-        left: 5%
+        color: black;
     }
 
     25% {
-        top: 95%;
-        left: 35%
+        color: white;
     }
 
     50% {
-        background-color: rgb(245, 86, 86);
-        left: 75%
+        color: black;
     }
 
     75% {
-        top: 5%;
-        left: 35%
+        color: white;
     }
 
-    100% {
-        background-color: rgb(29, 151, 29);
-        top: 5%;
-        left: 5%
+    50% {
+        color: black;
     }
 }
 

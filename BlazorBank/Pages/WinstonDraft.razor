@@ -147,7 +147,14 @@ else
 
     @if (forceCard == true && playerPileSwitch == false)
     {
-        <h1 class="forceCard">This is your card from the top of the deck</h1>
+        @if (stackOCards.Count != 0)
+        {
+            <h1 class="forceCard">This is your card from the top of the deck</h1>
+        }
+        else
+        {
+            <h1 class="forceCard">Sorry, no card off the top of the deck</h1>
+        }
         <button class="forceButton" @onclick="Continue">continue</button>
     }
 }
@@ -241,6 +248,15 @@ else
 
     public void ChoosePack()
     {
+        if (stackOCards.Count == 0)
+        {
+            if (IsThisTheLastOne() == true)
+            {
+                popUpCards = false;
+                UpDateNumbers();
+                return;
+            }
+        }
         var tempCPile = chosenPile;
         bothPlayers[chosenPlayer].AddRange(allPiles[chosenPile]);
         allPiles[chosenPile] = new List<Winston.CardModel>();
@@ -290,6 +306,10 @@ else
             {
                 PrintImage(stackOCards[0]);
             }
+            else
+            {
+
+            }
 
             forceCard = true;
             return;
@@ -332,8 +352,11 @@ else
 
     public void Continue()
     {
-        bothPlayers[chosenPlayer].Add(stackOCards[0]);
-        stackOCards.RemoveAt(0);
+        if (stackOCards.Count != 0)
+        {
+            bothPlayers[chosenPlayer].Add(stackOCards[0]);
+            stackOCards.RemoveAt(0);
+        }
 
         if (CheckForCards() == true && gameOver == false)
         {
@@ -381,6 +404,7 @@ else
             stackOCards.Count == 0)
             {
                 gameOver = true;
+                break;
             }
 
         } while (canMoveOn == false);
@@ -391,6 +415,25 @@ else
         }
 
         return true;
+    }
+
+    public bool IsThisTheLastOne()
+    {
+        int j = 0;
+        foreach (var item in allPiles)
+        {
+            if (item.Count == 0)
+            {
+                j++;
+            }
+        }
+        if (j >= 3)
+        {
+            bothPlayers[chosenPlayer].AddRange(allPiles[chosenPile]);
+            gameOver = true;
+            return true;
+        }
+        return false;
     }
 }
 
