@@ -1297,6 +1297,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "Winston.Lib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.7"
+        },
+        "compile": {
+          "bin/placeholder/Winston.Lib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Winston.Lib.dll": {}
+        }
       }
     }
   },
@@ -4769,12 +4782,18 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "Winston.Lib/1.0.0": {
+      "type": "project",
+      "path": "../Winston.Lib/Winston.Lib.csproj",
+      "msbuildProject": "../Winston.Lib/Winston.Lib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.AspNet.WebApi.Client >= 5.2.6",
-      "MtgApiManager.Lib >= 2.3.2"
+      "MtgApiManager.Lib >= 2.3.2",
+      "Winston.Lib >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4783,11 +4802,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
+      "projectUniqueName": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
       "projectName": "BlazorBank",
-      "projectPath": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
+      "projectPath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\BlazorBank.csproj",
       "packagesPath": "C:\\Users\\benso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\obj\\",
+      "outputPath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\benso\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -4801,7 +4820,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\Winston.Lib\\Winston.Lib.csproj": {
+              "projectPath": "c:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\Winston.Lib\\Winston.Lib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -4844,5 +4867,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.AspNet.WebApi.Client from 5.2.7 to 5.2.6. Reference the package directly from the project to select a different version. \r\n BlazorBank -> Winston.Lib -> Microsoft.AspNet.WebApi.Client (>= 5.2.7) \r\n BlazorBank -> Microsoft.AspNet.WebApi.Client (>= 5.2.6)",
+      "libraryId": "Microsoft.AspNet.WebApi.Client",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

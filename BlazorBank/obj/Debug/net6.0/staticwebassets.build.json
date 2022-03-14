@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Hwg9O2u+ZumYXFWYr48s2bGu1muM5FAHxOM3zESE5W0=",
+  "Hash": "GG51ke30nnGIS8KwMIxbVuLR5lOvQHdZq+BOXySxdWQ=",
   "Source": "BlazorBank",
   "BasePath": "_content/BlazorBank",
   "Mode": "Default",
@@ -255,6 +255,23 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
+      "Identity": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\wwwroot\\css\\PickPacks.css",
+      "SourceId": "BlazorBank",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\wwwroot\\",
+      "BasePath": "_content/BlazorBank",
+      "RelativePath": "css/PickPacks.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\PickPacks.css"
+    },
+    {
       "Identity": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\wwwroot\\css\\site.css",
       "SourceId": "BlazorBank",
       "SourceType": "Discovered",
@@ -289,12 +306,12 @@
       "OriginalItemSpec": "wwwroot\\css\\start.css"
     },
     {
-      "Identity": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\wwwroot\\css\\styles.css",
+      "Identity": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\wwwroot\\css\\WinstonDraft.css",
       "SourceId": "BlazorBank",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\wwwroot\\",
       "BasePath": "_content/BlazorBank",
-      "RelativePath": "css/styles.css",
+      "RelativePath": "css/WinstonDraft.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -303,7 +320,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+      "OriginalItemSpec": "wwwroot\\css\\WinstonDraft.css"
     },
     {
       "Identity": "C:\\Users\\benso\\Object-Oriented-Programming\\finalProject\\BlazorBank\\wwwroot\\favicon.ico",
