@@ -42,6 +42,13 @@
 
     public async void ShowInfo()
     {
-        wantInfo = true;
+        if(wantInfo == true)
+        {
+            wantInfo = false;
+        }
+        else
+        {
+            wantInfo = true;
+        }
     }
 }

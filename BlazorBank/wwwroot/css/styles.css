@@ -181,6 +181,10 @@ h1 {
     opacity: 20%;
 }
 
+#gone {
+    opacity: 0%;
+}
+
 .player1 {
     background-color: #FFF;
     color: black;
