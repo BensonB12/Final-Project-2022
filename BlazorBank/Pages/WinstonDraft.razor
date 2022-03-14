@@ -6,158 +6,189 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-@if (stackOCards == null)
+@if (gameOver == false)
 {
-    <h1 class="loading">LOADING</h1>
-}
-else
-{
-    @if (chosenPlayer == 0)
+
+    @if (stackOCards == null)
     {
-        <h2 class="player1">Player 1's turn</h2>
-        <button id="cardPile" @onclick="ShowPlayerPile">Show drafted cards (@player1CardCount)</button>
+        <h1 class="loading">LOADING</h1>
     }
     else
     {
-        <h2 class="player2">Player 2's turn</h2>
-        <button id="cardPile" @onclick="ShowPlayerPile">Show drafted cards (@player2CardCount)</button>
-    }
-
-    @if (playerPileSwitch == true)
-    {
-        <button id="cardPile" @onclick="HidePlayerPile">Back to piles</button>
-    }
-
-    <div>
-        @if (allPiles[0].Count > 0)
+        @if (chosenPlayer == 0)
         {
-            <p class="cardCount" id="one">@pile1Count</p>
-        }
-        @if (allPiles[1].Count > 0)
-        {
-            <p class="cardCount" id="two">@pile2Count</p>
-        }
-        @if (allPiles[2].Count > 0)
-        {
-            <p class="cardCount" id="three">@pile3Count</p>
-        }
-        @if (allPiles[3].Count > 0)
-        {
-            <p class="cardCount" id="four">@pile4Count</p>
-        }
-        @if (stackOCards.Count > 0)
-        {
-            <p class="cardCount" id="five">@deckAmount</p>
-        }
-
-        <p>
-            @if (chosenPile == 0 && (allPiles[0].Count > 0) && popUpCards == false)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
-            class="img1" id="focus">
-            }
-            else if (allPiles[0].Count > 0 && chosenPile != 0 || playerPileSwitch == true)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img1">
-            }
-            else if (allPiles[0].Count > 0)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img1" id="fade">
-            }
-
-            @if (chosenPile == 1 && allPiles[1].Count > 0 && popUpCards == false)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
-            class="img2" id="focus">
-            }
-            else if (allPiles[1].Count > 0 && chosenPile != 1 || playerPileSwitch == true)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img2">
-            }
-            else if (allPiles[1].Count > 0)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img2" id="fade">
-            }
-
-            @if (chosenPile == 2 && allPiles[2].Count > 0 && popUpCards == false)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
-            class="img3" id="focus">
-            }
-            else if (allPiles[2].Count > 0 && chosenPile != 2 || playerPileSwitch == true)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img3">
-            }
-            else if (allPiles[2].Count > 0)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img3" id="fade">
-            }
-
-            @if (chosenPile == 3 && allPiles[3].Count > 0 && popUpCards == false)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
-            class="img4" id="focus">
-            }
-            else if (allPiles[3].Count > 0 && chosenPile != 3 || forceCard == true || playerPileSwitch == true)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img4">
-            }
-            else if (allPiles[3].Count > 0)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img4" id="fade">
-            }
-
-            @if (stackOCards.Count != 0 && forceCard == false)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5">
-            }
-            else if (stackOCards.Count != 0 && forceCard == true)
-            {
-                <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5" id="fade">
-            }
-
-            @if (gameOver == true)
-            {
-                <NavLink href="ImportDecks">
-                    <button>Click here to see decks</button>
-                </NavLink>
-            }
-        </p>
-    </div>
-
-    @if (popUpCards == true)
-    {
-        <div class="square"></div>
-
-        int i = 0;
-        foreach (var item in listOfImgUrls)
-        {
-            string id = "d" + i.ToString();
-            <img class="popUpCards" src="@item" id="@id" />
-            i++;
-        }
-
-        if (playerPileSwitch == false && forceCard == false)
-        {
-            <button class="choose" @onclick="ChoosePack">Choose Pile</button>
-            <button class="pass" @onclick="PassPack">Pass Pile</button>
-        }
-
-    }
-
-    @if (forceCard == true && playerPileSwitch == false)
-    {
-        @if (stackOCards.Count != 0)
-        {
-            <h1 class="forceCard">This is your card from the top of the deck</h1>
+            <h2 class="player1">Player 1's turn</h2>
+            <button id="cardPile" @onclick="ShowPlayerPile">Show drafted cards (@player1CardCount)</button>
         }
         else
         {
-            <h1 class="forceCard">Sorry, no card off the top of the deck</h1>
+            <h2 class="player2">Player 2's turn</h2>
+            <button id="cardPile" @onclick="ShowPlayerPile">Show drafted cards (@player2CardCount)</button>
         }
-        <button class="forceButton" @onclick="Continue">continue</button>
+
+        @if (playerPileSwitch == true)
+        {
+            <button id="cardPile" @onclick="HidePlayerPile">Back to piles</button>
+        }
+
+        <div>
+            @if (allPiles[0].Count > 0)
+            {
+                <p class="cardCount" id="one">@pile1Count</p>
+            }
+            @if (allPiles[1].Count > 0)
+            {
+                <p class="cardCount" id="two">@pile2Count</p>
+            }
+            @if (allPiles[2].Count > 0)
+            {
+                <p class="cardCount" id="three">@pile3Count</p>
+            }
+            @if (allPiles[3].Count > 0)
+            {
+                <p class="cardCount" id="four">@pile4Count</p>
+            }
+            @if (stackOCards.Count > 0)
+            {
+                <p class="cardCount" id="five">@deckAmount</p>
+            }
+
+            <p>
+                @if (chosenPile == 0 && (allPiles[0].Count > 0) && popUpCards == false)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
+            class="img1" id="focus">
+                }
+                else if (allPiles[0].Count > 0 && chosenPile != 0 || playerPileSwitch == true)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img1">
+                }
+                else if (allPiles[0].Count > 0)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img1" id="fade">
+                }
+
+                @if (chosenPile == 1 && allPiles[1].Count > 0 && popUpCards == false)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
+            class="img2" id="focus">
+                }
+                else if (allPiles[1].Count > 0 && chosenPile != 1 || playerPileSwitch == true)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img2">
+                }
+                else if (allPiles[1].Count > 0)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img2" id="fade">
+                }
+
+                @if (chosenPile == 2 && allPiles[2].Count > 0 && popUpCards == false)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
+            class="img3" id="focus">
+                }
+                else if (allPiles[2].Count > 0 && chosenPile != 2 || playerPileSwitch == true)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img3">
+                }
+                else if (allPiles[2].Count > 0)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img3" id="fade">
+                }
+
+                @if (chosenPile == 3 && allPiles[3].Count > 0 && popUpCards == false)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
+            class="img4" id="focus">
+                }
+                else if (allPiles[3].Count > 0 && chosenPile != 3 || forceCard == true || playerPileSwitch == true)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img4">
+                }
+                else if (allPiles[3].Count > 0)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img4" id="fade">
+                }
+
+                @if (stackOCards.Count != 0 && forceCard == false)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5">
+                }
+                else if (stackOCards.Count != 0 && forceCard == true)
+                {
+                    <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img5" id="fade">
+                }
+@* 
+                @if (gameOver == true)
+                {
+                <div class="square"></div>
+                <NavLink href="ImportDecks">
+                    <button class="endIt" @onclick="PrintDeckLists">Click here to see decks</button>
+                </NavLink>
+                } *@
+            </p>
+        </div>
+
+        @if (popUpCards == true)
+        {
+            <div class="square"></div>
+
+            int i = 0;
+            foreach (var item in listOfImgUrls)
+            {
+                string id = "d" + i.ToString();
+                <img class="popUpCards" src="@item" id="@id" />
+                i++;
+            }
+
+            if (playerPileSwitch == false && forceCard == false)
+            {
+                <button class="choose" @onclick="ChoosePack">Choose Pile</button>
+                <button class="pass" @onclick="PassPack">Pass Pile</button>
+            }
+
+        }
+
+        @if (forceCard == true && playerPileSwitch == false)
+        {
+            @if (stackOCards.Count != 0)
+            {
+                <h1 class="forceCard">This is your card from the top of the deck</h1>
+            }
+            else
+            {
+                <h1 class="forceCard">Sorry, no card off the top of the deck</h1>
+            }
+            <button class="forceButton" @onclick="Continue">continue</button>
+        }
     }
 }
+else
+{
+    <h1>Player 1's Deck list for arena</h1>
+    <br>
+    <br>
+    @foreach (var cards in bothPlayers[0])
+    {
+        <p>"1 " + @cards.Name)</p>
+    }
+    <br>
+    <br>
+    <h1>Player 2's Deck list for arena</h1>
+    <br>
+    <br>
+    @foreach (var cards in bothPlayers[1])
+    {
+        <p>"1 " + @cards.Name)</p>
+    }
+}
+
+
+
+
+
+
+
 
 @code {
     [Parameter]
@@ -430,12 +461,32 @@ else
         if (j >= 3)
         {
             bothPlayers[chosenPlayer].AddRange(allPiles[chosenPile]);
+            allPiles[chosenPile].Clear();
             gameOver = true;
             return true;
         }
         return false;
     }
 }
+@* public void PrintDeckLists()
+{
+    var writer = new StreamWriter("Player1.txt");
+
+    foreach (var cards in bothPlayers[0])
+    {
+        writer.WriteLine("1 " + cards.Name);
+    }
+    writer.Close();
+
+    writer = new StreamWriter("Player2.txt");
+
+    foreach (var cards in bothPlayers[1])
+    {
+        writer.WriteLine("1 " + cards.Name);
+    }
+    writer.Close();
+} *@
+
 
 @* private string? imageSource;
     public async Task ShowImage()

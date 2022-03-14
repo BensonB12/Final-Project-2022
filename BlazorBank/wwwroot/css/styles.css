@@ -207,6 +207,13 @@ h1 {
     z-index: 7;
 }
 
+.endIt {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    z-index: 2;
+}
+
 .loading {
     position: absolute;
     top: 45%;
