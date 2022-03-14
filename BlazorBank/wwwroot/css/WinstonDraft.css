@@ -20,7 +20,7 @@ h2 {
     border: 1px solid black;
     padding: 5px;
     z-index: 1;
-    top: 44.5%;
+    top: 44%;
 }
 
 /* 
@@ -47,7 +47,7 @@ border: 1px solid black;
 
 #five {
     left: 89.9%;
-    top: 41%;
+    top: 40%;
 }
 
 img {
@@ -74,19 +74,10 @@ img {
     transform: rotate(0deg);
 }
 
-.start {
-    height: 100px;
-    font-size: xx-large;
-}
-
-.direction {
-    text-decoration: underline;
-}
-
 button {
     border-color: black;
     background-color: salmon;
-    position: relative;
+    position: absolute;
     left: 32%;
     width: 40%;
 }
@@ -95,19 +86,6 @@ button:active {
     border-width: 4px;
     border-right: 1px;
     border-bottom: 1px;
-}
-
-.set {
-    font-size: large;
-}
-
-.info {
-    background-color: lightgray;
-    border-color: grey;
-    padding: 5px;
-    border-radius: 3px;
-    font-size: large;
-    text-align: center;
 }
 
 .warning {
@@ -119,10 +97,6 @@ button:active {
     border-radius: 3px;
     padding: 5px;
     text-shadow: 5px;
-}
-
-h1 {
-    text-align: center;
 }
 
 .popUpCards {
@@ -158,10 +132,6 @@ h1 {
     background-color: #F44;
     top: 2%;
     left: 50%;
-}
-
-.grey {
-    color: #777;
 }
 
 .forceCard {

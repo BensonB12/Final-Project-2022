@@ -3,7 +3,7 @@
 <PageTitle>Winston Draft</PageTitle>
 
 <head>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/WinstonDraft.css">
 </head>
 
 @if (gameOver == false)
@@ -183,14 +183,14 @@ else
     <h1>Player 1's Deck list for arena</h1>
     @foreach (var cards in bothPlayers[0])
     {
-        <p>1 @cards.Name</p>
+        <ul>1 @cards.Name</ul>
     }
     <br>
     <br>
     <h1>Player 2's Deck list for arena</h1>
     @foreach (var cards in bothPlayers[1])
     {
-        <p>1 @cards.Name)</p>
+        <ul>1 @cards.Name</ul>
     }
 }
 

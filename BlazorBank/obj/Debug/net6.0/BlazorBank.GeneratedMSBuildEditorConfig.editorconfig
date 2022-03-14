@@ -27,16 +27,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW1wb3J0RGVja3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/MoreInfo.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTW9yZUluZm8ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/PickPacks.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlja1BhY2tzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/Start.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhcnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/benso/Object-Oriented-Programming/finalProject/BlazorBank/Pages/WinstonDraft.razor]
