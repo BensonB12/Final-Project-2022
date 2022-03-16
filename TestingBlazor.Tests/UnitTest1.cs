@@ -31,10 +31,10 @@ public class Tests
             var stackOCards = await aHeapOCards.MixAllBoosters(Dom, War, 0);
             CardStack.AddRange(stackOCards);
 
-            var aHeapOfCardsToBe = new MakeBooster(Set.WAR);
+            var aHeapOfCardsToBe = new WARBooster();
             WarBooster = await aHeapOfCardsToBe.booster;
 
-            var newHeapOfCards = new MakeBooster(Set.DOM);
+            var newHeapOfCards = new DOMBooster();
             DomBooster = await newHeapOfCards.booster;
 
             foreach (var card in CardStack)
