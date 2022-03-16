@@ -3,15 +3,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <!-- <RootNamespace>Winston</RootNamespace> -->
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MtgApiManager.Lib" Version="2.3.2" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.6" />
-    <!-- <PackageReference Include="Winston">
-    <PackageReference Include="Library.Lib"> -->
+    <PackageReference Include="MtgApiManager.Lib" Version="2.3.2"/>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Winston.Lib\Winston.Lib.csproj" />
+    <ProjectReference Include="..\Winston.Lib\Winston.Lib.csproj"/>
   </ItemGroup>
 </Project>

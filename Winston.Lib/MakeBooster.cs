@@ -4,12 +4,10 @@ namespace Winston
     {
         private Set set;
         public Task<List<CardModel>> booster { get; }
-        public Task<CardModel> singleCard { get; }
 
         public MakeBooster(Set set)
         {
             this.set = set;
-            //this.singleCard = CardProcessor.LoadNonLand(set, Rarity.commmon);
             booster = PickXCardsFromSet(set);
         }
 
