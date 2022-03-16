@@ -12,5 +12,6 @@ namespace Winston
         public string ImageUrl { get; set; }
         public string[] Types { get; set; }
         public string[] Supertypes { get; set; }
+        public string Rarity { get; set; }
     }
 }

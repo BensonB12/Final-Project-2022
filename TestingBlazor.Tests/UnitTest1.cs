@@ -15,6 +15,12 @@ public class Tests
     int War = 4;
     int Dom = 2;
 
+    int common = 0;
+    int unCommon = 0;
+    int rare = 0;
+    int mythic = 0;
+    int land = 0;
+
     [SetUp]
     public async Task Setup()
     {
@@ -30,6 +36,31 @@ public class Tests
 
             var newHeapOfCards = new MakeBooster(Set.DOM);
             DomBooster = await newHeapOfCards.booster;
+
+            foreach (var card in CardStack)
+            {
+                if (card.Rarity == "Common")
+                {
+                    common++;
+
+                    if (card.Types[0] == "Land")
+                    {
+                        land++;
+                    }
+                }
+                else if (card.Rarity == "Uncommon")
+                {
+                    unCommon++;
+                }
+                else if (card.Rarity == "Rare")
+                {
+                    rare++;
+                }
+                else if (card.Rarity == "Mythic")
+                {
+                    mythic++;
+                }
+            }
 
             j++;
         }
@@ -108,6 +139,30 @@ public class Tests
             }
         }
 
-        Assert.GreaterOrEqual(i, Dom);
+        Assert.GreaterOrEqual(i, 1);
+    }
+
+    [Test]
+    public void CommonCount()
+    {
+
+        Assert.AreEqual(66, common);
+    }
+
+    [Test]
+    public void UncommonCount()
+    {
+        Assert.AreEqual(18, unCommon);
+    }
+
+    public void MythicsRaresCount()
+    {
+        Assert.AreEqual(6, rare + mythic);
+    }
+
+    [Test]
+    public void CommonLandCount()
+    {
+        Assert.AreEqual(6, land);
     }
 }
