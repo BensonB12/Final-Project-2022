@@ -22,7 +22,7 @@ namespace Winston
                 default:
                     throw new Exception("The set in 'LoadNonLand' is not 'war', 'dom', nor 'neo'.");
             }
-            
+
             string url = $"{General.BaseUrl()}cards?rarity=common&set={stringSet}&type=land";
 
             using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
@@ -84,19 +84,39 @@ namespace Winston
             var list = new List<CardModel>();
 
             string url;
+            CardModel[] halfTheCommons = new CardModel[100];
+            CardModel[] allTheCards = new CardModel[200];
 
-            if(specialType != "empty")
+            if (specialType != "empty")
             {
                 url = $"{General.BaseUrl()}cards?set={stringSet}&type={specialType}";
             }
-            else if(enumSet == Set.WAR)
+            else if (enumSet == Set.WAR)
             {
                 url = $"{General.BaseUrl()}cards?type=land&rarity={stringRarity}&set=war&type=creature&type=artifact&type=enchantment&type=sorcery&type=instant";
+            }
+            else if (enumSet == Set.NEO && stringRarity == "common")
+            {
+                url = $"{General.BaseUrl()}cards?rarity=common&set=neo&type=creature&type=artifact&type=enchantment";
+
+                using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        CardResultModel result = await response.Content.ReadAsAsync<CardResultModel>();
+                        halfTheCommons = result.cards;
+                    }
+                    else
+                    {
+                        throw new Exception(response.ReasonPhrase);
+                    }
+                }
+
+                url = $"{General.BaseUrl()}cards?rarity=common&set=neo&type=sorcery&type=instant";
             }
             else
             {
                 url = $"{General.BaseUrl()}cards?rarity={stringRarity}&set={stringSet}";
-
             }
 
             using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
@@ -106,15 +126,37 @@ namespace Winston
                 {
                     CardResultModel result = await response.Content.ReadAsAsync<CardResultModel>();
                     Random random = new Random();
-                    CardModel[] specificData = result.cards;
-                    specificData = specificData.OrderBy(x => random.Next()).ToArray();
+                    var specificData = result.cards;
+
+                    if (enumSet == Set.NEO && stringRarity == "common")
+                    {
+                        int k = 0;
+                        foreach(var card in halfTheCommons)
+                        {
+                            allTheCards[k] = card;
+                            k++;
+                        }
+
+                        foreach(var card in specificData)
+                        {
+                            allTheCards[k] = card;
+                            k++;
+                        } 
+                    }
+                    else
+                    {
+                        allTheCards = specificData;
+                    }
+
+                    allTheCards = allTheCards.Where(c => c != null).ToArray();
+                    allTheCards = allTheCards.OrderBy(x => random.Next()).ToArray();
 
                     int cardsSeen = 0;
                     int WorthyCardCount = 0;
 
                     while (true)
                     {
-                        var worthyCard = CheckForOutliers(specificData, enumSet, cardsSeen);
+                        var worthyCard = CheckForOutliers(allTheCards, enumSet, cardsSeen);
 
                         if (worthyCard != null)
                         {
@@ -137,7 +179,6 @@ namespace Winston
                     throw new Exception(response.ReasonPhrase);
                 }
             }
-
 
             static CardModel CheckForOutliers(CardModel[] cards, Set enumSet, int placeInCardsArray)
             {

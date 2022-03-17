@@ -47,3 +47,11 @@ namespace Winston
 //         var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
 //         //cardImage.Source = new BitmapImage(uriSource);
 //     }
+
+
+// var writer = new StreamWriter("Testing.txt");
+                        // foreach (var card in halfTheCommons)
+                        // {
+                        //     writer.WriteLine($"{card.Name}");
+                        // }
+                        // writer.Close();
