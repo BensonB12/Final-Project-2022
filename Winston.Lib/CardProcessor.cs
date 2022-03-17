@@ -184,6 +184,20 @@ namespace Winston
             {
                 int maxNumber;
 
+                if(enumSet == Set.NEO)
+                {
+                    foreach(var letter in cards[placeInCardsArray].Name)
+                    {
+                        if(letter == '/')
+                        {
+                            if(cards[placeInCardsArray].Types.Contains("Creature") == true)
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+
                 switch (enumSet)
                 {
                     case Set.NEO:
