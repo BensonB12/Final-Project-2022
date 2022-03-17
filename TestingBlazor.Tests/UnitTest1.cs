@@ -33,6 +33,7 @@ public class Tests
 
             var aHeapOfCardsToBe = new WARBooster();
             WarBooster = await aHeapOfCardsToBe.booster;
+            WarBooster.AddRange(aHeapOfCardsToBe.planeswalker);
 
             var newHeapOfCards = new DOMBooster();
             DomBooster = await newHeapOfCards.booster;
@@ -70,6 +71,18 @@ public class Tests
     public void StacksLength()
     {
         Assert.AreEqual(90, CardStack.Count);
+    }
+
+    [Test]
+    public void WarsLength()
+    {
+        Assert.AreEqual(15, WarBooster.Count);
+    }
+
+        [Test]
+    public void DomsLength()
+    {
+        Assert.AreEqual(15, DomBooster.Count);
     }
 
     [Test]
@@ -117,7 +130,7 @@ public class Tests
             }
         }
 
-        Assert.AreEqual(War, i);
+        Assert.GreaterOrEqual(i, War);
     }
 
     [Test]
@@ -163,6 +176,6 @@ public class Tests
     [Test]
     public void CommonLandCount()
     {
-        Assert.AreEqual(6, land);
+        Assert.GreaterOrEqual(land, 6);
     }
 }

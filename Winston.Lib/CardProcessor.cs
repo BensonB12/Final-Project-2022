@@ -7,6 +7,7 @@ namespace Winston
         public async static Task<CardModel> LoadLand(Set enumSet)
         {
             string stringSet;
+
             switch (enumSet)
             {
                 case Set.WAR:
@@ -21,7 +22,7 @@ namespace Winston
                 default:
                     throw new Exception("The set in 'LoadNonLand' is not 'war', 'dom', nor 'neo'.");
             }
-
+            
             string url = $"{General.BaseUrl()}cards?rarity=common&set={stringSet}&type=land";
 
             using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
@@ -41,7 +42,7 @@ namespace Winston
                 }
             }
         }
-        public async static Task<List<CardModel>> LoadNonLand(Set enumSet, Rarity enumRarity, int cardsWanted)
+        public async static Task<List<CardModel>> LoadNonLand(Set enumSet, Rarity enumRarity, int cardsWanted, string specialType = "empty")
         {
             string stringSet;
 
@@ -61,6 +62,7 @@ namespace Winston
             }
 
             string stringRarity;
+
             switch (enumRarity)
             {
                 case Rarity.commmon:
@@ -81,7 +83,21 @@ namespace Winston
 
             var list = new List<CardModel>();
 
-            string url = $"{General.BaseUrl()}cards?rarity={stringRarity}&set={stringSet}";
+            string url;
+
+            if(specialType != "empty")
+            {
+                url = $"{General.BaseUrl()}cards?set={stringSet}&type={specialType}";
+            }
+            else if(enumSet == Set.WAR)
+            {
+                url = $"{General.BaseUrl()}cards?type=land&rarity={stringRarity}&set=war&type=creature&type=artifact&type=enchantment&type=sorcery&type=instant";
+            }
+            else
+            {
+                url = $"{General.BaseUrl()}cards?rarity={stringRarity}&set={stringSet}";
+
+            }
 
             using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
             {
@@ -92,20 +108,23 @@ namespace Winston
                     Random random = new Random();
                     CardModel[] specificData = result.cards;
                     specificData = specificData.OrderBy(x => random.Next()).ToArray();
-                    int i = 0;
-                    int j = 0;
+
+                    int cardsSeen = 0;
+                    int WorthyCardCount = 0;
+
                     while (true)
                     {
-                        var worthyCard = CheckForOutliers(specificData, enumSet, i);
+                        var worthyCard = CheckForOutliers(specificData, enumSet, cardsSeen);
+
                         if (worthyCard != null)
                         {
                             list.Add(worthyCard);
-                            j++;
+                            WorthyCardCount++;
                         }
 
-                        i++;
+                        cardsSeen++;
 
-                        if (j >= cardsWanted)
+                        if (WorthyCardCount >= cardsWanted)
                         {
                             break;
                         }
@@ -120,7 +139,7 @@ namespace Winston
             }
 
 
-            static CardModel CheckForOutliers(CardModel[] cards, Set enumSet, int i)
+            static CardModel CheckForOutliers(CardModel[] cards, Set enumSet, int placeInCardsArray)
             {
                 int maxNumber;
 
@@ -134,11 +153,12 @@ namespace Winston
                         maxNumber = 250;
                         break;
                     default:
-                        throw new Exception("We got a diffrent set somehow in 'CheckForLands'");
+                        throw new Exception("We got a diffrent set somehow in 'CheckForUnknowns'");
                 }
+
                 int number = 1000;
 
-                string toParse = General.DeleteNonNumbersInString(cards[i].Number);
+                string toParse = General.DeleteNonNumbersInString(cards[placeInCardsArray].Number);
 
                 if (toParse == null)
                 {
@@ -149,7 +169,7 @@ namespace Winston
 
                 if (number < maxNumber)
                 {
-                    return cards[i];
+                    return cards[placeInCardsArray];
                 }
                 else
                 {

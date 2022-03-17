@@ -4,9 +4,9 @@ namespace Winston
 {
     public static class General
     {
-        public static string DeleteNonNumbersInString(string numbers)
+        public static string DeleteNonNumbersInString(string number)
         {
-            var input = numbers.ToCharArray();
+            var input = number.ToCharArray();
 
             for (int i = 0; i < input.Length; i++)
             {
@@ -16,7 +16,7 @@ namespace Winston
                 }
             }
 
-            return numbers;
+            return number;
         }
         public static class ApiHelper
         {
@@ -40,26 +40,6 @@ namespace Winston
 //Booster packs have 10 common, 3 uncommon, 1 rare/mythicRare, and 1 non-basic land if there is any in the set. (DOM had basics and WAR had one common land)
 
 
-// public class NormalBooster : MakeBooster
-// {
-//     public NormalBooster(Set set) : base(set)
-//     {
-//     }
-// }
-
-// public class WARBooster : MakeBooster
-// {
-//     public WARBooster() : base(Set.WAR)
-//     {
-//     }
-// }
-
-// public class DOMBooster : MakeBooster
-// {
-//     public DOMBooster() : base(Set.DOM)
-//     {
-//     }
-// }
 //     public async Task LoadImage()
 //     {
 //         var card = await CardProcessor.LoadNonLand(Set.WAR, Rarity.uncommon);

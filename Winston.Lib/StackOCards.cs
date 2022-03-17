@@ -5,22 +5,23 @@ namespace Winston
         public async Task<List<CardModel>> MixAllBoosters(int numberOfDom, int numberOfWar, int numberOfNeo)
         {
             List<CardModel> finalStack = new List<CardModel>();
-            MakeBooster booster;
+            MTGBooster booster;
 
             for (int i = 0; i < numberOfDom; i++)
             {
-                booster = new MakeBooster(Set.DOM);
+                booster = new DOMBooster();
                 finalStack.AddRange(await booster.booster);
 
             }
             for (int i = 0; i < numberOfWar; i++)
             {
-                booster = new MakeBooster(Set.WAR);
-                finalStack.AddRange(await booster.booster);
+                var warBooster = new WARBooster();
+                finalStack.AddRange(await warBooster.booster);
+                finalStack.AddRange(warBooster.planeswalker);
             }
             for (int i = 0; i < numberOfNeo; i++)
             {
-                booster = new MakeBooster(Set.NEO);
+                booster = new NormalBooster(Set.NEO);
                 finalStack.AddRange(await booster.booster);
             }
 
