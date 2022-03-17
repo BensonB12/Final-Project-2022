@@ -54,12 +54,12 @@
             }
 
             <p>
-                @if (chosenPile == 0 && (allPiles[0].Count > 0) && popUpCards == false)
+                @if (chosenPile == 0 && (allPiles[0].Count > 0) && popUpCards == false && changePlayerNeeded == false)
                 {
                     <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" @onclick="ShowPile" width="10%" height="10%"
             class="img1" id="focus">
                 }
-                else if (allPiles[0].Count > 0 && chosenPile != 0 || playerPileSwitch == true)
+                else if (allPiles[0].Count > 0 && chosenPile != 0 || playerPileSwitch == true || changePlayerNeeded == true && allPiles[0].Count != 0)
                 {
                     <img src="BackOfMTGCard.jpg" alt="Back of a Magic card" width="10%" height="10%" class="img1">
                 }
@@ -176,6 +176,11 @@
             }
             <button class="forceButton" @onclick="Continue">continue</button>
         }
+
+        @if(changePlayerNeeded == true && popUpCards == false)
+        {
+            <button class="changePlayers" @onclick="ChangePlayers">Change Players</button>
+        }
     }
 }
 else
@@ -183,14 +188,14 @@ else
     <h1>Player 1's Deck list for arena</h1>
     @foreach (var cards in bothPlayers[0])
     {
-        <ul>1 @cards.Name</ul>
+        <li>1 @cards.Name</li>
     }
     <br>
     <br>
     <h1>Player 2's Deck list for arena</h1>
     @foreach (var cards in bothPlayers[1])
     {
-        <ul>1 @cards.Name</ul>
+        <li>1 @cards.Name</li>
     }
 }
 
@@ -232,6 +237,7 @@ else
     bool playerPileSwitch = false;
     bool canMoveOn = false;
     bool gameOver = false;
+    bool changePlayerNeeded = false;
     public List<string> listOfImgUrls = new List<string>();
     public List<string> oldImgUrls = new List<string>();
 
@@ -328,11 +334,7 @@ else
 
         if (tempCPile != 3)
         {
-            chosenPlayer++;
-            if (chosenPlayer == 2)
-            {
-                chosenPlayer = 0;
-            }
+            changePlayerNeeded = true;
         }
         popUpCards = false;
         UpDateNumbers();
@@ -424,12 +426,7 @@ else
 
                 //add a warning right here about passing the pack
 
-                chosenPlayer++;
-
-                if (chosenPlayer == 2)
-                {
-                    chosenPlayer = 0;
-                }
+                changePlayerNeeded = true;
             }
 
             if (allPiles[chosenPile].Count == 0)
@@ -462,6 +459,7 @@ else
     public bool IsThisTheLastOne()
     {
         int j = 0;
+        
         foreach (var item in allPiles)
         {
             if (item.Count == 0)
@@ -469,6 +467,7 @@ else
                 j++;
             }
         }
+
         if (j >= 3)
         {
             bothPlayers[chosenPlayer].AddRange(allPiles[chosenPile]);
@@ -476,7 +475,20 @@ else
             gameOver = true;
             return true;
         }
+
         return false;
+    }
+
+    public void ChangePlayers()
+    {
+        chosenPlayer++;
+
+        if (chosenPlayer == 2)
+        {
+            chosenPlayer = 0;
+        }
+
+        changePlayerNeeded = false;
     }
 }
 @* public void PrintDeckLists()

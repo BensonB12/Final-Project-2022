@@ -97,7 +97,7 @@ namespace Winston
             }
             else if (enumSet == Set.NEO && stringRarity == "common")
             {
-                url = $"{General.BaseUrl()}cards?rarity=common&set=neo&type=creature&type=artifact&type=enchantment";
+                url = $"{General.BaseUrl()}cards?rarity=common&set=neo&type=creature|type=artifact|type=enchantment";
 
                 using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
                 {
@@ -112,7 +112,7 @@ namespace Winston
                     }
                 }
 
-                url = $"{General.BaseUrl()}cards?rarity=common&set=neo&type=sorcery&type=instant";
+                url = $"{General.BaseUrl()}cards?rarity=common&set=neo|type=sorcery|type=instant";
             }
             else
             {
