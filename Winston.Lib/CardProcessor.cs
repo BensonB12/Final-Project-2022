@@ -6,22 +6,7 @@ namespace Winston
     {
         public async static Task<CardModel> LoadLand(Set enumSet)
         {
-            string stringSet;
-
-            switch (enumSet)
-            {
-                case Set.WAR:
-                    stringSet = "war";
-                    break;
-                case Set.DOM:
-                    stringSet = "dom";
-                    break;
-                case Set.NEO:
-                    stringSet = "neo";
-                    break;
-                default:
-                    throw new Exception("The set in 'LoadNonLand' is not 'war', 'dom', nor 'neo'.");
-            }
+            string stringSet = SwitchEnumSetToString(enumSet);
 
             string url = $"{General.BaseUrl()}cards?rarity=common&set={stringSet}&type=land";
 
@@ -44,45 +29,18 @@ namespace Winston
         }
         public async static Task<List<CardModel>> LoadNonLand(Set enumSet, Rarity enumRarity, int cardsWanted, string specialType = "empty")
         {
-            string stringSet;
+            string stringSet = SwitchEnumSetToString(enumSet);
 
-            switch (enumSet)
+            string stringRarity = enumRarity switch
             {
-                case Set.WAR:
-                    stringSet = "war";
-                    break;
-                case Set.DOM:
-                    stringSet = "dom";
-                    break;
-                case Set.NEO:
-                    stringSet = "neo";
-                    break;
-                default:
-                    throw new Exception("The set in 'LoadNonLand' is not 'war', 'dom', nor 'neo'.");
-            }
-
-            string stringRarity;
-
-            switch (enumRarity)
-            {
-                case Rarity.commmon:
-                    stringRarity = "common";
-                    break;
-                case Rarity.uncommon:
-                    stringRarity = "uncommon";
-                    break;
-                case Rarity.rare:
-                    stringRarity = "rare";
-                    break;
-                case Rarity.mythicRare:
-                    stringRarity = "mythic";
-                    break;
-                default:
-                    throw new Exception("The set in 'LoadCard' is not 'common', 'uncommon', 'rare', nor 'mythicRare'.");
-            }
+                Rarity.commmon => "common",
+                Rarity.uncommon => "uncommon",
+                Rarity.rare => "rare",
+                Rarity.mythicRare => "mythic",
+                _ => throw new Exception("The set in 'LoadCard' is not 'common', 'uncommon', 'rare', nor 'mythicRare'.")
+            };
 
             var list = new List<CardModel>();
-
             string url;
             CardModel[] halfTheCommons = new CardModel[100];
             CardModel[] allTheCards = new CardModel[200];
@@ -131,17 +89,17 @@ namespace Winston
                     if (enumSet == Set.NEO && stringRarity == "common")
                     {
                         int k = 0;
-                        foreach(var card in halfTheCommons)
+                        foreach (var card in halfTheCommons)
                         {
                             allTheCards[k] = card;
                             k++;
                         }
 
-                        foreach(var card in specificData)
+                        foreach (var card in specificData)
                         {
                             allTheCards[k] = card;
                             k++;
-                        } 
+                        }
                     }
                     else
                     {
@@ -182,15 +140,13 @@ namespace Winston
 
             static CardModel CheckForOutliers(CardModel[] cards, Set enumSet, int placeInCardsArray)
             {
-                int maxNumber;
-
-                if(enumSet == Set.NEO)
+                if (enumSet == Set.NEO)
                 {
-                    foreach(var letter in cards[placeInCardsArray].Name)
+                    foreach (var letter in cards[placeInCardsArray].Name)
                     {
-                        if(letter == '/')
+                        if (letter == '/')
                         {
-                            if(cards[placeInCardsArray].Types.Contains("Creature") == true)
+                            if (cards[placeInCardsArray].Types.Contains("Creature") == true)
                             {
                                 return null;
                             }
@@ -198,18 +154,12 @@ namespace Winston
                     }
                 }
 
-                switch (enumSet)
+                int maxNumber = enumSet switch
                 {
-                    case Set.NEO:
-                        maxNumber = 282;
-                        break;
-                    case Set.DOM:
-                    case Set.WAR:
-                        maxNumber = 250;
-                        break;
-                    default:
-                        throw new Exception("We got a diffrent set somehow in 'CheckForUnknowns'");
-                }
+                    Set.NEO => 282,
+                    var e when e == Set.WAR || e == Set.DOM => 250,
+                    _ => throw new Exception("We got a diffrent set somehow in 'CheckForUnknowns'")
+                };
 
                 int number = 1000;
 
@@ -233,6 +183,18 @@ namespace Winston
 
                 throw new Exception("In 'CheckForOutliers' there was no card that was less than the maxNumber.");
             }
+        }
+        public static string SwitchEnumSetToString(Set set)
+        {
+            string stringSet = set switch
+            {
+                Set.NEO => "neo",
+                Set.WAR => "war",
+                Set.DOM => "dom",
+                _ => throw new Exception("The set in 'LoadNonLand' is not 'war', 'dom', nor 'neo'.")
+            };
+
+            return stringSet;
         }
     }
 }
