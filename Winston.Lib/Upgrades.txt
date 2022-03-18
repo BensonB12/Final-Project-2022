@@ -1,0 +1,27 @@
+Add pages for other ways to draft
+- 3x3 drafting
+- Fact Or Fiction draft
+
+Pefect what I have
+- tests
+- re-name some variables
+- white space
+
+Cool features
+- Take lands out
+- Add an exit button
+
+Add the Cube
+- The cube is put into a file and can be read to
+
+Draft across computers
+- Figure that out
+
+Add diffrent laugages
+- German
+- Japanize
+- Spanish
+- Persian
+
+Add more Sets
+- Modern H.
