@@ -9,7 +9,6 @@ Pefect what I have
 
 Cool features
 - Take lands out
-- Add an exit button
 
 Add the Cube
 - The cube is put into a file and can be read to

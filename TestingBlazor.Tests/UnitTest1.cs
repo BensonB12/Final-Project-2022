@@ -11,9 +11,11 @@ public class Tests
     List<CardModel> CardStack = new List<CardModel>();
     List<CardModel> WarBooster = new List<CardModel>();
     List<CardModel> DomBooster = new List<CardModel>();
+    List<CardModel> NeoBooster = new List<CardModel>();
     int j = 0;
-    int War = 4;
+    int War = 2;
     int Dom = 2;
+    int Neo = 2;
 
     int common = 0;
     int unCommon = 0;
@@ -28,7 +30,7 @@ public class Tests
         {
             Winston.General.ApiHelper.InitializeClient();
             Winston.StackOCards aHeapOCards = new Winston.StackOCards();
-            var stackOCards = await aHeapOCards.MixAllBoosters(Dom, War, 0);
+            var stackOCards = await aHeapOCards.MixAllBoosters(Dom, War, Neo);
             CardStack.AddRange(stackOCards);
 
             var aHeapOfCardsToBe = new WARBooster();
@@ -37,6 +39,9 @@ public class Tests
 
             var newHeapOfCards = new DOMBooster();
             DomBooster = await newHeapOfCards.booster;
+
+            var thirdHeapOfCards = new NormalBooster(Set.NEO);
+            NeoBooster = await thirdHeapOfCards.booster;
 
             foreach (var card in CardStack)
             {
@@ -79,19 +84,27 @@ public class Tests
         Assert.AreEqual(15, WarBooster.Count);
     }
 
-        [Test]
+    [Test]
     public void DomsLength()
     {
         Assert.AreEqual(15, DomBooster.Count);
     }
 
     [Test]
-    public void CardsArentFancySetBoosters()
+    public void NeosLength()
+    {
+        Assert.AreEqual(15, NeoBooster.Count);
+    }
+
+
+    [Test]
+    public void ArentFancyCardsInStack()
     {
         int i = 0;
 
         foreach (var card in CardStack)
         {
+            //This does not count basic lands
             if (int.Parse(card.Number) < 250)
             {
                 i++;
@@ -168,7 +181,7 @@ public class Tests
         Assert.AreEqual(18, unCommon);
     }
 
-    public void MythicsRaresCount()
+    public void RaresAndMythicsCount()
     {
         Assert.AreEqual(6, rare + mythic);
     }
