@@ -121,7 +121,8 @@ height: 370px; */
     left: 60%
 }
 
-.collomn {
+.column
+ {
     position: absolute;
     top: 2%;
     left: 33%;
@@ -140,7 +141,86 @@ height: 370px; */
     color: black;
 }
 
+.c1Line {
+    position: absolute;
+    background-color: darkblue;
+    height: 70%;
+    width: 2%;
+    left: 34%;
+    top: 2%;
+    z-index: -1;
+}
+
+.c2Line {
+    position: absolute;
+    background-color: blue;
+    height: 70%;
+    width: 2%;
+    left: 50%;
+    top: 2%;
+    z-index: -1;
+}
+
+.c3Line {
+    position: absolute;
+    background-color: lightblue;
+    height: 70%;
+    width: 2%;
+    left: 65%;
+    top: 2%;
+    z-index: -1;
+    border: 1px solid black;
+}
+
 .row {
     position: absolute;
+    background-color: darkorange;
     left: 26%;
+    top: 21%;
+}
+
+#r2 {
+    top: 52%;
+    background-color: orange;
+}
+
+#r3 {
+    top: 83%;
+    background-color: rgb(255, 209, 125);
+}
+
+.r1Line {
+    position: absolute;
+    width: 40%;
+    height: 1%;
+    top: 22%;
+    left: 26%;
+    background-color: darkorange;
+    z-index: -1;
+}
+
+.r2Line {
+    position: absolute;
+    width: 40%;
+    height: 1%;
+    top: 53%;
+    left: 26%;
+    background-color: orange;
+    z-index: -1;
+}
+
+.r3Line {
+    position: absolute;
+    width: 40%;
+    height: 1%;
+    top: 84%;
+    left: 26%;
+    background-color: rgb(255, 209, 125);
+    z-index: -1;
+}
+
+button:active {
+    border-width: 4px;
+    border-right: 1px;
+    border-bottom: 1px;
 }
