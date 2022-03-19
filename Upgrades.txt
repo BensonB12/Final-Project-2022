@@ -3,7 +3,6 @@ Add pages for other ways to draft
 - Fact Or Fiction draft
 
 Pefect what I have
-- tests
 - re-name some variables
 - white space
 

@@ -1,0 +1,40 @@
+@page "/Fof/{DOM}/{WAR}/{NEO}"
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="css/Fof.css">
+
+<head>
+    <PageTitle>3x3 draft</PageTitle>
+</head>
+
+<body>
+    @if(stackOCards == null)
+    {
+        <h1 class="loading">LOADING</h1>
+    }
+    else
+    {
+        <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card">
+    }
+</body>
+
+</html>
+
+@code {
+    [Parameter]
+    public string DOM { get; set; }
+    [Parameter]
+    public string WAR { get; set; }
+    [Parameter]
+    public string NEO { get; set; }
+    public List<Winston.CardModel> stackOCards = null;
+
+        protected override async Task OnInitializedAsync()
+    {
+        Winston.General.ApiHelper.InitializeClient();
+        Winston.StackOCards aHeapOCards = new Winston.StackOCards();
+        stackOCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
+    }
+}

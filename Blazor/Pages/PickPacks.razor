@@ -2,13 +2,14 @@
 @inject NavigationManager UriHelper
 
 <PageTitle>Packs</PageTitle>
+<html>
 
 <head>
     <link rel="stylesheet" href="css/PickPacks.css">
 </head>
 
 <h1>Pick your packs</h1>
-<h3 class="direction">Choose your six packs</h3>
+<h3 class="direction">Choose your six packs:</h3>
 
 <p @onclick="AddPacks" class="set">Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO">
 </p>
@@ -18,7 +19,19 @@
 <br>
 <br>
 <p @onclick="AddPacks" class="set">Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
-
+<br>
+<br>
+<form>
+    <fieldset>
+        <label for="draftType">Pick which way to draft: </label>
+        <select name="draftType" @bind="draftType" @onclick="AddPacks">
+            <option value="---">---</option>
+            <option value="WinstonDraft">Winston Draft</option>
+            <option value="Fof">Fact or Fiction</option>
+            <option value="ThreeByThree">3 x 3</option>
+        </select>
+    </fieldset>
+</form>
 
 @if (check)
 {
@@ -28,18 +41,24 @@
 }
 else
 {
+    <br>
+    <br>
     <p class="grey">Please pick a total of six packs (click on the arrows)</p>
 }
 
+</html>
+
 @code {
     bool check = false;
+    string draftType = null;
     int NEO;
     int WAR;
     int DOM;
     public void AddPacks()
     {
         check = false;
-        if (NEO + WAR + DOM == 6)
+        
+        if (NEO + WAR + DOM == 6 && draftType != "---" && draftType != null)
         {
             check = true;
         }
@@ -47,6 +66,6 @@ else
 
     private void PassValue()
     {
-        UriHelper.NavigateTo($"WinstonDraft/{DOM}/{WAR}/{NEO}");
+        UriHelper.NavigateTo($"{draftType}/{DOM}/{WAR}/{NEO}");
     }
 }

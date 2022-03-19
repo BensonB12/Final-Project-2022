@@ -1,0 +1,34 @@
+.loading {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    animation-name: fadingInOut;
+    animation-duration: 4s;
+    animation-iteration-count: 6;
+}
+
+@keyframes fadingInOut {
+    0% {
+        color: black;
+    }
+
+    25% {
+        color: white;
+    }
+
+    50% {
+        color: black;
+    }
+
+    75% {
+        color: white;
+    }
+
+    50% {
+        color: black;
+    }
+}
+
+.stackOcards {
+    display: block;
+}

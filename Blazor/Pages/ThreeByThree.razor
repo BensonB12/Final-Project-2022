@@ -1,0 +1,123 @@
+@page "/ThreeByThree/{DOM}/{WAR}/{NEO}"
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="css/ThreeByThree.css">
+
+<head>
+    <PageTitle>3x3 draft</PageTitle>
+</head>
+
+<body>
+    @if (stackOCards == null)
+    {
+        <h1 class="loading">LOADING</h1>
+    }
+    else
+    {
+        @if (stackOCards.Count != 0 && step == 0)
+        {
+
+            <p class="cardCount">@stackCount</p>
+
+        }
+
+        @switch (step)
+        {
+            case 0:
+                <h1>Player @(chosenPlayer + 1), select the stack of cards</h1>
+                break;
+            case 1:
+                <h4>Player @(chosenPlayer + 1), select which row / collemn you would like</h4>
+
+                int i = 0;
+                foreach (var item in listOfImgUrls)
+                {
+                    string id = "d" + i.ToString();
+                    <img class="popUpCards" src="@item" id="@id" />
+                    i++;
+                }
+
+                <button class="collomn" id="c1">collomn 1</button>
+                <button class="collomn" id="c2">collomn 2</button>
+                <button class="collomn" id="c3">collomn 3</button>
+                
+                break;
+            default:
+                <h1>Ummmmm.... Something went wrong</h1>
+                break;
+        }
+
+
+        @if (stackOCards.Count != 0 && step == 0)
+        {
+            <img id="focus" class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" @onclick="NextStep">
+        }
+    }
+</body>
+
+</html>
+
+@code {
+    [Parameter]
+    public string DOM { get; set; }
+    [Parameter]
+    public string WAR { get; set; }
+    [Parameter]
+    public string NEO { get; set; }
+    public List<Winston.CardModel> stackOCards = null;
+    public List<Winston.CardModel> showingCards = new List<Winston.CardModel>();
+    public List<string> listOfImgUrls = new List<string>();
+    int stackCount;
+    int chosenPlayer = 0;
+    int step = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Winston.General.ApiHelper.InitializeClient();
+        Winston.StackOCards aHeapOCards = new Winston.StackOCards();
+        stackOCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
+        UpDateNumbers();
+    }
+
+    public void UpDateNumbers()
+    {
+        stackCount = stackOCards.Count;
+    }
+
+    public void NextStep()
+    {
+        //4 should be the second to last step
+        //step = step == 4 ? step = 0 : step++;
+
+        step++;
+
+        if(step == 4)
+        {
+            step = 0;
+        }
+
+        switch (step)
+        {
+            case 0:
+                break;
+            case 1:
+                Show9Cards();
+                break;
+            default:
+                throw new Exception("NextStep in the switch (step) statement");
+        }
+    }
+
+    public void Show9Cards()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            showingCards.Add(stackOCards[0]);
+            listOfImgUrls.Add(stackOCards[0].ImageUrl);
+            stackOCards.RemoveAt(0);
+        }
+        UpDateNumbers();
+    }
+}
