@@ -9,7 +9,8 @@
     <PageTitle>3x3 draft</PageTitle>
 </head>
 
-<body>
+@if (gameOver == false)
+{
     @if (stackOCards == null)
     {
         <h1 class="loading">LOADING</h1>
@@ -23,48 +24,62 @@
 
         }
 
-        @switch (step)
+        @if (step == 0)
         {
-            case 0:
-                <h1>Player @(chosenPlayer + 1), select the stack of cards</h1>
-                break;
-            case 1:
-                <h4>Player @(chosenPlayer + 1), select which row / collemn you would like</h4>
-
-                int i = 0;
-                foreach (var item in listOfImgUrls)
-                {
-                    string id = "d" + i.ToString();
-                    <img class="popUpCards" src="@item" id="@id" />
-                    i++;
-                }
-
-                <button class="column" id="c1">column 1</button>
-                <div class="c1Line"></div>
-                <button class="column" id="c2">column 2</button>
-                <div class="c2Line"></div>
-                <button class="column" id="c3">column 3</button>
-                <div class="c3Line"></div>
-                <button class="row" id="r1">row 1</button>
-                <div class="r1Line"></div>
-                <button class="row" id="r2">row 2</button>
-                <div class="r2Line"></div>
-                <button class="row" id="r3">row 3</button>
-                <div class="r3Line"></div>
-
-                break;
-            default:
-                <h1>Ummmmm.... Something went wrong</h1>
-                break;
+            <h1>Player @(chosenPlayer + 1), select the stack of cards</h1>
         }
 
+        @if (step == 1)
+        {
+            <h4>Player @(chosenPlayer + 1), select which row / collemn you would like</h4>
+
+            int i = 0;
+
+            foreach (var item in listOfImgUrls)
+            {
+                string id = "d" + i.ToString();
+                <img class="popUpCards" src="@item" id="@id" />
+                i++;
+            }
+
+            <button class="column" id="c1" @onclick="AddCardsToPlayersListc1">column 1</button>
+            <div class="c1Line"></div>
+            <button class="column" id="c2" @onclick="AddCardsToPlayersListc2">column 2</button>
+            <div class="c2Line"></div>
+            <button class="column" id="c3" @onclick="AddCardsToPlayersListc3">column 3</button>
+            <div class="c3Line"></div>
+            <button class="row" id="r1" @onclick="AddCardsToPlayersListr1">row 1</button>
+            <div class="r1Line"></div>
+            <button class="row" id="r2" @onclick="AddCardsToPlayersListr2">row 2</button>
+            <div class="r2Line"></div>
+            <button class="row" id="r3" @onclick="AddCardsToPlayersListr3">row 3</button>
+            <div class="r3Line"></div>
+        }
 
         @if (stackOCards.Count != 0 && step == 0)
         {
             <img id="focus" class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" @onclick="NextStep">
         }
+
+        <button id="cardPile1">Show Player 1's cards (@player1CardCount)</button>
+        <button id="cardPile2">Show Player 2's cards (@player2CardCount)</button>
     }
-</body>
+}
+else
+{
+    <ul>Player 1's Deck list for arena</ul>
+    @foreach (var cards in bothPlayersLists[0])
+    {
+        <li>1 @cards.Name</li>
+    }
+    <br>
+    <br>
+    <ul>Player 2's Deck list for arena</ul>
+    @foreach (var cards in bothPlayersLists[1])
+    {
+        <li>1 @cards.Name</li>
+    }
+}
 
 </html>
 
@@ -75,34 +90,49 @@
     public string WAR { get; set; }
     [Parameter]
     public string NEO { get; set; }
+    int startingPlayer = 0;
+    string c1 = "c1";
+    string c2 = "c2";
+    string c3 = "c3";
+    string r1 = "r1";
+    string r2 = "r2";
+    string r3 = "r3";
     public List<Winston.CardModel> stackOCards = null;
     public List<Winston.CardModel> showingCards = new List<Winston.CardModel>();
+    public List<Winston.CardModel> Player1List = new List<Winston.CardModel>();
+    public List<Winston.CardModel> Player2List = new List<Winston.CardModel>();
+    public List<Winston.CardModel>[] bothPlayersLists = new List<Winston.CardModel>[2];
     public List<string> listOfImgUrls = new List<string>();
+    int player1CardCount = 0;
+    int player2CardCount = 0;
     int stackCount;
     int chosenPlayer = 0;
     int step = 0;
+    int BothPlayersListsCount = 0;
+    bool gameOver = false;
 
     protected override async Task OnInitializedAsync()
     {
         Winston.General.ApiHelper.InitializeClient();
         Winston.StackOCards aHeapOCards = new Winston.StackOCards();
         stackOCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
+        bothPlayersLists[0] = Player1List;
+        bothPlayersLists[1] = Player2List;
         UpDateNumbers();
     }
 
     public void UpDateNumbers()
     {
         stackCount = stackOCards.Count;
+        player1CardCount = bothPlayersLists[0].Count;
+        player2CardCount = bothPlayersLists[1].Count;
     }
 
     public void NextStep()
     {
-        //4 should be the second to last step
-        //step = step == 4 ? step = 0 : step++;
-
         step++;
 
-        if(step == 4)
+        if (step == 2)
         {
             step = 0;
         }
@@ -121,12 +151,151 @@
 
     public void Show9Cards()
     {
-        for (int i = 0; i < 9; i++)
+        listOfImgUrls = new List<string>();
+        showingCards = new List<Winston.CardModel>();
+
+        for (int q = 0; q < 9; q++)
         {
             showingCards.Add(stackOCards[0]);
             listOfImgUrls.Add(stackOCards[0].ImageUrl);
             stackOCards.RemoveAt(0);
         }
+
         UpDateNumbers();
     }
+
+    public void AddCardsToPlayersListc1()
+    {
+        AddCardsToPlayersList("c1");
+    }
+
+    public void AddCardsToPlayersListc2()
+    {
+        AddCardsToPlayersList("c2");
+    }
+
+    public void AddCardsToPlayersListc3()
+    {
+        AddCardsToPlayersList("c3");
+    }
+
+    public void AddCardsToPlayersListr1()
+    {
+        AddCardsToPlayersList("r1");
+    }
+
+    public void AddCardsToPlayersListr2()
+    {
+        AddCardsToPlayersList("r2");
+    }
+
+    public void AddCardsToPlayersListr3()
+    {
+        AddCardsToPlayersList("r3");
+    }
+
+    public void AddCardsToPlayersList(string colOrRow)
+    {
+        switch (colOrRow)
+        {
+            case "c1":
+                AddingThenSubtractingFromLists(0);
+                AddingThenSubtractingFromLists(3);
+                AddingThenSubtractingFromLists(6);
+                break;
+            case "c2":
+                AddingThenSubtractingFromLists(1);
+                AddingThenSubtractingFromLists(4);
+                AddingThenSubtractingFromLists(7);
+                break;
+            case "c3":
+                AddingThenSubtractingFromLists(2);
+                AddingThenSubtractingFromLists(5);
+                AddingThenSubtractingFromLists(8);
+                break;
+            case "r1":
+                AddingThenSubtractingFromLists(0);
+                AddingThenSubtractingFromLists(1);
+                AddingThenSubtractingFromLists(2);
+                break;
+            case "r2":
+                AddingThenSubtractingFromLists(3);
+                AddingThenSubtractingFromLists(4);
+                AddingThenSubtractingFromLists(5);
+                break;
+            case "r3":
+                AddingThenSubtractingFromLists(6);
+                AddingThenSubtractingFromLists(7);
+                AddingThenSubtractingFromLists(8);
+                break;
+            default:
+                throw new Exception("At 'AddCardsToPlayersList' the switch statement got to default");
+        }
+
+        int k = 0;
+
+        foreach (var card in showingCards)
+        {
+            if (card == null)
+            {
+                k++;
+            }
+        }
+
+        if (k == 9)
+        {
+            startingPlayer++;
+
+            if (startingPlayer == 2)
+            {
+                startingPlayer = 0;
+            }
+
+            chosenPlayer = startingPlayer;
+
+            if (stackOCards.Count == 0)
+            {
+                gameOver = true;
+            }
+            else
+            {
+                NextStep();
+            }
+
+            UpDateNumbers();
+            return;
+        }
+
+        chosenPlayer++;
+
+        if (chosenPlayer == 2)
+        {
+            chosenPlayer = 0;
+        }
+
+        UpDateNumbers();
+    }
+
+    public void AddingThenSubtractingFromLists(int card)
+    {
+        if (showingCards[card] != null)
+        {
+            bothPlayersLists[chosenPlayer].Add(showingCards[card]);
+            showingCards[card] = null;
+            listOfImgUrls[card] = "";
+        }
+    }
 }
+
+@* public void ShowPlayerPile()
+    {
+    oldPop = popUpCards;
+    popUpCards = true;
+    oldImgUrls = listOfImgUrls;
+    listOfImgUrls = new List<string>();
+    foreach (var card in bothPlayers[chosenPlayer])
+    {
+    PrintImage(card);
+    }
+    playerPileSwitch = true;
+    } *@

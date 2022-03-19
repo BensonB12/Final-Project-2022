@@ -7,6 +7,14 @@
     animation-iteration-count: 6;
 }
 
+img {
+    z-index: 2;
+}
+
+h4 {
+    width: 30%;
+}
+
 @keyframes fadingInOut {
     0% {
         color: black;
@@ -82,8 +90,6 @@ h1 {
     left: 30%;
 }
 
-/* width: 265px;
-height: 370px; */
 
 #d1 {
     left: 45%;
@@ -121,8 +127,7 @@ height: 370px; */
     left: 60%
 }
 
-.column
- {
+.column {
     position: absolute;
     top: 2%;
     left: 33%;
@@ -139,12 +144,13 @@ height: 370px; */
     left: 64%;
     background-color: lightblue;
     color: black;
+    z-index: 2;
 }
 
 .c1Line {
     position: absolute;
     background-color: darkblue;
-    height: 70%;
+    height: 83%;
     width: 2%;
     left: 34%;
     top: 2%;
@@ -154,7 +160,7 @@ height: 370px; */
 .c2Line {
     position: absolute;
     background-color: blue;
-    height: 70%;
+    height: 83%;
     width: 2%;
     left: 50%;
     top: 2%;
@@ -164,11 +170,11 @@ height: 370px; */
 .c3Line {
     position: absolute;
     background-color: lightblue;
-    height: 70%;
+    height: 83%;
     width: 2%;
     left: 65%;
     top: 2%;
-    z-index: -1;
+    z-index: -1.1;
     border: 1px solid black;
 }
 
@@ -223,4 +229,26 @@ button:active {
     border-width: 4px;
     border-right: 1px;
     border-bottom: 1px;
+}
+
+#cardPile1 {
+    background-color: lightgoldenrodyellow;
+    position: absolute;
+    top: 90%;
+    left: 10%;
+}
+
+#cardPile2 {
+    background-color: lightgoldenrodyellow;
+    position: absolute;
+    top: 90%;
+    left: 80%;
+}
+
+ul {
+    font-size: xx-large;
+}
+
+li {
+    list-style: none;
 }
