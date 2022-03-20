@@ -37,23 +37,73 @@
 
             foreach (var item in listOfImgUrls)
             {
-                string id = "d" + i.ToString();
+                string id = "";
+                if (!personalCards)
+                {
+                    id = "d" + i.ToString();
+                }
+                else
+                {
+                    id = "p" + i.ToString();
+                }
                 <img class="popUpCards" src="@item" id="@id" />
                 i++;
             }
 
-            <button class="column" id="c1" @onclick="AddCardsToPlayersListc1">column 1</button>
-            <div class="c1Line"></div>
-            <button class="column" id="c2" @onclick="AddCardsToPlayersListc2">column 2</button>
-            <div class="c2Line"></div>
-            <button class="column" id="c3" @onclick="AddCardsToPlayersListc3">column 3</button>
-            <div class="c3Line"></div>
-            <button class="row" id="r1" @onclick="AddCardsToPlayersListr1">row 1</button>
-            <div class="r1Line"></div>
-            <button class="row" id="r2" @onclick="AddCardsToPlayersListr2">row 2</button>
-            <div class="r2Line"></div>
-            <button class="row" id="r3" @onclick="AddCardsToPlayersListr3">row 3</button>
-            <div class="r3Line"></div>
+            if (!personalCards)
+            {
+                if (showingCards[0] != null || showingCards[3] != null || showingCards[6] != null)
+                {
+                    <button class="column" id="c1" @onclick="AddCardsToPlayersListc1">column 1</button>
+                    <div class="c1Line"></div>
+                }
+
+                if (showingCards[1] != null || showingCards[4] != null || showingCards[7] != null)
+                {
+                    <button class="column" id="c2" @onclick="AddCardsToPlayersListc2">column 2</button>
+                    <div class="c2Line"></div>
+                }
+
+                if (showingCards[2] != null || showingCards[5] != null || showingCards[8] != null)
+                {
+                    <button class="column" id="c3" @onclick="AddCardsToPlayersListc3">column 3</button>
+                    <div class="c3Line"></div>
+                }
+
+                if (showingCards[0] != null || showingCards[1] != null || showingCards[2] != null)
+                {
+                    <button class="row" id="r1" @onclick="AddCardsToPlayersListr1">row 1</button>
+                    <div class="r1Line"></div>
+                }
+
+                if (showingCards[3] != null || showingCards[4] != null || showingCards[5] != null)
+                {
+                    <button class="row" id="r2" @onclick="AddCardsToPlayersListr2">row 2</button>
+                    <div class="r2Line"></div>
+                }
+
+                if (showingCards[6] != null || showingCards[7] != null || showingCards[8] != null)
+                {
+                    <button class="row" id="r3" @onclick="AddCardsToPlayersListr3">row 3</button>
+                    <div class="r3Line"></div>
+                }
+            }
+
+            @if (!personalCards)
+            {
+                if (chosenPlayer == 0)
+                {
+                    <button id="cardPile1" @onclick="ShowPlayerPile">Show Player 1's cards (@player1CardCount)</button>
+                }
+                else
+                {
+                    <button id="cardPile2" @onclick="ShowPlayerPile">Show Player 2's cards (@player2CardCount)</button>
+                }
+            }
+            else
+            {
+                <button id="cardPile2" @onclick="ShowPlayerPile">Go back</button>
+            }
         }
 
         @if (stackOCards.Count != 0 && step == 0)
@@ -61,8 +111,6 @@
             <img id="focus" class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" @onclick="NextStep">
         }
 
-        <button id="cardPile1">Show Player 1's cards (@player1CardCount)</button>
-        <button id="cardPile2">Show Player 2's cards (@player2CardCount)</button>
     }
 }
 else
@@ -99,16 +147,19 @@ else
     string r3 = "r3";
     public List<Winston.CardModel> stackOCards = null;
     public List<Winston.CardModel> showingCards = new List<Winston.CardModel>();
+    public List<Winston.CardModel> oldShowingCards = new List<Winston.CardModel>();
     public List<Winston.CardModel> Player1List = new List<Winston.CardModel>();
     public List<Winston.CardModel> Player2List = new List<Winston.CardModel>();
     public List<Winston.CardModel>[] bothPlayersLists = new List<Winston.CardModel>[2];
     public List<string> listOfImgUrls = new List<string>();
+    public List<string> oldListOfImgUrls = new List<string>();
     int player1CardCount = 0;
     int player2CardCount = 0;
     int stackCount;
     int chosenPlayer = 0;
     int step = 0;
     int BothPlayersListsCount = 0;
+    bool personalCards = false;
     bool gameOver = false;
 
     protected override async Task OnInitializedAsync()
@@ -285,14 +336,32 @@ else
             listOfImgUrls[card] = "";
         }
     }
+
+    public void ShowPlayerPile()
+    {
+        if (!personalCards)
+        {
+            oldShowingCards = showingCards;
+            personalCards = true;
+            oldListOfImgUrls = listOfImgUrls;
+            listOfImgUrls = new List<string>();
+            showingCards = new List<Winston.CardModel>();
+
+            foreach (var card in bothPlayersLists[chosenPlayer])
+            {
+                listOfImgUrls.Add(card.ImageUrl);
+            }
+        }
+        else
+        {
+            listOfImgUrls = oldListOfImgUrls;
+            showingCards = oldShowingCards;
+            personalCards = false;
+        }
+    }
 }
 
-@* public void ShowPlayerPile()
-    {
-    oldPop = popUpCards;
-    popUpCards = true;
-    oldImgUrls = listOfImgUrls;
-    listOfImgUrls = new List<string>();
+@*
     foreach (var card in bothPlayers[chosenPlayer])
     {
     PrintImage(card);
