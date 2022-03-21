@@ -1,26 +1,23 @@
-h1 {
+.info { 
+    background-color: lightgray;
+    border-color: grey;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: large;
     text-align: center;
 }
 
 button {
     border-color: black;
     background-color: salmon;
-    position: absolute;
+    position: relative;
     left: 32%;
     width: 40%;
-}
-
-.secondButton {
-    top: 26.5%
+    margin: 3px;
 }
 
 button:active {
     border-width: 4px;
     border-right: 1px;
     border-bottom: 1px;
-}
-
-.start {
-    height: 100px;
-    font-size: xx-large;
 }

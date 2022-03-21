@@ -1,9 +1,59 @@
 ﻿@page "/MoreInfo"
 
+<link rel="stylesheet" href="css/moreInfo.css">
+
 <PageTitle>Here is the page with more info</PageTitle>
 
-<h1>This is the page with more info</h1>
+<button>What is Magic the Gathering?</button>
+<br>
+<button>What is drafting</button>
+<br>
+<button>What is Winston drafting?</button>
+<br>
+<button>What is 3 x 3 drafting?</button>
+<br>
+<button>What is Fact or Fiction drafting (Solomon)?</button>
+<br>
+<button>How can I use this app?</button>
+<br>
+
+<NavLink href="/">
+    <button>HOME</button>
+</NavLink>
+
+@if (wMTG)
+{
+}
+else if (wD)
+{
+    <p>Winston draft is a way to draft six Magic the Gathering booster packs between two people. This website is looking
+        to let two players in the same room do this winston draft, download, and then import to MTG Arena.</p>
+}
+else if (wWD)
+{
+}
+else if (txt)
+{
+}
+else if (fOF)
+{
+}
 
 @code {
+    bool wMTG = false;
+    bool wD = false;
+    bool wWD = false;
+    bool txt = false;
+    bool fOF = false;
+    bool app = false;
 
+    public void AllFalse()
+    {
+        wMTG = false;
+        wD = false;
+        wWD = false;
+        txt = false;
+        fOF = false;
+        app = false;
+    }
 }

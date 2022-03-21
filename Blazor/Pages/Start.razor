@@ -15,40 +15,6 @@
 </NavLink>
 <br>
 <br>
-<button class="secondButton" @onclick="ShowInfo">Show More Information</button>
-<br>
-<br>
-
-@if (wantInfo)
-{
-    <br>
-    <br>
-    <p class="info">
-        Winston draft is a way to draft six Magic the Gathering booster packs between two people. This website is looking
-        to let two players in the same room do this winston draft, download, and then import to MTG Arena.
-    </p>
-}
-
-
-
-@code {
-    bool wantInfo = false;
-
-    public void NextPage()
-    {
-        wantInfo = false;
-    }
-
-
-    public void ShowInfo()
-    {
-        if(wantInfo)
-        {
-            wantInfo = false;
-        }
-        else
-        {
-            wantInfo = true;
-        }
-    }
-}
+<NavLink href="MoreInfo">
+<button class="secondButton">More Information</button>
+</NavLink>
