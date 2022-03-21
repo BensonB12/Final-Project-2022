@@ -4,17 +4,17 @@
 
 <PageTitle>Here is the page with more info</PageTitle>
 
-<button>What is Magic the Gathering?</button>
+<button @onclick="ActivatewMTG">What is Magic the Gathering?</button>
 <br>
-<button>What is drafting</button>
+<button @onclick="ActivatewD">What is drafting</button>
 <br>
-<button>What is Winston drafting?</button>
+<button @onclick="ActivatewWD">What is Winston drafting?</button>
 <br>
-<button>What is 3 x 3 drafting?</button>
+<button @onclick="Activatetxt">What is 3 x 3 drafting?</button>
 <br>
-<button>What is Fact or Fiction drafting (Solomon)?</button>
+<button @onclick="Activatefof">What is Fact or Fiction drafting (Solomon)?</button>
 <br>
-<button>How can I use this app?</button>
+<button @onclick="Activateapp">How can I use this app?</button>
 <br>
 
 <NavLink href="/">
@@ -23,6 +23,7 @@
 
 @if (wMTG)
 {
+    <p> MTG is Magic The Gathering</p>
 }
 else if (wD)
 {
@@ -31,12 +32,20 @@ else if (wD)
 }
 else if (wWD)
 {
+    <p>This is a Winston draft</p>
 }
 else if (txt)
 {
+    <p>This is a 3 x3 or Grid Draft draft</p>
+
 }
-else if (fOF)
+else if (fof)
 {
+    <p>This is a fact or fiction draft</p>
+}
+else if (app)
+{
+    <p>This is how to use my app</p>
 }
 
 @code {
@@ -44,8 +53,56 @@ else if (fOF)
     bool wD = false;
     bool wWD = false;
     bool txt = false;
-    bool fOF = false;
+    bool fof = false;
     bool app = false;
+
+    public void ActivatewMTG()
+    {
+        AllFalse();
+        IfTrueThenFalse(ref wMTG);
+    }
+
+    public void ActivatewD()
+    {
+        AllFalse();
+        IfTrueThenFalse(ref wD);
+    }
+
+    public void ActivatewWD()
+    {
+        AllFalse();
+        IfTrueThenFalse(ref wWD);
+    }
+
+    public void Activatetxt()
+    {
+        AllFalse();
+        IfTrueThenFalse(ref txt);
+    }
+
+    public void Activatefof()
+    {
+        AllFalse();
+        IfTrueThenFalse(ref fof);
+    }
+
+    public void Activateapp()
+    {
+        AllFalse();
+        IfTrueThenFalse(ref app);
+    }
+
+    public void IfTrueThenFalse(ref bool b)
+    {
+        if (b == true)
+        {
+            b = false;
+        }
+        else
+        {
+            b = true;
+        }
+    }
 
     public void AllFalse()
     {
@@ -53,7 +110,7 @@ else if (fOF)
         wD = false;
         wWD = false;
         txt = false;
-        fOF = false;
+        fof = false;
         app = false;
     }
 }

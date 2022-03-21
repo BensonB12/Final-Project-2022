@@ -1,4 +1,4 @@
-.info { 
+p { 
     background-color: lightgray;
     border-color: grey;
     padding: 5px;
@@ -10,10 +10,10 @@
 button {
     border-color: black;
     background-color: salmon;
-    position: relative;
+    text-align: center;
+    position: fixed;
     left: 32%;
-    width: 40%;
-    margin: 3px;
+    width: 20%;
 }
 
 button:active {
