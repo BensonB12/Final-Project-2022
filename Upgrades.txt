@@ -1,5 +1,5 @@
 Add pages for other ways to draft
-- 3x3 drafting
+- 3x3 drafting (done)
 - Fact Or Fiction draft
 
 Pefect what I have
@@ -20,6 +20,12 @@ Add diffrent laugages
 - Japanize
 - Spanish
 - Persian
+
+Make it remeber the last decks
+- At least 2 decks in memory
+
+Upgrade the info
+- Maybe make it a page
 
 Add more Sets
 - Modern H.
