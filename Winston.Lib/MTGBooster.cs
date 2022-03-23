@@ -62,70 +62,12 @@ namespace Winston
             return boosterPack;
         }
 
-    }
-
-    public class NormalBooster : MTGBooster
-    {
-        protected override Task<List<CardModel>> _Booster { set; get; }
-        public NormalBooster(Set set) : base(set)
+        protected (int, int) FindOutRarity(List<CardModel> card)
         {
-            _Booster = PickXCardsFromSet(set);
-            CutBackNameOff();
-        }
-
-        public async void CutBackNameOff()
-        {
-            foreach (var card in await _Booster)
-            {
-                var words = card.Name.Split(' ');
-
-                if (words.Contains("//") == true)
-                {
-                    card.Name = "";
-
-                    foreach (var word in words)
-                    {
-                        if(word != "//")
-                        {
-                            card.Name = card.Name + word + " ";
-                        }
-                        else
-                        {
-                            card.Name = card.Name.TrimEnd();
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public class WARBooster : MTGBooster
-    {
-        //I cannot figure out how to add the planeswalker to the _Booster
-        protected override Task<List<CardModel>> _Booster { set; get; }
-        private List<CardModel> _Planeswalker { set; get; }
-        public List<CardModel> planeswalker
-        {
-            get
-            {
-                return _Planeswalker;
-            }
-        }
-        public WARBooster() : base(Set.WAR)
-        {
-            _Booster = GetPlaneswalker();
-        }
-
-        private async Task<List<CardModel>> GetPlaneswalker()
-        {
-            //Rarity does not do anything when you pass a special Type
-            var planeswalker = await CardProcessor.LoadNonLand(Set.WAR, Rarity.rare, 1, "planeswalker");
-
             int numberOfUncommons = 3;
             int numberOfRares = 1;
 
-            switch (planeswalker[0].Rarity)
+            switch (card[0].Rarity)
             {
                 case "Uncommon":
                     numberOfUncommons--;
@@ -135,21 +77,10 @@ namespace Winston
                     numberOfRares--;
                     break;
                 default:
-                    throw new Exception("SwitchStatement fell through to default in 'GetPlaneswalker'");
+                    throw new Exception("SwitchStatement fell through to default in 'HelpSecialCases'");
             }
 
-            _Planeswalker = planeswalker;
-
-            return await PickXCardsFromSet(Set.WAR, 10, numberOfUncommons, numberOfRares);
-        }
-    }
-
-    public class DOMBooster : MTGBooster
-    {
-        protected override Task<List<CardModel>> _Booster { set; get; }
-        public DOMBooster() : base(Set.DOM)
-        {
-            _Booster = PickXCardsFromSet(Set.DOM);
+            return (numberOfUncommons, numberOfRares);
         }
     }
 }

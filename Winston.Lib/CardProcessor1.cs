@@ -2,32 +2,9 @@ using System.Globalization;
 
 namespace Winston
 {
-    public static class CardProcessor
+    public static partial class CardProcessor
     {
-        public async static Task<CardModel> LoadLand(Set enumSet)
-        {
-            string stringSet = SwitchEnumSetToString(enumSet);
-
-            string url = $"{General.BaseUrl()}cards?rarity=common&set={stringSet}&type=land";
-
-            using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
-            {
-
-                if (response.IsSuccessStatusCode)
-                {
-                    CardResultModel result = await response.Content.ReadAsAsync<CardResultModel>();
-                    Random random = new Random();
-                    CardModel[] specificData = result.cards;
-                    specificData = specificData.OrderBy(x => random.Next()).ToArray();
-                    return specificData[0];
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
-        }
-        public async static Task<List<CardModel>> LoadNonLand(Set enumSet, Rarity enumRarity, int cardsWanted, string specialType = "empty")
+        public async static Task<List<CardModel>> LoadNonLand(Set enumSet, Rarity enumRarity, int cardsWanted, string specialType = "empty", string specialSuperType = "empty" )
         {
             string stringSet = SwitchEnumSetToString(enumSet);
 
@@ -49,13 +26,17 @@ namespace Winston
             {
                 url = $"{General.BaseUrl()}cards?set={stringSet}&type={specialType}";
             }
+            else if (specialSuperType != "empty")
+            {
+                url = $"{General.BaseUrl()}cards?set={stringSet}&supertypes={specialSuperType}";
+            }
             else if (enumSet == Set.WAR)
             {
                 url = $"{General.BaseUrl()}cards?type=land&rarity={stringRarity}&set=war&type=creature|artifact|enchantment|sorcery|instant";
             }
             else if (enumSet == Set.NEO && stringRarity == "common")
             {
-                url = $"{General.BaseUrl()}cards?rarity=common&set=neo&type=creature|artifact|enchantment";
+                url = $"{General.BaseUrl()}cards?rarity=common&set=neo&type=creature|enchantment";
 
                 using (HttpResponseMessage response = await General.ApiHelper.ApiClient.GetAsync(url))
                 {
@@ -70,7 +51,7 @@ namespace Winston
                     }
                 }
 
-                url = $"{General.BaseUrl()}cards?rarity=common&set=neo|type=sorcery|instant";
+                url = $"{General.BaseUrl()}cards?rarity=common&set=neo|type=sorcery|instant|artifact";
             }
             else
             {
@@ -137,64 +118,6 @@ namespace Winston
                     throw new Exception(response.ReasonPhrase);
                 }
             }
-
-            static CardModel CheckForOutliers(CardModel[] cards, Set enumSet, int placeInCardsArray)
-            {
-                if (enumSet == Set.NEO)
-                {
-                    foreach (var letter in cards[placeInCardsArray].Name)
-                    {
-                        if (letter == '/')
-                        {
-                            if (cards[placeInCardsArray].Types.Contains("Creature") == true)
-                            {
-                                return null;
-                            }
-                        }
-                    }
-                }
-
-                int maxNumber = enumSet switch
-                {
-                    Set.NEO => 282,
-                    var e when e == Set.WAR || e == Set.DOM => 250,
-                    _ => throw new Exception("We got a diffrent set somehow in 'CheckForUnknowns'")
-                };
-
-                int number = 1000;
-
-                string toParse = General.DeleteNonNumbersInString(cards[placeInCardsArray].Number);
-
-                if (toParse == null)
-                {
-                    return null;
-                }
-
-                number = int.Parse(toParse, CultureInfo.InvariantCulture);
-
-                if (number < maxNumber)
-                {
-                    return cards[placeInCardsArray];
-                }
-                else
-                {
-                    return null;
-                }
-
-                throw new Exception("In 'CheckForOutliers' there was no card that was less than the maxNumber.");
-            }
-        }
-        public static string SwitchEnumSetToString(Set set)
-        {
-            string stringSet = set switch
-            {
-                Set.NEO => "neo",
-                Set.WAR => "war",
-                Set.DOM => "dom",
-                _ => throw new Exception("The set in 'LoadNonLand' is not 'war', 'dom', nor 'neo'.")
-            };
-
-            return stringSet;
         }
     }
 }

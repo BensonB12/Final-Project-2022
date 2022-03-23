@@ -2,7 +2,7 @@ using System.Net.Http.Headers;
 
 namespace Winston
 {
-    public static class General
+    public static partial class General
     {
         public static string DeleteNonNumbersInString(string number)
         {

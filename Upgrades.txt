@@ -4,6 +4,7 @@ Add pages for other ways to draft
 
 Pefect what I have
 - re-name some variables
+- set in stone "pile" "stack" "mount"
 - white space
 
 Cool features
@@ -23,9 +24,6 @@ Add diffrent laugages
 
 Make it remeber the last decks
 - At least 2 decks in memory
-
-Upgrade the info
-- Maybe make it a page
 
 Add more Sets
 - Modern H.

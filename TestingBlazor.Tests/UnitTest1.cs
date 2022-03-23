@@ -39,6 +39,7 @@ public class Tests
 
             var newHeapOfCards = new DOMBooster();
             DomBooster = await newHeapOfCards.booster;
+            DomBooster.AddRange(newHeapOfCards.legendary);
 
             var thirdHeapOfCards = new NormalBooster(Set.NEO);
             NeoBooster = await thirdHeapOfCards.booster;
@@ -98,11 +99,11 @@ public class Tests
 
 
     [Test]
-    public void ArentFancyCardsInStack()
+    public void ArentFancyCardsInDom()
     {
         int i = 0;
 
-        foreach (var card in CardStack)
+        foreach (var card in DomBooster)
         {
             //This does not count basic lands
             if (int.Parse(card.Number) < 250)
@@ -111,7 +112,41 @@ public class Tests
             }
         }
 
-        Assert.LessOrEqual(84, i);
+        Assert.LessOrEqual(14, i);
+    }
+
+    [Test]
+    public void ArentFancyCardsInWar()
+    {
+        int i = 0;
+
+        foreach (var card in WarBooster)
+        {
+            //This does not count basic lands
+            if (int.Parse(card.Number) < 250)
+            {
+                i++;
+            }
+        }
+
+        Assert.LessOrEqual(14, i);
+    }
+
+    [Test]
+    public void ArentFancyCardsInNeo()
+    {
+        int i = 0;
+
+        foreach (var card in NeoBooster)
+        {
+            //This does not count basic lands
+            if (int.Parse(card.Number) < 283)
+            {
+                i++;
+            }
+        }
+
+        Assert.LessOrEqual(14, i);
     }
 
     [Test]

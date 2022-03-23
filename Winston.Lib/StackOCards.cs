@@ -9,9 +9,9 @@ namespace Winston
 
             for (int i = 0; i < numberOfDom; i++)
             {
-                booster = new DOMBooster();
-                finalStack.AddRange(await booster.booster);
-
+                var domBooster = new DOMBooster();
+                finalStack.AddRange(await domBooster.booster);
+                finalStack.AddRange(domBooster.legendary);
             }
             for (int i = 0; i < numberOfWar; i++)
             {
