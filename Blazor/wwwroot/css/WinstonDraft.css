@@ -217,7 +217,7 @@ button:active {
     left: 45%;
     animation-name: fadingInOut;
     animation-duration: 4s;
-    animation-iteration-count: 6;
+    animation-iteration-count: 7;
 }
 
 @keyframes fadingInOut {

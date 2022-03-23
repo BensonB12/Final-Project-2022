@@ -51,7 +51,7 @@ namespace Winston
                     }
                 }
 
-                url = $"{General.BaseUrl()}cards?rarity=common&set=neo|type=sorcery|instant|artifact";
+                url = $"{General.BaseUrl()}cards?rarity=common&set=neo&type=sorcery|instant|artifact";
             }
             else
             {
