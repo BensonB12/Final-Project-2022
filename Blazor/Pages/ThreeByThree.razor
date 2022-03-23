@@ -170,7 +170,7 @@ else
         Winston.StackOCards aHeapOCards = new Winston.StackOCards();
         stackOCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
 
-        if(containBasics == "True")
+        if (containBasics == "True")
         {
             stackOCards = Winston.General.TakeOutType(stackOCards);
         }
@@ -215,9 +215,17 @@ else
 
         for (int q = 0; q < 9; q++)
         {
-            showingCards.Add(stackOCards[0]);
-            listOfImgUrls.Add(stackOCards[0].ImageUrl);
-            stackOCards.RemoveAt(0);
+            if (stackOCards.Count == 0)
+            {
+                showingCards.Add(null);
+                listOfImgUrls.Add(null);
+            }
+            else
+            {
+                showingCards.Add(stackOCards[0]);
+                listOfImgUrls.Add(stackOCards[0].ImageUrl);
+                stackOCards.RemoveAt(0);
+            }
         }
 
         UpDateNumbers();
@@ -368,11 +376,3 @@ else
         }
     }
 }
-
-@*
-    foreach (var card in bothPlayers[chosenPlayer])
-    {
-    PrintImage(card);
-    }
-    playerPileSwitch = true;
-    } *@
