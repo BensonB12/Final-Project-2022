@@ -27,3 +27,8 @@ Make it remeber the last decks
 
 Add more Sets
 - Modern H.
+
+Questions
+- How to give a list value to another page
+        - using parameder atribute
+- How to call a method with @bind with a peramader

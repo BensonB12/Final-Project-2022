@@ -226,4 +226,10 @@ public class Tests
     {
         Assert.GreaterOrEqual(land, 6);
     }
+
+    [Test]
+    public void RemovedBasicsDOM()
+    {
+        Assert.AreEqual(14, Winston.General.TakeOutType(DomBooster).Count);
+    }
 }

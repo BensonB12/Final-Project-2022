@@ -1,4 +1,4 @@
-@page "/ThreeByThree/{DOM}/{WAR}/{NEO}"
+@page "/ThreeByThree/{DOM}/{WAR}/{NEO}/{containBasics}"
 
 <!DOCTYPE html>
 <html lang="en">
@@ -133,6 +133,8 @@ else
 
 @code {
     [Parameter]
+    public string containBasics { get; set; }
+    [Parameter]
     public string DOM { get; set; }
     [Parameter]
     public string WAR { get; set; }
@@ -167,6 +169,12 @@ else
         Winston.General.ApiHelper.InitializeClient();
         Winston.StackOCards aHeapOCards = new Winston.StackOCards();
         stackOCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
+
+        if(containBasics == "True")
+        {
+            stackOCards = Winston.General.TakeOutType(stackOCards);
+        }
+
         bothPlayersLists[0] = Player1List;
         bothPlayersLists[1] = Player2List;
         UpDateNumbers();

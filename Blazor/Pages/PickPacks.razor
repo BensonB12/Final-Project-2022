@@ -32,6 +32,12 @@
         </select>
     </fieldset>
 </form>
+<br>
+<br>
+<form>
+    <input type="checkbox" name="removeLands" id="removeLands" @bind="containBasics">
+    <label for="removeLands">Remove basic lands from draft</label>
+</form>
 
 @if (check)
 {
@@ -49,6 +55,7 @@ else
 </html>
 
 @code {
+    bool containBasics = false;
     bool check = false;
     string draftType = null;
     int NEO;
@@ -66,6 +73,6 @@ else
 
     private void PassValue()
     {
-        UriHelper.NavigateTo($"{draftType}/{DOM}/{WAR}/{NEO}");
+        UriHelper.NavigateTo($"{draftType}/{DOM}/{WAR}/{NEO}/{containBasics}");
     }
 }
