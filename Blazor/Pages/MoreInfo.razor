@@ -4,47 +4,50 @@
 
 <PageTitle>Here is the page with more info</PageTitle>
 
-<button @onclick="ActivatewMTG">What is Magic the Gathering?</button>
-<br>
-<button @onclick="ActivatewD">What is drafting</button>
-<br>
-<button @onclick="ActivatewWD">What is Winston drafting?</button>
-<br>
-<button @onclick="Activatetxt">What is 3 x 3 drafting?</button>
-<br>
-<button @onclick="Activatefof">What is Fact or Fiction drafting (Solomon)?</button>
-<br>
-<button @onclick="Activateapp">How can I use this app?</button>
-<br>
+<table>
+    <tr>
+    <td @onclick="ActivatewMTG">What is Magic the Gathering?</td>
+    <td @onclick="ActivatewD">What is drafting?</td>
+    <td @onclick="ActivatewWD">What is Winston drafting?</td>
+    <td @onclick="Activatetxt">What is 3 x 3 drafting?</td>
+    <td @onclick="Activatefof">What is Fact or Fiction drafting (Solomon)?</td>
+    <td @onclick="Activateapp">How can I use this app?</td>
 
-<NavLink href="/">
-    <button>HOME</button>
-</NavLink>
+    <NavLink href="/">
+        <th>HOME</th>
+    </NavLink>
+    </tr>
+</table>
 
 @if (wMTG)
 {
+    <h2>What is Magic the Gathering: </h2>
     <p> MTG is Magic The Gathering</p>
 }
 else if (wD)
 {
+    <h2>What is Draft: </h2>
     <p>Winston draft is a way to draft six Magic the Gathering booster packs between two people. This website is looking
         to let two players in the same room do this winston draft, download, and then import to MTG Arena.</p>
 }
 else if (wWD)
 {
+    <h2>What is Winston Draft: </h2>
     <p>This is a Winston draft</p>
 }
 else if (txt)
 {
+    <h2>What is 3 x 3 Drafting: </h2>
     <p>This is a 3 x3 or Grid Draft draft</p>
-
 }
 else if (fof)
 {
+    <h2>What is Fact or Fiction (Solomon) Drafting: </h2>
     <p>This is a fact or fiction draft</p>
 }
 else if (app)
 {
+    <h2>How to use my app: </h2>
     <p>This is how to use my app</p>
 }
 
@@ -59,40 +62,40 @@ else if (app)
     public void ActivatewMTG()
     {
         AllFalse();
-        IfTrueThenFalse(ref wMTG);
+        IftrueThenFalse(ref wMTG);
     }
 
     public void ActivatewD()
     {
         AllFalse();
-        IfTrueThenFalse(ref wD);
+        IftrueThenFalse(ref wD);
     }
 
     public void ActivatewWD()
     {
         AllFalse();
-        IfTrueThenFalse(ref wWD);
+        IftrueThenFalse(ref wWD);
     }
 
     public void Activatetxt()
     {
         AllFalse();
-        IfTrueThenFalse(ref txt);
+        IftrueThenFalse(ref txt);
     }
 
     public void Activatefof()
     {
         AllFalse();
-        IfTrueThenFalse(ref fof);
+        IftrueThenFalse(ref fof);
     }
 
     public void Activateapp()
     {
         AllFalse();
-        IfTrueThenFalse(ref app);
+        IftrueThenFalse(ref app);
     }
 
-    public void IfTrueThenFalse(ref bool b)
+    public void IftrueThenFalse(ref bool b)
     {
         if (b == true)
         {

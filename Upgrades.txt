@@ -7,14 +7,12 @@ Pefect what I have
 - set in stone "pile" "stack" "mount"
 - white space
 
-Cool features
-- Take lands out
-
 Add the Cube
 - The cube is put into a file and can be read to
 
 Draft across computers
 - Figure that out
+        - using static states
 
 Add diffrent laugages
 - German
