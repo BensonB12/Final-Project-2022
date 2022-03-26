@@ -115,7 +115,7 @@ namespace Winston
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    throw new Exception("Response failed in CardProcessor1, loadNonLand method");
                 }
             }
         }

@@ -1,6 +1,6 @@
 namespace Winston
 {
-    public abstract class MTGBooster
+    public abstract class MTGBooster : IBooster
     {
         protected abstract Task<List<CardModel>> _Booster { set; get; }
         private Set set;
