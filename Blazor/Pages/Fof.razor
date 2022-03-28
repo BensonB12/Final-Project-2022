@@ -19,7 +19,7 @@
     {
         @if (tooManyPlayers == true)
         {
-            <p>WARNING THERE ARE 3+ PLAYERS, YOUR ARE THE THIRD PLAYER</p>
+            <p>WARNING THERE ARE @StaticPileOfCards.Player + PLAYERS, YOUR ARE THE THIRD PLAYER</p>
         }
 
         <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card">
@@ -57,20 +57,15 @@
 
             StaticPileOfCards.Using = true;
             thisPlayer = 1;
-            StaticPileOfCards.Player = 2;
+        }
+        else if (StaticPileOfCards.Player < 3)
+        {
+            thisPlayer = 2;
+            ChangeStatic();
         }
         else
         {
-            if (StaticPileOfCards.Player == 1)
-            {
-                thisPlayer = 2;
-            }
-            else
-            {
-                tooManyPlayers = true;
-            }
-            
-            StaticPileOfCards.Player = thisPlayer + 1;
+            tooManyPlayers = true;
         }
     }
 
@@ -79,5 +74,10 @@
         StaticPileOfCards.PileOfCards = null;
         StaticPileOfCards.Player = 0;
         StaticPileOfCards.Using = false;
+    }
+
+    public void ChangeStatic()
+    {
+        StaticPileOfCards.Player = StaticPileOfCards.Player + 1;
     }
 }
