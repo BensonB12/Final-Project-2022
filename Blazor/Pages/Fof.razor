@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @if (StaticPileOfCards.Using == false)
+    @if (StaticPileOfCards.PileOfCards == null)
     {
         <h1 class="loading">LOADING</h1>
     }
@@ -56,19 +56,21 @@
             }
 
             StaticPileOfCards.Using = true;
-            StaticPileOfCards.Player = 1;
             thisPlayer = 1;
+            StaticPileOfCards.Player = 2;
         }
         else
         {
-            thisPlayer = 2;
-        }
-
-        StaticPileOfCards.Player = StaticPileOfCards.Player + 1;
-
-        if (thisPlayer >= 3)
-        {
-            tooManyPlayers = true;
+            if (StaticPileOfCards.Player == 1)
+            {
+                thisPlayer = 2;
+            }
+            else
+            {
+                tooManyPlayers = true;
+            }
+            
+            StaticPileOfCards.Player = thisPlayer + 1;
         }
     }
 
@@ -79,4 +81,3 @@
         StaticPileOfCards.Using = false;
     }
 }
-
