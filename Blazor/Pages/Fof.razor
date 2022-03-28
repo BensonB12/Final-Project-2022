@@ -1,4 +1,5 @@
-@page "/Fof/{DOM}/{WAR}/{NEO}"
+@page "/Fof/{DOM}/{WAR}/{NEO}/{containBasics}"
+@using Winston
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,13 +11,20 @@
 </head>
 
 <body>
-    @if(stackOCards == null)
+    @if (StaticPileOfCards.Using == false)
     {
         <h1 class="loading">LOADING</h1>
     }
     else
     {
+        @if (tooManyPlayers == true)
+        {
+            <p>WARNING THERE ARE 3+ PLAYERS, YOUR ARE THE THIRD PLAYER</p>
+        }
+
         <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card">
+        <p>@thisPlayer</p>
+        <button @onclick="Exit">Exit</button>
     }
 </body>
 
@@ -29,12 +37,46 @@
     public string WAR { get; set; }
     [Parameter]
     public string NEO { get; set; }
-    public List<Winston.CardModel> stackOCards = null;
+    [Parameter]
+    public string containBasics { get; set; }
+    public int thisPlayer = 0;
+    public bool tooManyPlayers = false;
 
-        protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        Winston.General.ApiHelper.InitializeClient();
-        Winston.StackOCards aHeapOCards = new Winston.StackOCards();
-        stackOCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
+        if (StaticPileOfCards.Using == false)
+        {
+            General.ApiHelper.InitializeClient();
+            Winston.StackOCards aHeapOCards = new Winston.StackOCards();
+            StaticPileOfCards.PileOfCards = await aHeapOCards.MixAllBoosters(int.Parse(DOM), int.Parse(WAR), int.Parse(NEO));
+
+            if (containBasics == "True")
+            {
+                StaticPileOfCards.PileOfCards = Winston.General.TakeOutType(StaticPileOfCards.PileOfCards);
+            }
+
+            StaticPileOfCards.Using = true;
+            StaticPileOfCards.Player = 1;
+            thisPlayer = 1;
+        }
+        else
+        {
+            thisPlayer = 2;
+        }
+
+        StaticPileOfCards.Player = StaticPileOfCards.Player + 1;
+
+        if (thisPlayer >= 3)
+        {
+            tooManyPlayers = true;
+        }
+    }
+
+    public void Exit()
+    {
+        StaticPileOfCards.PileOfCards = null;
+        StaticPileOfCards.Player = 0;
+        StaticPileOfCards.Using = false;
     }
 }
+
