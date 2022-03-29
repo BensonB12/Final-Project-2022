@@ -26,8 +26,31 @@
 
         <div class="cardCount">@StaticPileOfCards.PileOfCards.Count</div>
 
-        <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus">
-        <p>@thisPlayer</p>
+        if (chosenPlayer == thisPlayer && !StaticPileOfCards.BoolPopUpCards)
+        {
+            <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus"
+        @onclick="ShowTheFiveCardsToChosenPlayer">
+        }
+        else
+        {
+            <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus">
+        }
+
+        <p>you are player @thisPlayer</p>
+        <p>It is @chosenPlayer's turn. Player @chosenPlayer select the card pile</p>
+
+        @if (StaticPileOfCards.BoolPopUpCards)
+        {
+            int i = 0;
+
+            @foreach (var card in StaticPileOfCards.PopUpCards)
+            {
+                string id = "d" + $"{i}";
+                <img src="@card.ImageUrl" id="@id">
+            }
+
+            <button @onclick="ShowTheOtherPlayer">Done</button>
+        }
         <button @onclick="Exit">Exit</button>
     }
 </body>
@@ -45,6 +68,7 @@
     public string containBasics { get; set; }
     public int thisPlayer = 0;
     public bool tooManyPlayers = false;
+    int chosenPlayer = 1;
 
     protected override async Task OnInitializedAsync()
     {
@@ -83,5 +107,31 @@
     public void ChangeStatic()
     {
         StaticPileOfCards.Player = StaticPileOfCards.Player + 1;
+    }
+
+    public void ShowTheFiveCardsToChosenPlayer()
+    {
+        if (chosenPlayer == thisPlayer)
+        {
+            int cardAmount = 5;
+
+            if (StaticPileOfCards.PileOfCards.Count < 5)
+            {
+                cardAmount = StaticPileOfCards.PileOfCards.Count;
+            }
+
+            for (int q = 0; q < cardAmount; q++)
+            {
+                StaticPileOfCards.PopUpCards.Add(StaticPileOfCards.PileOfCards[0]);
+                StaticPileOfCards.PileOfCards.RemoveAt(0);
+            }
+
+            StaticPileOfCards.BoolPopUpCards = true;
+        }
+    }
+
+    public void ShowTheOtherPlayer()
+    {
+        StaticPileOfCards.BoolPopUpCards = true;
     }
 }

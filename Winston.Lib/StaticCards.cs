@@ -16,5 +16,7 @@ namespace Winston
         }
         public static bool Using { get; set; }
         public static List<CardModel> PileOfCards { get; set; }
+        public static List<CardModel> PopUpCards = new List<CardModel>();
+        public static bool BoolPopUpCards = false;
     }
 }
