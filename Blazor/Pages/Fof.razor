@@ -10,6 +10,8 @@
     <PageTitle>3x3 draft</PageTitle>
 </head>
 
+<link rel="stylesheet" href="css/Fof.css">
+
 <body>
     @if (StaticPileOfCards.PileOfCards == null)
     {
@@ -22,7 +24,9 @@
             <p>WARNING THERE ARE @StaticPileOfCards.Player + PLAYERS, YOUR ARE THE THIRD PLAYER</p>
         }
 
-        <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card">
+        <div class="cardCount">@StaticPileOfCards.PileOfCards.Count</div>
+
+        <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus">
         <p>@thisPlayer</p>
         <button @onclick="Exit">Exit</button>
     }

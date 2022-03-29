@@ -4,6 +4,12 @@ h2 {
     width: 90%;
 }
 
+.popUpCards:hover {
+    z-index: 100;
+    width: 397.5px;
+    height: 555px;
+}
+
 .youSure {
     color: black;
     top: 30%;

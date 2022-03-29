@@ -11,6 +11,12 @@ img {
     z-index: 2;
 }
 
+.popUpCards:hover {
+    z-index: 100;
+    width: 397.5px;
+    height: 555px;
+}
+
 h4 {
     position: absolute;
     top: 2%;
