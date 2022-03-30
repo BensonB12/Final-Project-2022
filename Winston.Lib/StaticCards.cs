@@ -18,5 +18,7 @@ namespace Winston
         public static List<CardModel> PileOfCards { get; set; }
         public static List<CardModel> PopUpCards = new List<CardModel>();
         public static bool BoolPopUpCards = false;
+        public static int chosenPlayer = 1;
+        public static bool otherPlayerCanSee = false;
     }
 }

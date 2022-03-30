@@ -26,20 +26,20 @@
 
         <div class="cardCount">@StaticPileOfCards.PileOfCards.Count</div>
 
-        if (chosenPlayer == thisPlayer && !StaticPileOfCards.BoolPopUpCards)
+        if (StaticPileOfCards.chosenPlayer == thisPlayer && !StaticPileOfCards.BoolPopUpCards)
         {
             <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus"
         @onclick="ShowTheFiveCardsToChosenPlayer">
         }
         else
         {
-            <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus">
+            <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card">
         }
 
         <p>you are player @thisPlayer</p>
-        <p>It is @chosenPlayer's turn. Player @chosenPlayer select the card pile</p>
+        <p>It is @StaticPileOfCards.chosenPlayer's turn. Player @StaticPileOfCards.chosenPlayer select the card pile</p>
 
-        @if (StaticPileOfCards.BoolPopUpCards)
+        @if ((StaticPileOfCards.BoolPopUpCards && StaticPileOfCards.chosenPlayer == thisPlayer) || StaticPileOfCards.otherPlayerCanSee)
         {
             int i = 0;
 
@@ -51,6 +51,7 @@
 
             <button @onclick="ShowTheOtherPlayer">Done</button>
         }
+        <button @onclick="Update">Update</button>
         <button @onclick="Exit">Exit</button>
     }
 </body>
@@ -68,7 +69,6 @@
     public string containBasics { get; set; }
     public int thisPlayer = 0;
     public bool tooManyPlayers = false;
-    int chosenPlayer = 1;
 
     protected override async Task OnInitializedAsync()
     {
@@ -83,6 +83,7 @@
                 StaticPileOfCards.PileOfCards = Winston.General.TakeOutType(StaticPileOfCards.PileOfCards);
             }
 
+            StaticPileOfCards.chosenPlayer = 1;
             StaticPileOfCards.Using = true;
             thisPlayer = 1;
         }
@@ -102,6 +103,10 @@
         StaticPileOfCards.PileOfCards = null;
         StaticPileOfCards.Player = 0;
         StaticPileOfCards.Using = false;
+        StaticPileOfCards.BoolPopUpCards = false;
+        StaticPileOfCards.otherPlayerCanSee = false;
+        StaticPileOfCards.chosenPlayer = 1;
+        StaticPileOfCards.PopUpCards = new List<CardModel>();
     }
 
     public void ChangeStatic()
@@ -111,7 +116,7 @@
 
     public void ShowTheFiveCardsToChosenPlayer()
     {
-        if (chosenPlayer == thisPlayer)
+        if (StaticPileOfCards.chosenPlayer == thisPlayer)
         {
             int cardAmount = 5;
 
@@ -132,6 +137,11 @@
 
     public void ShowTheOtherPlayer()
     {
-        StaticPileOfCards.BoolPopUpCards = true;
+        StaticPileOfCards.otherPlayerCanSee = true;
+    }
+
+    public void Update()
+    {
+        StaticPileOfCards.otherPlayerCanSee = StaticPileOfCards.otherPlayerCanSee;
     }
 }
