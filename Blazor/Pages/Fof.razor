@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/Fof.css">
 
 <head>
-    <PageTitle>3x3 draft</PageTitle>
+    <PageTitle>F.O.F. draft</PageTitle>
 </head>
 
 <link rel="stylesheet" href="css/Fof.css">
@@ -47,15 +47,15 @@
             @foreach (var card in StaticPileOfCards.PopUpCards)
             {
                 string id = "d" + $"{i}";
-                <img src="@card.ImageUrl" id="@id" class="popUpCards">
-                @* @ondrop="HandleDrop" *@
+                <img src="@card.ImageUrl" id="@id" class="popUpCards" draggable="true" ondragstart="event.dataTransfer.setData('', event.target.id);" aria-dropeffect="move">
                 i++;
             }
 
-            <div class="FaceUpCardContainer">
+            <div class="FaceUpCardContainer" ondragover="event.preventDefault();" @ondrop="HandleDropFaceDown">
             </div>
 
-            <div class="FaceDownCardContainer">
+            <div class="FaceDownCardContainer" @ondrop="HandleDropFaceUp" ondragover="event.preventDefault();">
+                <h5>Click and drag the cards, this side is for the face down pile</h5>
             </div>
 
             <button @onclick="ShowTheOtherPlayer">Done</button>
@@ -154,7 +154,12 @@
         StaticPileOfCards.otherPlayerCanSee = StaticPileOfCards.otherPlayerCanSee;
     }
 
-    public void HandleStatusUpdated()
+    public void HandleDropFaceUp()
+    {
+        
+    }
+
+    public void HandleDropFaceDown()
     {
 
     }
