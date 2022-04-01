@@ -39,15 +39,24 @@
         <p>you are player @thisPlayer</p>
         <p>It is @StaticPileOfCards.chosenPlayer's turn. Player @StaticPileOfCards.chosenPlayer select the card pile</p>
 
-        @if ((StaticPileOfCards.BoolPopUpCards && StaticPileOfCards.chosenPlayer == thisPlayer) || StaticPileOfCards.otherPlayerCanSee)
+        @if ((StaticPileOfCards.BoolPopUpCards && StaticPileOfCards.chosenPlayer == thisPlayer) ||
+       StaticPileOfCards.otherPlayerCanSee)
         {
             int i = 0;
 
             @foreach (var card in StaticPileOfCards.PopUpCards)
             {
                 string id = "d" + $"{i}";
-                <img src="@card.ImageUrl" id="@id">
+                <img src="@card.ImageUrl" id="@id" class="popUpCards">
+                @* @ondrop="HandleDrop" *@
+                i++;
             }
+
+            <div class="FaceUpCardContainer">
+            </div>
+
+            <div class="FaceDownCardContainer">
+            </div>
 
             <button @onclick="ShowTheOtherPlayer">Done</button>
         }
@@ -143,5 +152,10 @@
     public void Update()
     {
         StaticPileOfCards.otherPlayerCanSee = StaticPileOfCards.otherPlayerCanSee;
+    }
+
+    public void HandleStatusUpdated()
+    {
+
     }
 }

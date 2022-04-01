@@ -22,4 +22,10 @@ namespace Winston
         legendary,
         land
     }
+
+    public enum cardStatus
+    {
+        faceup,
+        facedown
+    }
 }
