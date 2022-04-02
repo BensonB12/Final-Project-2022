@@ -1,5 +1,7 @@
 @page "/Fof/{DOM}/{WAR}/{NEO}/{containBasics}"
 @using Winston
+@* @using Blazor.DragDrop.Core *@
+@using Plk.Blazor.DragDrop;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,10 +62,14 @@
 
             <button @onclick="ShowTheOtherPlayer">Done</button>
         }
-        
+
         <button @onclick="Update">Update</button>
         <button @onclick="Exit">Exit</button>
+
+        @* <Plk.Blazor.DragDrop.Dropzone >
+        </Plk.Blazor.DragDrop.Dropzone> *@
     }
+
 </body>
 
 </html>

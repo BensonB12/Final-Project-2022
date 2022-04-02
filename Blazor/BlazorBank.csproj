@@ -7,6 +7,8 @@
   <ItemGroup>
     <PackageReference Include="MtgApiManager.Lib" Version="2.3.2"/>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7"/>
+    <PackageReference Include="Syncfusion.Blazor" Version="19.4.0.56"/>
+    <PackageReference Include="blazor-dragdrop" Version="2.4.0"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Winston.Lib\Winston.Lib.csproj"/>
