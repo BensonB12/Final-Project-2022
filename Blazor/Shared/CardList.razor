@@ -1,0 +1,68 @@
+﻿@using Winston
+<div class="card-status">
+    @* <h3>@ListStatus (@Jobs.Count())</h3> *@
+    <h3>@ListStatus (@Cards.Count)</h3>
+
+    <ul class="dropzone @dropClass"
+        ondragover="event.preventDefault();"
+        ondragstart="event.dataTransfer.setData('', event.target.id);"
+        @ondrop="HandleDrop"
+        @ondragenter="HandleDragEnter"
+        @ondragleave="HandleDragLeave">
+
+        @foreach (var Item in Cards)
+        {
+            <CardChoice CardModelH="Item"/>
+        }
+
+    </ul>
+</div>
+
+@code {
+
+    [CascadingParameter] CardsContainer Container { get; set; }
+    [Parameter] public CardStatus ListStatus { get; set; }
+    @* [Parameter] public CardStatus[] AllowedStatuses { get; set; } *@
+
+    List<CardModelHTML> Cards = new List<CardModelHTML>();
+    string dropClass = "";
+
+    protected override void OnParametersSet()
+    {
+        Cards.Clear();
+        Cards.AddRange(Container.Cards.Where(x => x.Status == ListStatus));
+    }
+
+    private void HandleDragEnter()
+    {
+
+        //I want to change status to faceup or facedown
+
+        //I just don't understand this if statement
+        if (ListStatus == Container.Payload.Status) return;
+
+        @* if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status))
+        {
+            dropClass = "no-drop";
+        }
+        else
+        {
+        } *@
+
+        dropClass = "can-drop";
+    }
+
+    private void HandleDragLeave()
+    {
+        dropClass = "";
+    }
+
+    private async Task HandleDrop()
+    {
+        dropClass = "";
+
+        @* if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return; *@
+
+        await Container.UpdateCardAsync(ListStatus);
+    }
+}

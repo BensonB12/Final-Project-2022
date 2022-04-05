@@ -1,0 +1,16 @@
+﻿@using Winston
+@* <li class="draggable" draggable="true" title="@JobModel.Description" @ondragstart="@(() =>
+    HandleDragStart(JobModel))"> *@
+<li class="draggable" draggable="true" @ondragstart="@(() => HandleDragStart(CardModelH))">
+    <img src="@CardModelH.card.ImageUrl" alt="Back of a card">
+</li>
+
+@code {
+    [CascadingParameter] CardsContainer Container { get; set; }
+    [Parameter] public CardModelHTML CardModelH { get; set; }
+
+    private void HandleDragStart(CardModelHTML selectedCard)
+    {
+        Container.Payload = selectedCard;
+    }
+}

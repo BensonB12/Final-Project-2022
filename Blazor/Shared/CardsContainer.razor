@@ -1,0 +1,25 @@
+﻿@using Winston
+<div class="card-container">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    [Parameter] public List<CardModelHTML> Cards { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback<CardModelHTML> OnStatusUpdated { get; set; }
+
+    public CardModelHTML Payload { get; set; }
+
+    public async Task UpdateCardAsync(CardStatus newStatus)
+    {
+        var task = Cards.FirstOrDefault(x => x.Id == Payload.Id);
+
+        if (task != null)
+        {
+            task.Status = newStatus;
+            await OnStatusUpdated.InvokeAsync(Payload);
+        }
+    }
+}
