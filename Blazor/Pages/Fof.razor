@@ -31,11 +31,11 @@
         if (StaticPileOfCards.chosenPlayer == thisPlayer && !StaticPileOfCards.BoolPopUpCards)
         {
             <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus"
-        @onclick="ShowTheFiveCardsToChosenPlayer">
+        @onclick="ShowTheFiveCardsToChosenPlayer" draggable="false">
         }
         else
         {
-            <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card">
+            <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" draggable="false">
         }
 
         <p>you are player @thisPlayer</p>
