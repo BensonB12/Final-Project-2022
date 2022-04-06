@@ -14,7 +14,7 @@
 
     public async Task UpdateCardAsync(CardStatus newStatus)
     {
-        var task = Cards.FirstOrDefault(x => x.Id == Payload.Id);
+        var task = Cards.SingleOrDefault(x => x.Id == Payload.Id);
 
         if (task != null)
         {

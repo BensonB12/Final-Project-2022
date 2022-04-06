@@ -53,7 +53,7 @@ img {
     right: 1%;
 }
 
-.FaceUpCardContainer {
+/* .FaceUpCardContainer {
     position: absolute;
     width: 68%;
     height: 390px;
@@ -75,7 +75,7 @@ img {
     z-index: 0;
     color: lightgrey;
     text-align: center;
-}
+} */
 
 .popUpCards {
     position: absolute;
@@ -103,24 +103,25 @@ img {
     left: 70%;
 }
 
-.card-container {
+.card-container:first-child {
     display: flex;
     justify-content: space-around;
 }
 
 .card-status {
     display: flex;
-    flex-direction: column;
-    width: 312px;
+    flex-direction: row;
 }
 
-    .card-status ul {
-        flex: 1;
-    }
+.card-status img {
+    flex: 1;
+}
 
 .dropzone {
     padding: 30px;
     border: 1px dashed #75868a;
+    height: 430px;
+    min-width: 300px;
     list-style: none;
 }
 
