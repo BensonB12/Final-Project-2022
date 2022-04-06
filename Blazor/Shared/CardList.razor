@@ -12,7 +12,18 @@
 
         @foreach (var Item in Cards)
         {
-            <CardChoice CardModelH="Item"/>
+            string imgURL = Item.card.ImageUrl;
+
+            if(Item.Status == CardStatus.Pile1FaceUp)
+            {
+                imgURL = Item.card.ImageUrl;
+            }
+            else
+            {
+                imgURL = Item.BackOfCardURL;
+            }
+
+            <CardChoice CardModelH="Item" ImgUrl="@imgURL"/>
         }
 
     </ul>
