@@ -93,12 +93,43 @@
 
         }
 
+        @if (player1popupCards)
+        {
+            int i = 0;
+            <div class="square"></div>
+
+            foreach (var item in StaticPileOfCards.Player1Cards)
+            {
+                string id = "p" + i.ToString();
+                <img class="popUpCards" src="@item.ImageUrl" id="@id" />
+                i++;
+            }
+
+            <button class="HideShownCards" @onclick="ShowPersonalCards">Hide Drafted Cards</button>
+        }
+
+        @if (player2popupCards)
+        {
+            int i = 0;
+            <div class="square"></div>
+
+            foreach (var item in StaticPileOfCards.Player2Cards)
+            {
+                string id = "p" + i.ToString();
+                <img class="popUpCards" src="@item.ImageUrl" id="@id" />
+                i++;
+            }
+
+            <button class="HideShownCards" @onclick="ShowPersonalCards">Hide Drafted Cards</button>
+        }
+
+        <button @onclick="ShowPersonalCards">Veiw Drafted Cards</button>
         <button @onclick="Update">Update</button>
         <button @onclick="Exit">Exit</button>
     }
     else
     {
-        if(thisPlayer == 1)
+        if (thisPlayer == 1)
         {
             @foreach (var cardName in StaticPileOfCards.Player1Cards)
             {
@@ -130,6 +161,8 @@
     public int thisPlayer = 0;
     public bool tooManyPlayers = false;
     public double imageY = 0;
+    public bool player1popupCards = false;
+    public bool player2popupCards = false;
     List<CardModelHTML> CardsForChoice = new List<CardModelHTML>();
 
     public void Pile1()
@@ -277,12 +310,32 @@
             }
         }
 
-        if(StaticPileOfCards.PileOfCards.Count == 0)
+        if (StaticPileOfCards.PileOfCards.Count == 0)
         {
             StaticPileOfCards.GameOver = true;
         }
 
         StaticPileOfCards.PopUpCards.Item1.Clear();
         StaticPileOfCards.PopUpCards.Item2.Clear();
+    }
+
+    public void ShowPersonalCards()
+    {
+        if (player1popupCards || player2popupCards)
+        {
+            player1popupCards = false;
+            player2popupCards = false;
+        }
+        else
+        {
+            if (thisPlayer == 1)
+            {
+                player1popupCards = true;
+            }
+            else
+            {
+                player2popupCards = true;
+            }
+        }
     }
 }

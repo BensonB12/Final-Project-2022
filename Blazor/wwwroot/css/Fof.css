@@ -180,3 +180,298 @@ img {
 li {
     list-style: none;
 }
+
+.HideShownCards {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    z-index: 4;
+}
+
+.square {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #777;
+    z-index: 3;
+    opacity: 40%;
+}
+
+[id^='p'] {
+    position: absolute;
+    z-index: 5;
+    top: 5%;
+}
+
+#p0 {
+    left: 1px;
+}
+
+#p1 {
+    left: 11%;
+}
+
+#p2 {
+    left: 22%;
+}
+
+#p3 {
+    left: 33%;
+}
+
+#p4 {
+    left: 44%;
+}
+
+#p5 {
+    left: 55%;
+}
+
+#p6 {
+    left: 66%;
+}
+
+#p7 {
+    left: 77%;
+}
+
+#p8 {
+    left: 88%;
+}
+
+#p9 {
+    top: 15%;
+    left: 1px;
+}
+
+#p10 {
+    top: 15%;
+    left: 11%;
+}
+
+#p11 {
+    top: 15%;
+    left: 22%;
+}
+
+#p12 {
+    top: 15%;
+    left: 33%;
+}
+
+#p13 {
+    top: 15%;
+    left: 44%;
+}
+
+#p14 {
+    top: 15%;
+    left: 55%;
+}
+
+#p15 {
+    top: 15%;
+    left: 66%;
+}
+
+#p16 {
+    top: 15%;
+    left: 77%;
+}
+
+#p17 {
+    top: 15%;
+    left: 88%;
+}
+
+#p18 {
+    top: 23%;
+    left: 1px;
+}
+
+#p19 {
+    top: 23%;
+    left: 11%;
+}
+
+#p20 {
+    top: 23%;
+    left: 22%;
+}
+
+#p21 {
+    top: 23%;
+    left: 33%;
+}
+
+#p22 {
+    top: 23%;
+    left: 44%;
+}
+
+#p23 {
+    top: 23%;
+    left: 55%;
+}
+
+#p24 {
+    top: 23%;
+    left: 66%;
+}
+
+#p25 {
+    top: 23%;
+    left: 77%;
+}
+
+#p26 {
+    top: 23%;
+    left: 88%;
+}
+
+#p27 {
+    top: 31%;
+    left: 1px;
+}
+
+#p28 {
+    top: 31%;
+    left: 11%;
+}
+
+#p29 {
+    top: 31%;
+    left: 22%;
+}
+
+#p30 {
+    top: 31%;
+    left: 33%;
+}
+
+#p31 {
+    top: 31%;
+    left: 44%;
+}
+
+#p32 {
+    top: 31%;
+    left: 55%;
+}
+
+#p33 {
+    top: 31%;
+    left: 66%;
+}
+
+#p34 {
+    top: 31%;
+    left: 77%;
+}
+
+#p35 {
+    top: 31%;
+    left: 88%;
+}
+
+#p36 {
+    top: 39%;
+    left: 1px;
+}
+
+#p37 {
+    top: 39%;
+    left: 11%;
+}
+
+#p38 {
+    top: 39%;
+    left: 22%;
+}
+
+#p39 {
+    top: 39%;
+    left: 33%;
+}
+
+#p40 {
+    top: 39%;
+    left: 44%;
+}
+
+#p41 {
+    top: 39%;
+    left: 55%;
+}
+
+#p42 {
+    top: 39%;
+    left: 66%;
+}
+
+#p43 {
+    top: 39%;
+    left: 77%;
+}
+
+#p44 {
+    top: 39%;
+    left: 88%;
+}
+
+#p45 {
+    top: 47%;
+    left: 1px;
+}
+
+#p46 {
+    top: 47%;
+    left: 11%;
+}
+
+#p47 {
+    top: 47%;
+    left: 22%;
+}
+
+#p48 {
+    top: 47%;
+    left: 33%;
+}
+
+#p50 {
+    top: 47%;
+    left: 44%;
+}
+
+#p51 {
+    top: 47%;
+    left: 55%;
+}
+
+#p52 {
+    top: 47%;
+    left: 66%;
+}
+
+#p53 {
+    top: 47%;
+    left: 77%;
+}
+
+#p54 {
+    top: 47%;
+    left: 88%;
+}
+
+#p55 {
+    top: 55%;
+    left: 1px;
+}
+
+#p56 {
+    top: 55%;
+    left: 11%;
+}
