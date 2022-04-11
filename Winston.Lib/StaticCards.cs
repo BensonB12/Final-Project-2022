@@ -22,6 +22,6 @@ namespace Winston
         public static bool otherPlayerCanSee = false;
         public static List<CardModel> Player1Cards = new List<CardModel>();
         public static List<CardModel> Player2Cards = new List<CardModel>();
-
+        public static bool GameOver = false;
     }
 }

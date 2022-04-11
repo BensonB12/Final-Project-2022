@@ -17,7 +17,7 @@
     {
         <h1 class="loading">LOADING</h1>
     }
-    else if (StaticPileOfCards.PileOfCards.Count != 0)
+    else if (!StaticPileOfCards.GameOver)
     {
         @if (tooManyPlayers == true)
         {
@@ -275,6 +275,11 @@
                 StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
                 StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
             }
+        }
+
+        if(StaticPileOfCards.PileOfCards.Count == 0)
+        {
+            StaticPileOfCards.GameOver = true;
         }
 
         StaticPileOfCards.PopUpCards.Item1.Clear();
