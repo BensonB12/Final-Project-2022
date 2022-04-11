@@ -28,7 +28,8 @@
 
         <div class="cardCount">@StaticPileOfCards.PileOfCards.Count</div>
 
-        if (StaticPileOfCards.chosenPlayer == thisPlayer && !StaticPileOfCards.BoolPopUpCards)
+        if (StaticPileOfCards.chosenPlayer == thisPlayer && (!StaticPileOfCards.BoolPopUpCards &&
+                    !StaticPileOfCards.otherPlayerCanSee))
         {
             <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus"
         @onclick="ShowTheFiveCardsToChosenPlayer" draggable="false">
@@ -41,48 +42,58 @@
         <p>you are player @thisPlayer</p>
         <p>It is @StaticPileOfCards.chosenPlayer's turn. Player @StaticPileOfCards.chosenPlayer select the card pile</p>
 
-        @if ((StaticPileOfCards.BoolPopUpCards && StaticPileOfCards.chosenPlayer == thisPlayer) ||
-       StaticPileOfCards.otherPlayerCanSee)
+        @if (StaticPileOfCards.BoolPopUpCards && StaticPileOfCards.chosenPlayer == thisPlayer)
         {
-            @* int i = 0; *@
-
-            @* @foreach (var card in StaticPileOfCards.PopUpCards)
-                {
-                string id = "d" + $"{i}";
-                <img src="@card.ImageUrl" id="@id" class="popUpCards" draggable="true"
-                ondragstart="event.dataTransfer.setData('text/plain', 'This Text May be dragged');" aria-dropeffect="move">
-                i++;
-                } *@
-
-            @* <p draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')">
-                This text <strong>may</strong> be dragged.
-                </p> *@
-
-            @* <div class="FaceUpCardContainer" ondragover="event.preventDefault();" @ondrop="HandleDropFaceUp">
-                </div>
-
-                <div class="FaceDownCardContainer" @ondrop="HandleDropFaceDown" ondragover="event.preventDefault();">
-                <h5>Click and drag the cards, this side is for the face down pile</h5>
-                </div> *@
             <CardsContainer Cards="CardsForChoice" OnStatusUpdated="HandleStatusUpdated">
-                <CardList ListStatus="CardStatus.Pile1FaceUp"/>
-                <CardList ListStatus="Winston.CardStatus.Pile2FaceDown"/>
+                <CardList ListStatus="CardStatus.Pile1FaceUp" />
+                <CardList ListStatus="Winston.CardStatus.Pile2FaceDown" />
             </CardsContainer>
 
             <button @onclick="ShowTheOtherPlayer">Done</button>
         }
 
-        @* <JobsContainer Jobs="Jobs" OnStatusUpdated="HandleStatusUpdated">
-            <JobList ListStatus="JobStatuses.Todo" AllowedStatuses="@(new JobStatuses[] { JobStatuses.Started})" />
-            <JobList ListStatus="JobStatuses.Started" AllowedStatuses="@(new JobStatuses[] { JobStatuses.Todo})" />
-            <JobList ListStatus="JobStatuses.Completed" AllowedStatuses="@(new JobStatuses[] { JobStatuses.Started })" />
-            </JobsContainer> *@
+        @if (StaticPileOfCards.otherPlayerCanSee)
+        {
+            <p>Player @StaticPileOfCards.chosenPlayer, pick your pile</p>
+
+            int i = 0;
+
+            @foreach (var card in StaticPileOfCards.PopUpCards.Item1)
+            {
+                string id = "d" + $"{i}";
+
+                <img src="@card.ImageUrl" id="@id" class="popUpCards">
+
+                i++;
+            }
+
+            i = 0;
+
+            @foreach (var card in StaticPileOfCards.PopUpCards.Item2)
+            {
+                string id = "q" + $"{i}";
+
+                <img src="BackOfMTGCard.jpg" id="@id" class="popUpCards">
+
+                i++;
+            }
+
+            <div class="FaceUpCardContainer">
+            </div>
+
+            <div class="FaceDownCardContainer">
+            </div>
+
+            @if (StaticPileOfCards.chosenPlayer == thisPlayer)
+            {
+                <button @onclick="Pile1">Pile1</button>
+                <button @onclick="Pile2">Pile2</button>
+            }
+
+        }
 
         <button @onclick="Update">Update</button>
         <button @onclick="Exit">Exit</button>
-
-        @* <Plk.Blazor.DragDrop.Dropzone >
-            </Plk.Blazor.DragDrop.Dropzone> *@
     }
 
 </body>
@@ -102,6 +113,16 @@
     public bool tooManyPlayers = false;
     public double imageY = 0;
     List<CardModelHTML> CardsForChoice = new List<CardModelHTML>();
+
+    public void Pile1()
+    {
+        PlrChosePile(1);
+    }
+
+    public void Pile2()
+    {
+        PlrChosePile(2);
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -139,7 +160,6 @@
         StaticPileOfCards.BoolPopUpCards = false;
         StaticPileOfCards.otherPlayerCanSee = false;
         StaticPileOfCards.chosenPlayer = 1;
-        StaticPileOfCards.PopUpCards = new List<CardModel>();
     }
 
     public void ChangeStatic()
@@ -174,6 +194,27 @@
 
     public void ShowTheOtherPlayer()
     {
+        foreach (var HTMLCard in CardsForChoice)
+        {
+            if (HTMLCard.Status == CardStatus.Pile1FaceUp)
+            {
+                StaticPileOfCards.PopUpCards.Item1.Add(HTMLCard.card);
+            }
+            else
+            {
+                StaticPileOfCards.PopUpCards.Item2.Add(HTMLCard.card);
+            }
+        }
+
+        StaticPileOfCards.chosenPlayer++;
+
+        if (StaticPileOfCards.chosenPlayer == 3)
+        {
+            StaticPileOfCards.chosenPlayer = 1;
+        }
+
+        StaticPileOfCards.BoolPopUpCards = false;
+
         StaticPileOfCards.otherPlayerCanSee = true;
     }
 
@@ -182,35 +223,42 @@
         StaticPileOfCards.otherPlayerCanSee = StaticPileOfCards.otherPlayerCanSee;
     }
 
-    public void HandleDropFaceUp(Microsoft.AspNetCore.Components.Web.DragEventArgs value)
-    {
-        value.ClientX = 200;
-        value.ClientY = 200;
-
-        value.ScreenX = 200;
-        value.ScreenY = 300;
-
-        Console.WriteLine(value.ClientX);
-    }
-
-    public void HandleDropFaceDown(Microsoft.AspNetCore.Components.Web.DragEventArgs value)
-    {
-        if (value.ClientY == imageY)
-        {
-            Console.WriteLine("It Worked!!!!!");
-        }
-
-
-        @* throw new Exception("Drop will not work"); *@
-    }
-
-    public void HandleImgDrop(Microsoft.AspNetCore.Components.Web.DragEventArgs value)
-    {
-        imageY = value.ClientX;
-        Console.WriteLine("We handled the drop");
-    }
-
     public void HandleStatusUpdated()
     {
+    }
+
+    public void PlrChosePile(int pile)
+    {
+        StaticPileOfCards.otherPlayerCanSee = false;
+
+        if (StaticPileOfCards.chosenPlayer == 1)
+        {
+            if (pile == 1)
+            {
+                StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
+                StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
+            }
+            else
+            {
+                StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
+                StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
+            }
+        }
+        else
+        {
+            if (pile == 1)
+            {
+                StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
+                StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
+            }
+            else
+            {
+                StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
+                StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
+            }
+        }
+
+        StaticPileOfCards.PopUpCards.Item1.Clear();
+        StaticPileOfCards.PopUpCards.Item2.Clear();
     }
 }

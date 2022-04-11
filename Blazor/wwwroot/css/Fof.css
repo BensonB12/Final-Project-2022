@@ -53,7 +53,7 @@ img {
     right: 1%;
 }
 
-/* .FaceUpCardContainer {
+.FaceUpCardContainer {
     position: absolute;
     width: 68%;
     height: 390px;
@@ -75,7 +75,7 @@ img {
     z-index: 0;
     color: lightgrey;
     text-align: center;
-} */
+}
 
 .popUpCards {
     position: absolute;
@@ -100,6 +100,31 @@ img {
 }
 
 #d4 {
+    left: 70%;
+}
+
+#q0 {
+    left: 18%;
+    top: 52%;
+}
+
+#q1 {
+    top: 52%;
+    left: 31%;
+}
+
+#q2 {
+    top: 52%;
+    left: 44%;
+}
+
+#q3 {
+    top: 52%;
+    left: 57%;
+}
+
+#q4 {
+    top: 52%;
     left: 70%;
 }
 
