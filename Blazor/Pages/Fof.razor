@@ -12,31 +12,32 @@
     <PageTitle>F.O.F. draft</PageTitle>
 </head>
 
-@* <link rel="stylesheet" href="css/Fof.css"> *@
-
 <body>
     @if (StaticPileOfCards.PileOfCards == null)
     {
         <h1 class="loading">LOADING</h1>
     }
-    else
+    else if (StaticPileOfCards.PileOfCards.Count != 0)
     {
         @if (tooManyPlayers == true)
         {
             <p>WARNING THERE ARE @StaticPileOfCards.Player + PLAYERS, YOUR ARE THE THIRD PLAYER</p>
         }
 
-        <div class="cardCount">@StaticPileOfCards.PileOfCards.Count</div>
-
-        if (StaticPileOfCards.chosenPlayer == thisPlayer && (!StaticPileOfCards.BoolPopUpCards &&
-                    !StaticPileOfCards.otherPlayerCanSee))
+        if (StaticPileOfCards.PileOfCards.Count == 0)
+        {
+        }
+        else if (StaticPileOfCards.chosenPlayer == thisPlayer && (!StaticPileOfCards.BoolPopUpCards &&
+        !StaticPileOfCards.otherPlayerCanSee))
         {
             <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" id="focus"
         @onclick="ShowTheFiveCardsToChosenPlayer" draggable="false">
+            <div class="cardCount">@StaticPileOfCards.PileOfCards.Count</div>
         }
         else
         {
             <img class="stackOcards" src="BackOfMTGCard.jpg" alt="Back of a MTG card" draggable="false">
+            <div class="cardCount">@StaticPileOfCards.PileOfCards.Count</div>
         }
 
         <p>you are player @thisPlayer</p>
@@ -94,6 +95,23 @@
 
         <button @onclick="Update">Update</button>
         <button @onclick="Exit">Exit</button>
+    }
+    else
+    {
+        if(thisPlayer == 1)
+        {
+            @foreach (var cardName in StaticPileOfCards.Player1Cards)
+            {
+                <li>1 @cardName.Name</li>
+            }
+        }
+        else
+        {
+            @foreach (var cardName in StaticPileOfCards.Player2Cards)
+            {
+                <li>1 @cardName.Name</li>
+            }
+        }
     }
 
 </body>
@@ -230,6 +248,7 @@
     public void PlrChosePile(int pile)
     {
         StaticPileOfCards.otherPlayerCanSee = false;
+        CardsForChoice = new List<CardModelHTML>();
 
         if (StaticPileOfCards.chosenPlayer == 1)
         {

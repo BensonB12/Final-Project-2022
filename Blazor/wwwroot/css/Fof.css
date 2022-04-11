@@ -176,3 +176,7 @@ img {
 .dragging {
     cursor: grabbing;
 }
+
+li {
+    list-style: none;
+}
