@@ -12,3 +12,15 @@ table {
     width: 100%;
     border: 1px solid lightgray;
 }
+
+.policy {
+    position: fixed;
+    font-size: small;
+    color: grey;
+    bottom: 5px;
+    right: 5px;
+}
+
+img {
+    height: 311px;
+}

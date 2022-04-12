@@ -22,6 +22,14 @@
     }
 }
 
+.policy {
+    position: fixed;
+    font-size: small;
+    color: grey;
+    bottom: 5px;
+    right: 5px;
+}
+
 img {
     width: 265px;
     height: 370px;

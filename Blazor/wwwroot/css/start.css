@@ -24,3 +24,11 @@ button:active {
     height: 100px;
     font-size: xx-large;
 }
+
+.policy {
+    position: fixed;
+    font-size: small;
+    color: grey;
+    bottom: 5px;
+    right: 5px;
+}

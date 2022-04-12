@@ -2,7 +2,7 @@
     position: absolute;
     top: 45%;
     left: 45%;
-    animation-name: fadingInOut;
+    animation-name: turning;
     animation-duration: 4s;
     animation-iteration-count: 6;
 }
@@ -23,25 +23,33 @@ h4 {
     width: 30%;
 }
 
-@keyframes fadingInOut {
+.policy {
+    position: fixed;
+    font-size: small;
+    color: grey;
+    bottom: 5px;
+    right: 5px;
+}
+
+@keyframes turning {
     0% {
-        color: black;
+        transform: rotate(0deg);
     }
 
-    25% {
-        color: white;
-    }
-
-    50% {
-        color: black;
-    }
-
-    75% {
-        color: white;
-    }
+    /* 25% {
+        rotate: 90%;
+    } */
 
     50% {
-        color: black;
+        transform: rotate(180deg);
+    }
+
+    /* 75% {
+        rotate: 90%;
+    } */
+
+    100% {
+        transform: rotate(360deg);
     }
 }
 

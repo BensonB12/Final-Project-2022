@@ -85,6 +85,14 @@ img {
     left: 2%;
 }
 
+.policy {
+    position: fixed;
+    font-size: small;
+    color: grey;
+    bottom: 5px;
+    right: 5px;
+}
+
 .img2 {
     left: 12%;
 }
