@@ -30,6 +30,14 @@ a, .btn-link {
     outline: 1px solid red;
 }
 
+.policy {
+    position: fixed;
+    font-size: small;
+    color: grey;
+    bottom: 5px;
+    right: 5px;
+}
+
 .validation-message {
     color: red;
 }

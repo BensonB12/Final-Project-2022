@@ -22,34 +22,44 @@
 @if (wMTG)
 {
     <h2>What is Magic the Gathering: </h2>
-    <p> MTG is Magic The Gathering</p>
+    <p>Magic The Gathering is a cardgame made in 1993 that depicts monsters and men fighting to destroy their opponent, and they are commanded by a powerful wizard (you). It has been said to be "D&D" in card form.</p>
+    <img src="BackOfMTGCard.jpg" alt="Back of a Magic Card"/>
+    
 }
 else if (wD)
 {
-    <h2>What is Draft: </h2>
-    <p>Winston draft is a way to draft six Magic the Gathering booster packs between two people. This website is looking
-        to let two players in the same room do this winston draft, download, and then import to MTG Arena.</p>
+    <h2>What is a Draft: </h2>
+    <p>A MTG draft is when you open brand new packs with multiple people (2 - 8 usually), and then as a group you take turns picking cards from these packs you have opened and then play against eachother with these brand new cards you have opened.</p>
+    <img src="Winston.jpg" alt="Back of a Magic Card"/>
 }
 else if (wWD)
 {
     <h2>What is Winston Draft: </h2>
-    <p>This is a Winston draft</p>
+    <p>Winston draft is a way to draft six Magic the Gathering booster packs between two people. The idea is that you have a shuffled pile of 6 MTG booser packs, and you slowly distribute the large pile into 4 smaller piles while two players rotate picking from the 4 piles.</p>
+    <img src="Winston.jpg" alt="Back of a Magic Card"/>
 }
 else if (txt)
 {
     <h2>What is 3 x 3 Drafting: </h2>
-    <p>This is a 3 x3 or Grid Draft draft</p>
+    <p>3 x 3 drafting is when you shuffle six booster packs into a pile. You then take the top 9 cards and show them in a 3 by 3 box (3 rows of 3 cards). Then the two players rotate taking either a collumn or a row. When the 9 cards are gone, you repeate the process starting at showing the next top 9 cards. You do this until all of the cards are gone.</p>
+    <img src="Threeby3.jpg" alt="Back of a Magic Card"/>
 }
 else if (fof)
 {
     <h2>What is Fact or Fiction (Solomon) Drafting: </h2>
-    <p>This is a fact or fiction draft</p>
+    <p>Fact of Fiction drafting (AKA Solomn) is very similar to the card "Fact of Fiction" or "Atris, Orical of Half Truths" in this app. That you do the normal shuffle 6 boosters together into a single pile. Then the first player (secretly) puts to top five cards into two piles: one face up, the other face down. Then the other player picks which pile they want, then the first player gets the un-chosen cards. You then repeat this process until the pile is empty</p>
+    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=476460&type=card" />
+    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=405223&type=card" />
+    <img src="FOF.jpg" alt="Back of a Magic Card"/>
 }
 else if (app)
 {
     <h2>How to use my app: </h2>
-    <p>This is how to use my app</p>
+    <p>This website is looking to let two players in the same room do a 2 player draft and then import to MTG Arena.</p>
 }
+<footer>
+    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.</h6>
+</footer>
 
 @code {
     bool wMTG = false;

@@ -27,3 +27,11 @@ button:active {
     border-right: 1px;
     border-bottom: 1px;
 }
+
+.policy {
+    position: fixed;
+    font-size: small;
+    color: grey;
+    bottom: 5px;
+    right: 5px;
+}
