@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager UriHelper
 
 <PageTitle>Start</PageTitle>
 
@@ -6,18 +7,34 @@
     <link rel="stylesheet" href="css/start.css">
 </head>
 
-<h1>Welcome to MTG Winston</h1>
 
 <br>
 <br>
-<NavLink href="PickPacks">
-    <button class="start">Start</button>
-</NavLink>
-<br>
-<br>
-<NavLink href="MoreInfo">
-    <button class="secondButton">More Information</button>
-</NavLink>
+<div class="conX">
+    <h1>Welcome to MTG Winston</h1>
+    @* <NavLink href="PickPacks">
+    </NavLink> *@
+        <button class="start" @onclick="MoveToPickPacks">Start</button>
+    <br>
+    <br>
+    @* <NavLink href="MoreInfo">
+    </NavLink> *@
+        <button class="moreInfo">More Information</button>
+</div>
 <footer>
-    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.</h6>
+    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not
+        approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of
+        the Coast LLC.</h6>
 </footer>
+
+@code {
+    public void MoveToPickPacks ()
+    {
+        UriHelper.NavigateTo("/PickPacks");
+    }
+
+    public void MoveToInfo ()
+    {
+        UriHelper.NavigateTo("/MoreInfo");
+    }
+}

@@ -14,6 +14,8 @@ Draft across computers
 - Figure that out
         - using static states
 
+UI needs to be smaller
+
 Add diffrent laugages
 - German
 - Japanize

@@ -1,28 +1,36 @@
-h1 {
-    text-align: center;
+.conX {
+    font-size: 28px;
+    font-family: sans-serif;
+    display: grid;
+    gap: 15px;
+    grid-template-areas:
+    'A A A A'
+    'B B B B'
+    'C C C C';
 }
 
 button {
     border-color: black;
     background-color: salmon;
-    position: absolute;
-    left: 32%;
-    width: 40%;
+    align-items: center;
+    justify-content: center;
+    display: grid;
 }
 
-.secondButton {
-    top: 26.5%
-}
-
-button:active {
-    border-width: 4px;
-    border-right: 1px;
-    border-bottom: 1px;
+h1 {
+    text-align: center;
+    display: grid;
+    grid-area: A;
 }
 
 .start {
-    height: 100px;
-    font-size: xx-large;
+
+    grid-area: B;
+}
+
+.moreInfo {
+    display: grid;
+    grid-area: C;
 }
 
 .policy {
@@ -31,4 +39,10 @@ button:active {
     color: grey;
     bottom: 5px;
     right: 5px;
+}
+
+button:active {
+    border-width: 4px;
+    border-right: 1px;
+    border-bottom: 1px;
 }
