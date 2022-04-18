@@ -12,9 +12,11 @@
 
 h1 {
     text-align: center;
+    background-color: lightblue;
 }
 
 button {
+    z-index: 2;
     border-color: black;
     background-color: salmon;
     position: absolute;
@@ -29,6 +31,7 @@ button:active {
 }
 
 .policy {
+    z-index: 0;
     position: fixed;
     font-size: small;
     color: grey;

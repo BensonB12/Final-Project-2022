@@ -11,14 +11,14 @@
 <h1>Pick your packs</h1>
 <h3 class="direction">Choose your six packs:</h3>
 
-<p @onclick="AddPacks" class="set">Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO">
+<p @oninput="InputCheck" class="set">Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO">
 </p>
 <br>
 <br>
-<p @onclick="AddPacks" class="set">War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
+<p @oninput="InputCheck" class="set">War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
 <br>
 <br>
-<p @onclick="AddPacks" class="set">Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
+<p @oninput="InputCheck" class="set">Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
 <br>
 <br>
 <form>
@@ -68,6 +68,16 @@ else
         check = false;
         
         if (NEO + WAR + DOM == 6 && draftType != "---" && draftType != null)
+        {
+            check = true;
+        }
+    }
+
+    public void InputCheck()
+    {
+        check = false;
+        
+        if (NEO + WAR + DOM == 5 && draftType != "---" && draftType != null)
         {
             check = true;
         }
