@@ -21,6 +21,20 @@ table {
     right: 5px;
 }
 
+table {
+    border: none;
+}
+
 img {
+    width: 100%;
+}
+
+.card {
+    /* position: relative; */
     height: 311px;
+    width: auto;
+}
+
+p {
+    background-color: lightblue;
 }

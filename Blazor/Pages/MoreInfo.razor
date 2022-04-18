@@ -5,52 +5,50 @@
 <PageTitle>Here is the page with more info</PageTitle>
 
 <table>
-    <tr>
-    <td @onclick="ActivatewMTG">What is Magic the Gathering?</td>
-    <td @onclick="ActivatewD">What is drafting?</td>
-    <td @onclick="ActivatewWD">What is Winston drafting?</td>
-    <td @onclick="Activatetxt">What is 3 x 3 drafting?</td>
-    <td @onclick="Activatefof">What is Fact or Fiction drafting (Solomon)?</td>
-    <td @onclick="Activateapp">How can I use this app?</td>
+    <tr @onclick="ActivatewMTG">What is Magic the Gathering?</tr>
+    <tr @onclick="ActivatewD">What is drafting?</tr>
+    <tr @onclick="ActivatewWD">What is Winston drafting?</tr>
+    <tr @onclick="Activatetxt">What is 3 x 3 drafting?</tr>
+    <tr @onclick="Activatefof">What is Fact or Fiction drafting (Solomon)?</tr>
+    <tr @onclick="Activateapp">How can I use this app?</tr>
 
     <NavLink href="/">
         <th>HOME</th>
     </NavLink>
-    </tr>
 </table>
 
 @if (wMTG)
 {
     <h2>What is Magic the Gathering: </h2>
     <p>Magic The Gathering is a cardgame made in 1993 that depicts monsters and men fighting to destroy their opponent, and they are commanded by a powerful wizard (you). It has been said to be "D&D" in card form.</p>
-    <img src="BackOfMTGCard.jpg" alt="Back of a Magic Card"/>
+    <img class="card" src="BackOfMTGCard.jpg" alt="Back of a Magic Card"/>
     
 }
 else if (wD)
 {
     <h2>What is a Draft: </h2>
     <p>A MTG draft is when you open brand new packs with multiple people (2 - 8 usually), and then as a group you take turns picking cards from these packs you have opened and then play against eachother with these brand new cards you have opened.</p>
-    <img src="Winston.jpg" alt="Back of a Magic Card"/>
+    <img src="Winston.jpg" alt="Image of a Winston Draft"/>
 }
 else if (wWD)
 {
     <h2>What is Winston Draft: </h2>
     <p>Winston draft is a way to draft six Magic the Gathering booster packs between two people. The idea is that you have a shuffled pile of 6 MTG booser packs, and you slowly distribute the large pile into 4 smaller piles while two players rotate picking from the 4 piles.</p>
-    <img src="Winston.jpg" alt="Back of a Magic Card"/>
+    <img src="Winston.jpg" alt="Image of Winston Draft"/>
 }
 else if (txt)
 {
     <h2>What is 3 x 3 Drafting: </h2>
     <p>3 x 3 drafting is when you shuffle six booster packs into a pile. You then take the top 9 cards and show them in a 3 by 3 box (3 rows of 3 cards). Then the two players rotate taking either a collumn or a row. When the 9 cards are gone, you repeate the process starting at showing the next top 9 cards. You do this until all of the cards are gone.</p>
-    <img src="Threeby3.jpg" alt="Back of a Magic Card"/>
+    <img src="Threeby3.jpg" alt="Image of a 3 x 3 draft"/>
 }
 else if (fof)
 {
     <h2>What is Fact or Fiction (Solomon) Drafting: </h2>
     <p>Fact of Fiction drafting (AKA Solomn) is very similar to the card "Fact of Fiction" or "Atris, Orical of Half Truths" in this app. That you do the normal shuffle 6 boosters together into a single pile. Then the first player (secretly) puts to top five cards into two piles: one face up, the other face down. Then the other player picks which pile they want, then the first player gets the un-chosen cards. You then repeat this process until the pile is empty</p>
-    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=476460&type=card" />
-    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=405223&type=card" />
-    <img src="FOF.jpg" alt="Back of a Magic Card"/>
+    <img class="card" src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=476460&type=card" />
+    <img class="card" src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=405223&type=card" />
+    <img src="FOF.jpg" alt="Image of FOF draft"/>
 }
 else if (app)
 {
