@@ -4,6 +4,11 @@
 <PageTitle>Packs</PageTitle>
 <html>
 
+@if (warning)
+{
+    <p class="warning">Please pick EXACTLY 6 packs</p>
+}
+
 <head>
     <link rel="stylesheet" href="css/PickPacks.css">
 </head>
@@ -11,20 +16,20 @@
 <h1>Pick your packs</h1>
 <h3 class="direction">Choose your six packs:</h3>
 
-<p @oninput="InputCheck" class="set">Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO">
+<p class="set">Kamigawa: Neon Dynisty: <input type="number" name="NEO" min="0" max="6" @bind="NEO">
 </p>
 <br>
 <br>
-<p @oninput="InputCheck" class="set">War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
+<p class="set">War of the Spark: <input type="number" name="WAR" min="0" max="6" @bind="WAR"></p>
 <br>
 <br>
-<p @oninput="InputCheck" class="set">Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
+<p class="set">Dominaria: <input type="number" name="DOM" min="0" max="6" @bind="DOM"></p>
 <br>
 <br>
 <form>
     <fieldset>
         <label for="draftType">Pick which way to draft: </label>
-        <select name="draftType" @bind="draftType" @onclick="AddPacks">
+        <select name="draftType" @bind="draftType" @onclick="InputCheck">
             <option value="---">---</option>
             <option value="WinstonDraft">Winston Draft</option>
             <option value="Fof">Fact or Fiction</option>
@@ -49,35 +54,29 @@ else
 {
     <br>
     <br>
-    <p class="grey">Please pick a total of six packs (click on the arrows)</p>
+    <p class="grey">Please pick a total of six packs</p>
 }
 <footer>
-    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.</h6>
+    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not
+        approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of
+        the Coast LLC.</h6>
 </footer>
+
 </html>
 
 @code {
     bool containBasics = false;
-    bool check = false;  
+    bool check = false;
+    bool warning = false;
     string draftType = null;
     int NEO;
     int WAR;
     int DOM;
-    public void AddPacks()
-    {
-        check = false;
-        
-        if (NEO + WAR + DOM == 6 && draftType != "---" && draftType != null)
-        {
-            check = true;
-        }
-    }
-
     public void InputCheck()
     {
         check = false;
-        
-        if (NEO + WAR + DOM == 5 && draftType != "---" && draftType != null)
+
+        if (draftType != "---" && draftType != null)
         {
             check = true;
         }
@@ -85,6 +84,13 @@ else
 
     private void PassValue()
     {
-        UriHelper.NavigateTo($"{draftType}/{DOM}/{WAR}/{NEO}/{containBasics}");
+        if (WAR + DOM + NEO == 6)
+        {
+            UriHelper.NavigateTo($"{draftType}/{DOM}/{WAR}/{NEO}/{containBasics}");
+        }
+        else
+        {
+            warning = true;
+        }
     }
 }

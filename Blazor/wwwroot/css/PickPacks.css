@@ -10,6 +10,17 @@
     color: #777;
 }
 
+.warning {
+    z-index: 5;
+    position: fixed;
+    top: 10px;
+    text-align: center;
+    width: 100%;
+    left: 0px;
+    background-color: red;
+    color: white;
+}
+
 h1 {
     text-align: center;
     background-color: lightblue;
