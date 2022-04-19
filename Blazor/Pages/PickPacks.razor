@@ -29,7 +29,7 @@
 <form>
     <fieldset>
         <label for="draftType">Pick which way to draft: </label>
-        <select name="draftType" @bind="draftType" @onclick="InputCheck">
+        <select name="draftType" @bind="draftType">
             <option value="---">---</option>
             <option value="WinstonDraft">Winston Draft</option>
             <option value="Fof">Fact or Fiction</option>
@@ -44,18 +44,10 @@
     <label for="removeLands">Remove basic lands from draft</label>
 </form>
 
-@if (check)
-{
-    <br>
-    <br>
-    <button @onclick="PassValue">Start</button>
-}
-else
-{
-    <br>
-    <br>
-    <p class="grey">Please pick a total of six packs</p>
-}
+<br>
+<br>
+<button @onclick="PassValue">Start</button>
+
 <footer>
     <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not
         approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of
@@ -66,21 +58,11 @@ else
 
 @code {
     bool containBasics = false;
-    bool check = false;
     bool warning = false;
     string draftType = null;
     int NEO;
     int WAR;
     int DOM;
-    public void InputCheck()
-    {
-        check = false;
-
-        if (draftType != "---" && draftType != null)
-        {
-            check = true;
-        }
-    }
 
     private void PassValue()
     {
