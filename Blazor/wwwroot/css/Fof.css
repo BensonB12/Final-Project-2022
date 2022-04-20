@@ -1,3 +1,25 @@
+#FaceUpCardContainer {
+    position: absolute;
+    width: 68%;
+    background-color: lightgrey;
+    border: 2px solid black;
+    left: 16%;
+    top: 15%;
+    z-index: 0;
+}
+
+#FaceDownCardContainer {
+    position: absolute;
+    width: 68%;
+    background-color: grey;
+    border: 2px solid black;
+    left: 16%;
+    top: 51%;
+    z-index: 0;
+    color: lightgrey;
+    text-align: center;
+}
+
 .loading {
     position: absolute;
     top: 45%;
@@ -43,9 +65,8 @@ button:active {
 /* Right bellow the cards */
 .done {
     position: absolute;
-    top: 400px;
-    right: 30px;
-    width: 90px;
+    top: 100px;
+    right: 10px;
 }
 
 .update {
@@ -68,9 +89,93 @@ button:active {
     right: 5px;
 }
 
+.dropzone {
+    /* padding: 30px; */
+    padding: 5px;
+    border: 1px dashed #75868a;
+    /* height: 430px; */
+    height: 100px;
+    min-width: 80px;
+    list-style: none;
+}
+
 img {
-    width: 265px;
-    height: 370px;
+    height: 80px;
+}
+
+.card-container {
+    height: 100px;
+}
+
+@media screen and (min-width: 850px) {
+    img {
+        width: auto;
+        height: 150px;
+    }
+    .done{
+        top: 165px;
+    }
+    .card-container {
+        height: 165px;
+    }
+    .dropzone {
+        min-height: 165px;
+        min-width: 100px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    img {
+        width: auto;
+        height: 220px;
+    }
+    .done {
+        right: 12px;
+        top: 235px;
+    }
+    .card-container {
+        height: 235px;
+    }
+    .dropzone {
+        min-height: 235px;
+        min-width: 150px;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    img {
+        width: auto;
+        height: 285px;
+    }
+    .done {
+        right: 15px;
+        top: 300px;
+    }
+    .card-container {
+        height: 305px;
+    }
+    .dropzone {
+        min-height: 305px;
+        min-width: 240px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    img {
+        width: 265px;
+        height: 370px;
+    }
+    .done {
+        top: 400px;
+        right: 20px;
+    }
+    .card-container {
+        height: 390px;
+    }
+    .dropzone {
+        min-height: 390px;
+        min-width: 285px;
+    }
 }
 
 .stackOcards {
@@ -97,30 +202,6 @@ img {
     font-size: larger;
     top: 1%;
     right: 1%;
-}
-
-.FaceUpCardContainer {
-    position: absolute;
-    width: 68%;
-    height: 390px;
-    background-color: lightgrey;
-    border: 2px solid black;
-    left: 16%;
-    top: 15%;
-    z-index: 0;
-}
-
-.FaceDownCardContainer {
-    position: absolute;
-    width: 68%;
-    height: 390px;
-    background-color: grey;
-    border: 2px solid black;
-    left: 16%;
-    top: 51%;
-    z-index: 0;
-    color: lightgrey;
-    text-align: center;
 }
 
 .popUpCards {
@@ -188,13 +269,6 @@ img {
     flex: 1;
 }
 
-.dropzone {
-    padding: 30px;
-    border: 1px dashed #75868a;
-    height: 430px;
-    min-width: 300px;
-    list-style: none;
-}
 
 .no-drop {
     border: 2px dashed red;
