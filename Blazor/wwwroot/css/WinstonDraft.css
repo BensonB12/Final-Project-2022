@@ -8,6 +8,7 @@ h2 {
     z-index: 100;
     width: 397.5px;
     height: 555px;
+    transition-delay: 1s;
 }
 
 .youSure {
