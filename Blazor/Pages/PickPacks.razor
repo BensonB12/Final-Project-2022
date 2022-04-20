@@ -1,8 +1,8 @@
 @page "/PickPacks"
+@using Winston
 @inject NavigationManager UriHelper
 
-<PageTitle>Packs</PageTitle>
-<html>
+<PageTitle>Packs</PageTitle>\
 
 @if (warning)
 {
@@ -47,14 +47,18 @@
 <br>
 <br>
 <button @onclick="PassValue">Start</button>
+<br>
+<br>
+@if(StaticPileOfCards.Player > 2 && NEO == 5 && WAR == 5 && DOM == 5)
+{
+    <button @onclick="ClearFOF">Clear out the game</button>
+}
 
 <footer>
-    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not
+    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not 
         approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of
         the Coast LLC.</h6>
 </footer>
-
-</html>
 
 @code {
     bool containBasics = false;
@@ -74,5 +78,16 @@
         {
             warning = true;
         }
+    }
+
+    private void ClearFOF()
+    {
+        StaticPileOfCards.PileOfCards = null;
+        StaticPileOfCards.Player = 0;
+        StaticPileOfCards.Using = false;
+        StaticPileOfCards.BoolPopUpCards = false;
+        StaticPileOfCards.otherPlayerCanSee = false;
+        StaticPileOfCards.chosenPlayer = 1;
+        StaticPileOfCards.onlyOnePlayer = true;
     }
 }
