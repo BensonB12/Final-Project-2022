@@ -4,7 +4,7 @@
     background-color: lightgrey;
     border: 2px solid black;
     left: 16%;
-    top: 15%;
+    top: 290px;
     z-index: 0;
 }
 
@@ -14,10 +14,60 @@
     background-color: grey;
     border: 2px solid black;
     left: 16%;
-    top: 51%;
+    top: 390px;
     z-index: 0;
     color: lightgrey;
     text-align: center;
+}
+
+.popUpCards {
+    position: absolute;
+    z-index: 2;
+    top: 300px;
+}
+
+#d0 {
+    left: 18%;
+}
+
+#d1 {
+    left: 31%;
+}
+
+#d2 {
+    left: 44%;
+}
+
+#d3 {
+    left: 57%;
+}
+
+#d4 {
+    left: 70%;
+}
+
+[id^='q']{
+    top: 400px;
+}
+
+#q0 {
+    left: 18%;
+}
+
+#q1 {
+    left: 31%;
+}
+
+#q2 {
+    left: 44%;
+}
+
+#q3 {
+    left: 57%;
+}
+
+#q4 {
+    left: 70%;
 }
 
 .loading {
@@ -122,6 +172,12 @@ img {
         min-height: 165px;
         min-width: 100px;
     }
+    #FaceDownCardContainer{
+        top: 455px;
+    }
+    [id^='q']{
+        top: 463px;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -139,6 +195,12 @@ img {
     .dropzone {
         min-height: 235px;
         min-width: 150px;
+    }
+    #FaceDownCardContainer{
+        top: 525px;
+    }
+    [id^='q']{
+        top: 530px;
     }
 }
 
@@ -158,6 +220,12 @@ img {
         min-height: 305px;
         min-width: 240px;
     }
+    #FaceDownCardContainer{
+        top: 595px;
+    }
+    [id^='q']{
+        top: 605px;
+    }
 }
 
 @media screen and (min-width: 2000px) {
@@ -175,6 +243,12 @@ img {
     .dropzone {
         min-height: 390px;
         min-width: 285px;
+    }
+    #FaceDownCardContainer{
+        top: 680px;
+    }
+    [id^='q']{
+        top: 690px;
     }
 }
 
@@ -202,57 +276,6 @@ img {
     font-size: larger;
     top: 1%;
     right: 1%;
-}
-
-.popUpCards {
-    position: absolute;
-    z-index: 2;
-    top: 16%;
-}
-
-#d0 {
-    left: 18%;
-}
-
-#d1 {
-    left: 31%;
-}
-
-#d2 {
-    left: 44%;
-}
-
-#d3 {
-    left: 57%;
-}
-
-#d4 {
-    left: 70%;
-}
-
-#q0 {
-    left: 18%;
-    top: 52%;
-}
-
-#q1 {
-    top: 52%;
-    left: 31%;
-}
-
-#q2 {
-    top: 52%;
-    left: 44%;
-}
-
-#q3 {
-    top: 52%;
-    left: 57%;
-}
-
-#q4 {
-    top: 52%;
-    left: 70%;
 }
 
 .card-container:first-child {
