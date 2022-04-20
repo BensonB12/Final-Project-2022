@@ -1,7 +1,6 @@
 @page "/Fof/{DOM}/{WAR}/{NEO}/{containBasics}"
 @using Winston
-@* @using Blazor.DragDrop.Core *@
-@* @using Plk.Blazor.DragDrop; *@
+@inject NavigationManager UriHelper
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +18,15 @@
     }
     else if (!StaticPileOfCards.GameOver)
     {
+        <h1>You are player @thisPlayer</h1>
+
+        @if (StaticPileOfCards.onlyOnePlayer)
+        {
+            <p class="invite">Copy this Url and send it to player 2</p>
+        }
+
+        <p>It is @StaticPileOfCards.chosenPlayer's turn. Player @StaticPileOfCards.chosenPlayer select the card pile</p>
+
         @if (tooManyPlayers == true)
         {
             <div class="square"></div>
@@ -41,9 +49,6 @@
             <div class="cardCount">@StaticPileOfCards.PileOfCards.Count</div>
         }
 
-        <p>you are player @thisPlayer</p>
-        <p>It is @StaticPileOfCards.chosenPlayer's turn. Player @StaticPileOfCards.chosenPlayer select the card pile</p>
-
         @if (StaticPileOfCards.BoolPopUpCards && StaticPileOfCards.chosenPlayer == thisPlayer)
         {
             <CardsContainer Cards="CardsForChoice" OnStatusUpdated="HandleStatusUpdated">
@@ -51,7 +56,7 @@
                 <CardList ListStatus="Winston.CardStatus.Pile2FaceDown" />
             </CardsContainer>
 
-            <button @onclick="ShowTheOtherPlayer">Done</button>
+            <button @onclick="ShowTheOtherPlayer" class="done">Done</button>
         }
 
         @if (StaticPileOfCards.otherPlayerCanSee)
@@ -88,14 +93,17 @@
 
             @if (StaticPileOfCards.chosenPlayer == thisPlayer)
             {
-                <button @onclick="Pile1">Pile1</button>
-                <button @onclick="Pile2">Pile2</button>
+                <button @onclick="Pile1" class="btChoosePile1">Pile 1, face up cards</button>
+                <br><br><br><br><br><br>
+                <br><br><br><br><br><br>
+                <br><br><br><br><br><br>
+                <button @onclick="Pile2" class="btChoosePile2">Pile 2, face down cards</button>
             }
 
         }
 
         @if (player1popupCards)
-        { 
+        {
             <div class="square"></div>
             int i = 0;
 
@@ -124,9 +132,9 @@
             <button class="HideShownCards" @onclick="ShowPersonalCards">Hide Drafted Cards</button>
         }
 
-        <button @onclick="ShowPersonalCards">Veiw Drafted Cards</button>
-        <button @onclick="Update">Update</button>
-        <button @onclick="Exit">Exit</button>
+        <button @onclick="ShowPersonalCards" class="seeDraftedCards">Veiw Drafted Cards</button>
+        <button @onclick="Update" class="update">Update</button>
+        <button @onclick="Exit" class="exit">Exit</button>
     }
     else
     {
@@ -148,8 +156,11 @@
 
 </body>
 <footer>
-    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.</h6>
+    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not
+        approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of
+        the Coast LLC.</h6>
 </footer>
+
 </html>
 
 @code {
@@ -198,6 +209,7 @@
         else if (StaticPileOfCards.Player < 3)
         {
             thisPlayer = 2;
+            StaticPileOfCards.onlyOnePlayer = false;
             ChangeStatic();
         }
         else
@@ -214,6 +226,8 @@
         StaticPileOfCards.BoolPopUpCards = false;
         StaticPileOfCards.otherPlayerCanSee = false;
         StaticPileOfCards.chosenPlayer = 1;
+        StaticPileOfCards.onlyOnePlayer = true;
+        UriHelper.NavigateTo("/PickPacks");
     }
 
     public void ChangeStatic()

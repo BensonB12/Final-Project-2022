@@ -22,6 +22,44 @@
     }
 }
 
+button {
+    border-color: black;
+    background-color: salmon;
+}
+
+button:active {
+    border-width: 4px;
+    border-right: 1px;
+    border-bottom: 1px;
+}
+
+.seeDraftedCards {
+    background-color: lightgrey;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Right bellow the cards */
+.done {
+    position: absolute;
+    top: 400px;
+    right: 30px;
+    width: 90px;
+}
+
+.update {
+    position: absolute;
+    top: 10px;
+    left: 200px;
+}
+
+.exit {
+    position: absolute;
+    right: 10px;
+    bottom: 50px;
+}
+
 .policy {
     position: fixed;
     font-size: small;
