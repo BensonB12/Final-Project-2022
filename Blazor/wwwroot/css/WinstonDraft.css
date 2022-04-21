@@ -4,6 +4,10 @@ h2 {
     width: 90%;
 }
 
+.emptybox {
+    height: 53px;
+}
+
 .popUpCards:hover {
     z-index: 100;
     width: 397.5px;

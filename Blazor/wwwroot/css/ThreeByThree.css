@@ -1,3 +1,10 @@
+.popUpCards {
+    position: absolute;
+    height: 30%;
+    top: 7%;
+    left: 30%;
+}
+
 .loading {
     position: absolute;
     top: 45%;
@@ -7,15 +14,14 @@
     animation-iteration-count: 6;
 }
 
-img {
-    z-index: 2;
-}
-
 .popUpCards:hover {
     z-index: 100;
-    width: 397.5px;
     height: 555px;
     transition-delay: 1s;
+}
+
+img {
+    z-index: 2;
 }
 
 h4 {
@@ -63,14 +69,6 @@ h4 {
     height: 10%;
 }
 
-#focus:hover {
-    box-shadow: 10px 5px 7px grey;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 3.9%;
-    border-left: 1px;
-    border-top: 1px;
-}
-
 .cardCount {
     position: absolute;
     background-color: white;
@@ -100,12 +98,6 @@ h1 {
     opacity: 40%;
 }
 
-.popUpCards {
-    position: absolute;
-    height: 30%;
-    top: 7%;
-    left: 30%;
-}
 
 
 #d1 {
@@ -240,6 +232,14 @@ h1 {
     left: 26%;
     background-color: rgb(255, 209, 125);
     z-index: -1;
+}
+
+#focus:hover {
+    box-shadow: 10px 5px 7px grey;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 3.9%;
+    border-left: 1px;
+    border-top: 1px;
 }
 
 button:active {

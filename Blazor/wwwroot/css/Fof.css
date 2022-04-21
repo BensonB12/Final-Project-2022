@@ -20,6 +20,10 @@
     text-align: center;
 }
 
+.emptybox {
+    height: 40px;
+}
+
 .popUpCards {
     position: absolute;
     z-index: 2;
@@ -153,6 +157,18 @@ img {
     height: 80px;
 }
 
+.cardCount {
+    position: absolute;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 1px;
+    z-index: 1;
+    font-size: small;
+    top: 1%;
+    right: 1%;
+}
+
 .card-container {
     height: 100px;
 }
@@ -178,6 +194,10 @@ img {
     [id^='q']{
         top: 463px;
     }
+    .cardCount {
+        padding: 2px;
+        font-size: small;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -201,6 +221,10 @@ img {
     }
     [id^='q']{
         top: 530px;
+    }
+    .cardCount {
+        padding: 5px;
+        font-size: medium;
     }
 }
 
@@ -226,6 +250,10 @@ img {
     [id^='q']{
         top: 605px;
     }
+    .cardCount {
+        padding: 8px;
+        font-size: large;
+    }
 }
 
 @media screen and (min-width: 2000px) {
@@ -250,6 +278,10 @@ img {
     [id^='q']{
         top: 690px;
     }
+    .cardCount {
+        padding: 10px;
+        font-size: larger;
+    }
 }
 
 .stackOcards {
@@ -264,18 +296,6 @@ img {
     border-radius: 3.9%;
     border-left: 1px;
     border-top: 1px;
-}
-
-.cardCount {
-    position: absolute;
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    padding: 10px;
-    z-index: 1;
-    font-size: larger;
-    top: 1%;
-    right: 1%;
 }
 
 .card-container:first-child {
