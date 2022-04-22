@@ -314,13 +314,6 @@ else
         UpDateNumbers();
     }
 
-    protected override void OnParametersSet()
-    {
-        var numOfDom = DOM;
-        var numOfWar = WAR;
-        var numOfNeo = NEO;
-    }
-
     public void ChoosePack()
     {
         if (stackOCards.Count == 0)
@@ -530,44 +523,3 @@ else
         }
     }
 }
-@* public void PrintDeckLists()
-    {
-    var writer = new StreamWriter("Player1.txt");
-
-    foreach (var cards in bothPlayers[0])
-    {
-    writer.WriteLine("1 " + cards.Name);
-    }
-    writer.Close();
-
-    writer = new StreamWriter("Player2.txt");
-
-    foreach (var cards in bothPlayers[1])
-    {
-    writer.WriteLine("1 " + cards.Name);
-    }
-    writer.Close();
-    } *@
-
-
-@* private string? imageSource;
-    public async Task ShowImage()
-    {
-    var card = await Winston.CardProcessor.LoadNonLand(Winston.Set.WAR, Winston.Rarity.uncommon);
-
-    var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
-
-    imageSource = uriSource.ToString();
-    }
-
-    private async void Window_Loaded()
-    {
-    await ShowImage();
-    }
-    public async void ShowCard()
-    {
-    popUpCards = true;
-    Winston.General.ApiHelper.InitializeClient();
-    Winston.MakeBooster booster = new Winston.MakeBooster(Winston.Set.NEO);
-    PrintingImage(await booster.singleCard);
-    } *@

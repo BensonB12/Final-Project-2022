@@ -51,7 +51,7 @@
 <br>
 @if(StaticPileOfCards.Player > 2 && NEO == 5 && WAR == 5 && DOM == 5)
 {
-    <button @onclick="ClearFOF">Clear out the game</button>
+    <button @onclick="StaticGenerals.ClearFOF">Clear out the game</button>
 }
 
 <footer>
@@ -78,16 +78,5 @@
         {
             warning = true;
         }
-    }
-
-    private void ClearFOF()
-    {
-        StaticPileOfCards.PileOfCards = null;
-        StaticPileOfCards.Player = 0;
-        StaticPileOfCards.Using = false;
-        StaticPileOfCards.BoolPopUpCards = false;
-        StaticPileOfCards.otherPlayerCanSee = false;
-        StaticPileOfCards.chosenPlayer = 1;
-        StaticPileOfCards.onlyOnePlayer = true;
     }
 }

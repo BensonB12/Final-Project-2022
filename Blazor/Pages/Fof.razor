@@ -53,7 +53,7 @@
 
         @if (StaticPileOfCards.BoolPopUpCards && StaticPileOfCards.chosenPlayer == thisPlayer)
         {
-            <CardsContainer Cards="CardsForChoice" OnStatusUpdated="HandleStatusUpdated">
+            <CardsContainer Cards="CardsForChoice" OnStatusUpdated="StaticGenerals.HandleStatusUpdated">
                 <CardList ListStatus="CardStatus.Pile1FaceUp" />
                 <CardList ListStatus="Winston.CardStatus.Pile2FaceDown" />
             </CardsContainer>
@@ -135,7 +135,9 @@
 
         <button @onclick="ShowPersonalCards" class="seeDraftedCards">Veiw Drafted Cards</button>
         <button @onclick="Update" class="update">Update</button>
-        <button @onclick="Exit" class="exit">Exit</button>
+        <NavLink href="PickPacks">
+            <button @onclick="StaticGenerals.ClearFOF" class="exit">Exit</button>
+        </NavLink>
     }
     else
     {
@@ -182,12 +184,12 @@
 
     public void Pile1()
     {
-        PlrChosePile(1);
+        StaticGenerals.PlrChosePile(1, ref CardsForChoice);
     }
 
     public void Pile2()
     {
-        PlrChosePile(2);
+        StaticGenerals.PlrChosePile(2, ref CardsForChoice);
     }
 
     protected override async Task OnInitializedAsync()
@@ -217,18 +219,6 @@
         {
             tooManyPlayers = true;
         }
-    }
-
-    private void Exit()
-    {
-        StaticPileOfCards.PileOfCards = null;
-        StaticPileOfCards.Player = 0;
-        StaticPileOfCards.Using = false;
-        StaticPileOfCards.BoolPopUpCards = false;
-        StaticPileOfCards.otherPlayerCanSee = false;
-        StaticPileOfCards.chosenPlayer = 1;
-        StaticPileOfCards.onlyOnePlayer = true;
-        UriHelper.NavigateTo("/PickPacks");
     }
 
     public void ChangeStatic()
@@ -263,78 +253,12 @@
 
     public void ShowTheOtherPlayer()
     {
-        foreach (var HTMLCard in CardsForChoice)
-        {
-            if (HTMLCard.Status == CardStatus.Pile1FaceUp)
-            {
-                StaticPileOfCards.PopUpCards.Item1.Add(HTMLCard.card);
-            }
-            else
-            {
-                StaticPileOfCards.PopUpCards.Item2.Add(HTMLCard.card);
-            }
-        }
-
-        StaticPileOfCards.chosenPlayer++;
-
-        if (StaticPileOfCards.chosenPlayer == 3)
-        {
-            StaticPileOfCards.chosenPlayer = 1;
-        }
-
-        StaticPileOfCards.BoolPopUpCards = false;
-
-        StaticPileOfCards.otherPlayerCanSee = true;
+        StaticGenerals.ShowCardsToOtherPlayer(CardsForChoice);
     }
 
     public void Update()
     {
         StaticPileOfCards.otherPlayerCanSee = StaticPileOfCards.otherPlayerCanSee;
-    }
-
-    public void HandleStatusUpdated()
-    {
-    }
-
-    public void PlrChosePile(int pile)
-    {
-        StaticPileOfCards.otherPlayerCanSee = false;
-        CardsForChoice = new List<CardModelHTML>();
-
-        if (StaticPileOfCards.chosenPlayer == 1)
-        {
-            if (pile == 1)
-            {
-                StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
-                StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
-            }
-            else
-            {
-                StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
-                StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
-            }
-        }
-        else
-        {
-            if (pile == 1)
-            {
-                StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
-                StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
-            }
-            else
-            {
-                StaticPileOfCards.Player2Cards.AddRange(StaticPileOfCards.PopUpCards.Item2);
-                StaticPileOfCards.Player1Cards.AddRange(StaticPileOfCards.PopUpCards.Item1);
-            }
-        }
-
-        if (StaticPileOfCards.PileOfCards.Count == 0)
-        {
-            StaticPileOfCards.GameOver = true;
-        }
-
-        StaticPileOfCards.PopUpCards.Item1.Clear();
-        StaticPileOfCards.PopUpCards.Item2.Clear();
     }
 
     public void ShowPersonalCards()
