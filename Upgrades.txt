@@ -10,12 +10,6 @@ Pefect what I have
 Add the Cube
 - The cube is put into a file and can be read to
 
-Draft across computers
-- Figure that out
-        - using static states
-
-UI needs to be smaller
-
 Add diffrent laugages
 - German
 - Japanize
