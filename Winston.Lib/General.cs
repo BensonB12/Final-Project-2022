@@ -36,22 +36,3 @@ namespace Winston
         }
     }
 }
-//Github Link: https://github.com/MagicTheGathering/mtg-sdk-dotnet
-//Booster packs have 10 common, 3 uncommon, 1 rare/mythicRare, and 1 non-basic land if there is any in the set. (DOM had basics and WAR had one common land)
-
-
-//     public async Task LoadImage()
-//     {
-//         var card = await CardProcessor.LoadNonLand(Set.WAR, Rarity.uncommon);
-
-//         var uriSource = new Uri(card.ImageUrl, UriKind.Absolute);
-//         //cardImage.Source = new BitmapImage(uriSource);
-//     }
-
-
-// var writer = new StreamWriter("Testing.txt");
-                        // foreach (var card in halfTheCommons)
-                        // {
-                        //     writer.WriteLine($"{card.Name}");
-                        // }
-                        // writer.Close();

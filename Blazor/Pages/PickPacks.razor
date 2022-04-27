@@ -49,13 +49,13 @@
 <button @onclick="PassValue">Start</button>
 <br>
 <br>
-@if(StaticPileOfCards.Player > 2 && NEO == 5 && WAR == 5 && DOM == 5)
+@if (StaticPileOfCards.Player > 2 && NEO == 5 && WAR == 5 && DOM == 5)
 {
     <button @onclick="StaticGenerals.ClearFOF">Clear out the game</button>
 }
 
 <footer>
-    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not 
+    <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not
         approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of
         the Coast LLC.</h6>
 </footer>
@@ -72,7 +72,14 @@
     {
         if (WAR + DOM + NEO == 6)
         {
-            UriHelper.NavigateTo($"{draftType}/{DOM}/{WAR}/{NEO}/{containBasics}");
+            if (draftType != null && draftType != "---")
+            {
+                UriHelper.NavigateTo($"{draftType}/{DOM}/{WAR}/{NEO}/{containBasics}");
+            }
+            else
+            {
+                warning = true;
+            }
         }
         else
         {

@@ -26,3 +26,10 @@ Questions
 - How to give a list value to another page
         - using parameder atribute
 - How to call a method with @bind with a peramader
+
+review ideas
+- Exit button at the end
+- fof clarifacation
+- Spelling errors
+- which cards to select
+- Info on the cards avalible while playing the game
