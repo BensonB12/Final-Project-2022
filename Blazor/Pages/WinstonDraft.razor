@@ -210,6 +210,10 @@ else
     {
         <li>1 @cards.Name</li>
     }
+
+    <NavLink href="PickPacks">
+        <button>Play again?</button>
+    </NavLink>
 }
 <footer>
     <h6 class="policy">Winston_MTG is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.</h6>
@@ -260,7 +264,7 @@ else
     public List<string> listOfImgUrls = new List<string>();
     public List<string> oldImgUrls = new List<string>();
 
-    public async void ShowPile()
+    public void ShowPile()
     {
         listOfImgUrls = new List<string>();
         var pile = allPiles[chosenPile];

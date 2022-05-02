@@ -126,6 +126,10 @@ else
     {
         <li>1 @cards.Name</li>
     }
+
+    <NavLink href="PickPacks">
+        <button>Play again?</button>
+    </NavLink>
 }
 
 <footer>
@@ -144,12 +148,6 @@ else
     [Parameter]
     public string NEO { get; set; }
     int startingPlayer = 0;
-    string c1 = "c1";
-    string c2 = "c2";
-    string c3 = "c3";
-    string r1 = "r1";
-    string r2 = "r2";
-    string r3 = "r3";
     public List<Winston.CardModel> stackOCards = null;
     public List<Winston.CardModel> showingCards = new List<Winston.CardModel>();
     public List<Winston.CardModel> oldShowingCards = new List<Winston.CardModel>();
