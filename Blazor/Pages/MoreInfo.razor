@@ -17,7 +17,11 @@
     </NavLink>
 </table>
 
-@if (wMTG)
+@if (!wMTG && !wD && !wWD && !txt && !fof && !app)
+{
+    <p class="prompt">click on the questions above to see more information</p>
+}
+else if (wMTG)
 {
     <h2>What is Magic the Gathering: </h2>
     <p>Magic The Gathering is a cardgame made in 1993 that depicts monsters and men fighting to destroy their opponent, and they are commanded by a powerful wizard (you). It has been said to be "D&D" in card form.</p>

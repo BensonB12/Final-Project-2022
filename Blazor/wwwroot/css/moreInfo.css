@@ -38,3 +38,9 @@ img {
 p {
     background-color: lightblue;
 }
+
+.prompt {
+    background-color: white;
+    font-style: italic;
+    padding: 0;
+}
